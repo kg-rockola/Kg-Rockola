@@ -11,14 +11,13 @@ var _port  = 8888;
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
 
-var express = require('express'); // Express web server framework
-var request = require('request'); // "Request" library
-var querystring = require('querystring');
-var cookieParser = require('cookie-parser');
-
-var client_id = '03ffe0cac0a0401aa6673c3cf6d02ced'; // Your client id
+var express       = require('express'); // Express web server framework
+var request       = require('request'); // "Request" library
+var querystring   = require('querystring');
+var cookieParser  = require('cookie-parser');
+var client_id     = '03ffe0cac0a0401aa6673c3cf6d02ced'; // Your client id
 var client_secret = 'a57c43efb9644574a96d6623fb8bfbc2'; // Your client secret
-var redirect_uri = 'http://localhost:'+_port+'/callback'; // Your redirect uri
+var redirect_uri  = 'http://localhost:'+_port+'/callback'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
@@ -145,8 +144,52 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
-app.listen(_port, function(){
+var server = app.listen(_port, function(){
 	var url = "http://localhost:"+_port;
 	console.log("Serving at: "+url);
 	open(url);
 });
+
+
+// Sockets
+
+var io = require("socket.io").listen(server);
+
+io.on("connection", handleIO);
+
+function handleIO(socket){
+
+  console.log("Client connected");
+
+  socket.on("disconnect", disconnect);
+
+  function disconnect(){
+    console.log("Client disconnected");
+  }
+
+  socket.emit("deviceToken", guid() );
+
+}
+
+io.configure(function(){
+  io.enable("browser client minification");
+  io.enable("browser client etag");
+  io.set("log level", 1);
+  io.set("transports", [
+      "websocket",
+      "xhr-polling",
+      "jsonp-polling"
+    ]);
+});
+
+// Helpers 
+
+function guid() { // Globally unique identifier
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
+}
