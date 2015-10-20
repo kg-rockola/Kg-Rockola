@@ -159,17 +159,20 @@ io.on("connection", handleIO);
 
 function handleIO(socket){
 
-  console.log("Client connected");
+  console.log("Server connected");
 
   socket.on("disconnect", disconnect);
+  socket.emit("deviceToken", guid() );
+  socket.on("hostParty", function (data){
+    console.log(data);
+    socket.broadcast.emit("hostParty", { host: data });    
+  });
 
   function disconnect(){
-    console.log("Client disconnected");
+    console.log("Server disconnected");
   }
 
-  socket.emit("deviceToken", guid() );
-
-}
+};
 
 io.configure(function(){
   io.enable("browser client minification");

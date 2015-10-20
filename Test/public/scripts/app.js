@@ -1,29 +1,77 @@
+(function(){
+
+'use strict';
+
 var rockola = angular.module("rockola", []);
 
-rockola.controller("logIn", ["$scope",
-							 "logInService",
+rockola.controller("app", ["$scope",
+							"socket",
 							 function(
 							 		$scope,
-							 		logger
+							 		socket
 							 	){
+	$scope.deviceToken;
+	$scope.playlist = {
+		playing : false,
+		host    : null,
+		songs   : []
+	};
 
-	
+	$scope.play = function(){
+		socket.emit("hostParty", $scope.deviceToken, function(data){
+			console.log($scope.playlist);
+			$scope.playlist.host    = data.host;
+			$scope.playlist.playing = true;
+			$scope.$apply();
+		});
+	};
+
+	socket.on("deviceToken", function(givenToken){
+		$scope.deviceToken = givenToken;
+	});
 
 }]);
 
+// Factories
 
-rockola.service("logInService", [// Dependencies
-		             			 function(
-		             			 	// Params
-								 ){
+rockola.factory('socket', function ($rootScope) {
+  var socket = io.connect();
+  return {
+    on: function (eventName, callback) {
+      socket.on(eventName, function () {  
+        var args = arguments;
+        $rootScope.$apply(function () {
+          callback.apply(socket, args);
+        });
+      });
+    },
+    emit: function (eventName, data, callback) {
+      socket.emit(eventName, data, function () {
+        var args = arguments;
+        $rootScope.$apply(function () {
+          if (callback) {
+            callback.apply(socket, args);
+          }
+        });
+      })
+    }
+  };
+});
 
-    var data = {
-    	hashParams : getHashParams()
-    };
+// Socket logic
 
-    return data;
+// var socket = io.connect('/');
 
-}]);
+// socket.on("connect", function(){
+// 	console.log("Connected.");
+// });
+
+// socket.on("disconnect", function(){
+// 	console.log("Disconnected.");
+// 	clearToken();
+// });
+
+// Helpers
 
 function getHashParams() {
 	var hashParams = {};
@@ -37,16 +85,6 @@ function getHashParams() {
 	return hashParams;
 }
 
-var socket = io.connect('/');
+function log(data){ console.log(data); };
 
-socket.on("connect", function(){
-	console.log("Connected.");
-});
-
-socket.on("disconnect", function(){
-	console.log("Disconnected.");
-});
-
-socket.on("deviceToken", function(data){
-	console.log(data);
-});
+})();
