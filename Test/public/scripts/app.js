@@ -2,37 +2,64 @@
 
 'use strict';
 
-var rockola = angular.module("rockola", []);
+var rockola = angular.module("rockola", 
+	[
+		// Dependencies.
+	]);
 
-rockola.controller("app", ["$scope",
-							"socket",
-							 function(
-							 		$scope,
-							 		socket
-							 	){
-	$scope.deviceToken;
-	$scope.playlist = {
-		playing : false,
-		host    : null,
-		songs   : []
-	};
+rockola.controller('app', ['$scope',
+            						   'socket',
+            							function(
+            								  $scope,
+            								  socket
+            								){
 
-	$scope.play = function(){
-		socket.emit("hostParty", $scope.deviceToken, function(data){
-			console.log($scope.playlist);
-			$scope.playlist.host    = data.host;
-			$scope.playlist.playing = true;
-			$scope.$apply();
-		});
-	};
+	$scope.messages = [];
+  $scope.deviceId = '';
+  $scope.party    = {
+    host  : true,
+    songs : []
+  };
+  $scope.message  = '';
 
-	socket.on("deviceToken", function(givenToken){
-		$scope.deviceToken = givenToken;
-	});
+  $scope.send = function(){
+    socket.emit('message', $scope.message);
+    $scope.messages.push($scope.message);
+  }
+
+  $scope.host = function(){
+    socket.emit('host:party', $scope.deviceId);
+    $scope.party.host = $scope.deviceId;
+  }
+
+  socket.on('message', function (message) {
+    $scope.messages.push(message);
+  });
+
+  socket.on('host:party', function(hostId){
+    $scope.party.host = hostId;
+  });
+
+  socket.on('clear:host', function(){
+    $scope.party.host = null;
+  });
+
+  socket.on('init', function(data){
+    $scope.messages = data.messages;
+    $scope.party    = data.party;
+
+    var deviceId = sessionStorage.getItem('deviceId');
+
+    if(deviceId){
+      $scope.deviceId = deviceId;
+    } else {
+      $scope.deviceId = data.deviceId;
+      sessionStorage.setItem('deviceId', data.deviceId);
+    }
+
+  });
 
 }]);
-
-// Factories
 
 rockola.factory('socket', function ($rootScope) {
   var socket = io.connect();
@@ -57,33 +84,6 @@ rockola.factory('socket', function ($rootScope) {
     }
   };
 });
-
-// Socket logic
-
-// var socket = io.connect('/');
-
-// socket.on("connect", function(){
-// 	console.log("Connected.");
-// });
-
-// socket.on("disconnect", function(){
-// 	console.log("Disconnected.");
-// 	clearToken();
-// });
-
-// Helpers
-
-function getHashParams() {
-	var hashParams = {};
-	var e, r = /([^&;=]+)=?([^&;]*)/g,
-	    q = window.location.hash.substring(1);
-
-	while ( e = r.exec(q)) {
-	   hashParams[e[1]] = decodeURIComponent(e[2]);
-	}
-
-	return hashParams;
-}
 
 function log(data){ console.log(data); };
 

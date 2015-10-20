@@ -11,56 +11,47 @@
 
   <body ng-app="rockola" ng-controller="app" >
 
-  <div class="container" >
-   
-    <h1>{{ deviceToken }}</h1>
+    <div class="container" >
+     
+      <div class="col col-md-12" >
 
-    <button class="btn btn-primary"
-            ng-disabled="playlist.playing"
-            ng-click="play();"
-        >
-        Play
-    </button>
+        <section>
+          <input type="text" ng-model="message" >
+          <button ng-click="send()">Send</button>
+          <ul>
+              <li ng-repeat="message in messages">
+                  {{ message }}
+              </li>
+          </ul>
+        </section>
 
-  </div>
+         <section>
+            <h1>
+              host: {{ party.host }}
+            </h1>
+            <h1>
+              device: {{ deviceId }}
+            </h1>
+            <button ng-click="host()"
+                    ng-hide="party.host"
+                    class="btn btn-primary"
+                  >
+              Host
+            </button>
+            <button ng-click="host()"
+                    ng-show="party.host && (party.host === deviceId)"
+                    class="btn btn-primary"
+                  >
+              Stop hosting
+            </button>
+          </section>
+    
+      </div>
 
-    <!-- <script id="user-profile-template" type="text/x-handlebars-template">
-      
-    //   <div>  
-    //     <h1>Logged in as {{display_name}}</h1>
-    //     <div class="media">
-    //       <div class="pull-left">
-    //         <img class="media-object" width="150" src="{{images.0.url}}" />
-    //       </div>
-    //       <div class="media-body">
-    //         <dl class="dl-horizontal">
-    //           <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-    //           <dt>Id</dt><dd>{{id}}</dd>
-    //           <dt>Email</dt><dd>{{email}}</dd>
-    //           <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-    //           <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-    //           <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-    //           <dt>Country</dt><dd>{{country}}</dd>
-    //         </dl>
-    //       </div>
-    //     </div>
-    //   </div>
+    </div>
 
-    // </script>
-
-    // <script id="oauth-template" type="text/x-handlebars-template">
-    //   <h2>oAuth info</h2>
-    //   <dl class="dl-horizontal">
-    //     <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
-    //     <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>
-    //   </dl>
-    // </script>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="scripts/app-handlebars.js"></script> -->
-    <script src="scripts/Vendor/store.js" ></script>
+    <script src="//code.angularjs.org/1.4.7/angular-route.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="scripts/Vendor/store.js" ></script>
     <script src="scripts/app.js" ></script>
 </html>
-
