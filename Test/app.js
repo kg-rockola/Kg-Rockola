@@ -62,7 +62,7 @@ function handleIO(socket){
   socket.on("disconnect", disconnect);
   function disconnect(){
       console.log("Server disconnected");
-      socket.broadcast.emit('user:left', { msg : 'disconnect' });
+      socket.broadcast.emit('user:left', 'User disconnected');
   }
 
   socket.emit("init", {
@@ -74,6 +74,11 @@ function handleIO(socket){
   socket.on('message', function(data){
     messages.push(data);
     socket.broadcast.emit('message', data);
+  });
+
+  socket.on('host:left', function(userId){
+      party.host = '';
+      socket.broadcast.emit('party:pause', party);
   });
 
   socket.on('host:party', function(hostId){
