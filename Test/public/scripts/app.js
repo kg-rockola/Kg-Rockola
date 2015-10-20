@@ -32,6 +32,10 @@ rockola.controller('app', ['$scope',
     $scope.party.host = $scope.deviceId;
   }
 
+  socket.on('user:left', function(data){
+    console.log(data.msg);
+  })
+
   socket.on('message', function (message) {
     $scope.messages.push(message);
   });

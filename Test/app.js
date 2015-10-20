@@ -61,7 +61,8 @@ function handleIO(socket){
   console.log("Server connected");
   socket.on("disconnect", disconnect);
   function disconnect(){
-    console.log("Server disconnected");
+      console.log("Server disconnected");
+      socket.broadcast.emit('user:left', { msg : 'disconnect' });
   }
 
   socket.emit("init", {
