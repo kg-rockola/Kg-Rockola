@@ -17,7 +17,7 @@ rockola.controller('app', ['$scope',
 	$scope.messages = [];
   $scope.deviceId = '';
   $scope.party    = {
-    host  : true,
+    host  : null,
     songs : []
   };
   $scope.message  = '';
@@ -32,24 +32,21 @@ rockola.controller('app', ['$scope',
     $scope.party.host = $scope.deviceId;
   }
 
+  $scope.stopHosting = function(){
+    socket.emit('host:party', null);
+    $scope.party.host = null;
+  }
+
   socket.on('user:left', function(msg){
-    socket.emit('check:host:left', $scope.deviceId);
+    console.log(msg);
   })
 
   socket.on('message', function (message) {
     $scope.messages.push(message);
   });
 
-  socket.on('party:pause', function(party){
-    $scope.party = party;
-  });
-
   socket.on('host:party', function(hostId){
     $scope.party.host = hostId;
-  });
-
-  socket.on('clear:host', function(){
-    $scope.party.host = null;
   });
 
   socket.on('init', function(data){

@@ -76,11 +76,6 @@ function handleIO(socket){
     socket.broadcast.emit('message', data);
   });
 
-  socket.on('host:left', function(userId){
-      party.host = '';
-      socket.broadcast.emit('party:pause', party);
-  });
-
   socket.on('host:party', function(hostId){
     party['host'] = hostId;
     socket.broadcast.emit('host:party', hostId)
