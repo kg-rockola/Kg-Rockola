@@ -1,5 +1,4 @@
-var app = angular.module('myApp', ['ngMaterial']);
-app.controller('search_controller', function($scope,$http,$sce,$timeout) {
+rockola.controller('search_controller', function($scope,$http,$sce,$timeout) {
     $scope.curentTrackList;
 
     $scope.init = function() {
