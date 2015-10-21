@@ -1,8 +1,7 @@
 <!doctype html>
-<html>
+<html ng-app="myApp">
   <head>
     <title>RocKGola</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
@@ -23,11 +22,7 @@
         <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
       </div>
     </div>
-
-
-
-
-   <script id="user-profile-template" type="text/x-handlebars-template">
+    <!-- <script id="user-profile-template" type="text/x-handlebars-template">
       <h1>Logged in as {{display_name}}</h1>
       <div class="media">
         <div class="pull-left">
@@ -45,7 +40,7 @@
           </dl>
         </div>
       </div>
-    </script>
+    </script> -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script id="oauth-template" type="text/x-handlebars-template">
@@ -133,35 +128,85 @@
       })();
     </script>
 
+    <div class="conteiner_app"  ng-controller="search_controller" ng-init="init()" ng-cloak>
+          <div>
+            <md-content>
+              <md-tabs md-dynamic-height md-border-bottom>
+              <!-- Search tab-->
+                <md-tab label="one">
+                  <md-content class="md-padding">
+                    <h1 class="md-display-2">Search</h1>
+                      
+                      <form novalidate>
+                        Search song by name<br>
+                        <input type="text" ng-model="searchParam"><br>
+                        <button ng-click="search()">Search Songs</button>
+                        <button ng-click="clearFilter()">Clear Search</button>
+                      </form>
 
+                      <ul class="trackList">
+                        <li class="track "ng-repeat="x in searchTrackList" >
+                          <img src="{{ x.album.images[0].url }}" width="200" height="200">
+                          <div class="info">
+                              <p>{{ x.name }}</p>
+                              <p> {{ x.artists[0].name }}</p>
+                              <p>{{ getDurationMinutes(x.duration_ms) }}</p>
+                              <button ng-click="addSong(x)">Add Song</button>
+                          </div>
+                        </li>
+                      </ul>
+                  </md-content>
+                </md-tab>
 
+              <!-- Play music tab-->
+                <md-tab label="two">
+                  <md-content class="md-padding" layout="column" >
+                    <h1 class="md-display-2">Play Music</h1>
+                    <p> Para iniciar reproduccion presione <a ng-click="getSong()">aquí</a> </p>
+                    <p> Next song<a ng-click="nextSong()">aquí</a> </p>
+                    <p> Pause song<a ng-click="PauseSong()">aquí</a> </p>
+                    <p class="alert alert-danger" ng-hide="curentTrackList.length">No hay canciones agregadas al Play List </p>
+                    <div id="containerIframe" ng-bind-html="containerIframe"></div>
+                  </md-content>
+                </md-tab>
 
+              <!-- Vote tab-->
+                <md-tab label="three">
+                  <md-content class="md-padding">
+                    <h1 class="md-display-2">Vote for song</h1>
+                    <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+                      <ul class="trackList">
+                        <li class="track "ng-repeat="x in searchTrackList">
+                          <img src="{{ x.album.images[0].url }}" width="200" height="200">
+                          <div class="info" ng-controller="search_controller" ng-cloak>
+                              <p>{{ x.name }}</p>
+                              <p> {{ x.artists[0].name }}</p>
+                              <p>{{ getDurationMinutes(x.duration_ms) }}</p>
+                              <div class="demo-swipe" ng-click="onDislikeSong()">
+                                 <span class="no-select">Dislike Song</span>
+                              </div>
+                              <md-divider></md-divider>
+                              <div class="demo-swipe" ng-click="onLikeSong()">                                 
+                                <span class="no-select">Like Song</span>
+                              </div>
+                          </div>
+                        </li>
+                      </ul>
+                  </md-content>
+                </md-tab>
+              </md-tabs>
+            </md-content>
+          </div>
 
-    <div class="conteiner_app"  ng-app="myApp" ng-controller="search_controller" ng-init="init()" ng-cloak>
-          
-          <form novalidate>
-            Search song by name<br>
-            <input type="text" ng-model="searchParam"><br>
-            <button ng-click="search()">Search Songs</button>
-          </form>
-
-          <ul >
-            <li ng-repeat="x in searchTrackList" >
-              <img src="{{ x.album.images[0].url }}" width="200" height="200">
-              <div>
-                  {{ x.id }}
-                  {{ x.name }}
-                  {{ x.artists[0].name }}
-                  {{ getDurationMinutes(x.duration_ms) }}
-                  <button ng-click="addSong(x)">Add Song</button>
-              </div>
-            </li>
-          </ul>
     </div>
-    <script src="search_controller.js"></script>
     <!-- Angular Material Dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
+    <!--Controller-->
+     <script src="search_controller.js"></script>
+
+  </body>
 </html>
 
