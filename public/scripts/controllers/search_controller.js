@@ -1,6 +1,6 @@
 rockola.controller('search_controller', function($scope,$http,$sce,$timeout) {
     $scope.curentTrackList;
-
+    
     $scope.init = function() {
        $scope.searchParam="";
        $scope.currentTrack="4th1RQAelzqgY7wL53UGQt";

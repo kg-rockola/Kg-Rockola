@@ -3,5 +3,6 @@
 var rockola = angular.module("rockola", 
   [
     // Dependencies.
-    'ngMaterial'
+    'ngMaterial',
+    'ui.router'
   ]);
