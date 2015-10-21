@@ -5,9 +5,9 @@
 rockola.controller('app', ['$scope',
                            'socket',
                           function(
-                              $scope,
-                              socket
-                            ){
+                            $scope,
+                            socket
+                          ){
 
   $scope.messages = [];
   $scope.deviceId = '';

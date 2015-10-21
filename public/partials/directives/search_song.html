@@ -1,0 +1,34 @@
+<md-content class="md-padding">
+  <h1 class="md-display-2">Search</h1>
+    
+    <form novalidate>
+      <div>
+        <label for="songQuery">Search song by name</label>
+      </div>
+      <input id="songQuery" type="text" ng-model="searchParam"><br>
+      <div>
+        <button ng-click="search()"
+              class="btn btn-submit"
+            >
+          Search Songs
+        </button>
+        <button ng-click="clearFilter()"
+                class="btn btn-submit"
+              >
+            Clear Search
+        </button>
+      </div>
+    </form>
+
+    <ul class="trackList">
+      <li class="track "ng-repeat="track in foundTracks" >
+        <img src="{{ track.album.images[0].url }}" width="200" height="200">
+        <div class="info">
+            <p>{{ track.name }}</p>
+            <p> {{ track.artists[0].name }}</p>
+            <p>{{ getDurationMinutes(track.duration_ms) }}</p>
+            <button ng-click="addSong(track)">Add Song</button>
+        </div>
+      </li>
+    </ul>
+</md-content>

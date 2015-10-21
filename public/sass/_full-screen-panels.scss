@@ -1,0 +1,20 @@
+.full-screen { // fs
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+	
+	> .fs-item {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	&.fs-modal {
+		background: rgba(0,0,0,0.5);
+			
+			> div, > section {
+				z-index: 99;
+			}
+	}
+}

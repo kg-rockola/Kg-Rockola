@@ -1,0 +1,18 @@
+<md-content class="md-padding" layout="column" >
+	<h1 class="md-display-2">
+		Play Music
+	</h1>
+	<p> 
+		Para iniciar reproduccion presione <a ng-click="getSong()">aquí</a> 
+	</p>
+	<p> 
+		Next song <a ng-click="nextSong()">aquí</a> 
+	</p>
+	<p>
+		Pause song <a ng-click="PauseSong()">aquí</a> 
+	</p>
+	<p class="alert alert-danger" ng-hide="curentTrackList.length">
+		No hay canciones agregadas al Play List 
+	</p>
+	<div id="containerIframe" ng-bind-html="containerIframe"></div>
+</md-content>

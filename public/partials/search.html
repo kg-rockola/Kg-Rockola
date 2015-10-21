@@ -1,83 +1,18 @@
-<div class="container_app"  ng-init="init()" ng-cloak>
-	<div>
-    <md-content>
-      <md-tabs md-dynamic-height md-border-bottom>
+<div class="container_app container"  ng-init="init()" ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
       <!-- Search tab-->
-        <md-tab label="one">
-          <md-content class="md-padding">
-            <h1 class="md-display-2">Search</h1>
-              
-              <form novalidate>
-                <div>
-                  <label for="songQuery">Search song by name</label>
-                </div>
-                <input id="songQuery" type="text" ng-model="searchParam"><br>
-                <div>
-                  <button ng-click="search()"
-                        class="btn btn-submit"
-                      >
-                    Search Songs
-                  </button>
-                  <button ng-click="clearFilter()"
-                          class="btn btn-submit"
-                        >
-                      Clear Search
-                  </button>
-                </div>
-              </form>
-
-              <ul class="trackList">
-                <li class="track "ng-repeat="x in searchTrackList" >
-                  <img src="{{ x.album.images[0].url }}" width="200" height="200">
-                  <div class="info">
-                      <p>{{ x.name }}</p>
-                      <p> {{ x.artists[0].name }}</p>
-                      <p>{{ getDurationMinutes(x.duration_ms) }}</p>
-                      <button ng-click="addSong(x)">Add Song</button>
-                  </div>
-                </li>
-              </ul>
-          </md-content>
-        </md-tab>
-
-      <!-- Play music tab-->
-        <md-tab label="two">
-          <md-content class="md-padding" layout="column" >
-            <h1 class="md-display-2">Play Music</h1>
-            <p> Para iniciar reproduccion presione <a ng-click="getSong()">aquí</a> </p>
-            <p> Next song<a ng-click="nextSong()">aquí</a> </p>
-            <p> Pause song<a ng-click="PauseSong()">aquí</a> </p>
-            <p class="alert alert-danger" ng-hide="curentTrackList.length">No hay canciones agregadas al Play List </p>
-            <div id="containerIframe" ng-bind-html="containerIframe"></div>
-          </md-content>
-        </md-tab>
-
+      <md-tab label="Search">
+        <rla-search-song></rla-search-song>
+      </md-tab>
       <!-- Vote tab-->
-        <md-tab label="three">
-          <md-content class="md-padding">
-            <h1 class="md-display-2">Vote for song</h1>
-            <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-              <ul class="trackList">
-                <li class="track "ng-repeat="x in searchTrackList">
-                  <img src="{{ x.album.images[0].url }}" width="200" height="200">
-                  <div class="info" ng-controller="search_controller" ng-cloak>
-                      <p>{{ x.name }}</p>
-                      <p> {{ x.artists[0].name }}</p>
-                      <p>{{ getDurationMinutes(x.duration_ms) }}</p>
-                      <div class="demo-swipe" ng-click="onDislikeSong()">
-                         <span class="no-select">Dislike Song</span>
-                      </div>
-                      <md-divider></md-divider>
-                      <div class="demo-swipe" ng-click="onLikeSong()">                                 
-                        <span class="no-select">Like Song</span>
-                      </div>
-                  </div>
-                </li>
-              </ul>
-          </md-content>
-        </md-tab>
-      </md-tabs>
-    </md-content>
-  </div>
-
+      <md-tab label="Vote">
+        <rla-vote-song></rla-vote-song>
+      </md-tab>
+      <!-- Play music tab-->
+      <md-tab label="Play">
+        <rla-play-music></rla-play-music>
+      </md-tab>
+    </md-tabs>
+  </md-content>
 </div>
