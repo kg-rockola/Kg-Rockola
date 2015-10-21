@@ -51,7 +51,7 @@ var server = app.listen(_port, function(){
 // Sockets
 
 var io       = require("socket.io").listen(server);
-var messages = [];
+var playlist = [];
 var party    = {};
 
 io.on("connection", handleIO);
@@ -65,15 +65,17 @@ function handleIO(socket){
       socket.broadcast.emit('user:left', 'User disconnected');
   }
 
+  socket.emit('get:playlist', playlist);
+
   socket.emit("init", {
-    messages : messages,
+    playlist : playlist,
     party    : party,
     deviceId : guid()
   });
   
-  socket.on('message', function(data){
-    messages.push(data);
-    socket.broadcast.emit('message', data);
+  socket.on('update:playlist', function(song){
+    playlist.push(song);
+    socket.broadcast.emit('playlist:updated', song);
   });
 
   socket.on('host:party', function(hostId){

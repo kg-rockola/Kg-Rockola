@@ -41,10 +41,17 @@ rockola.controller('search_controller', ['$scope',
     // }
 
     $scope.addSong = function($song){
-        $song.score = 0;
-        $scope.currentTrackList.push($song);
-        console.log( $scope.currentTrackList);
-        $scope.getSong();
+        // $song.score = 0;
+        // $scope.currentTrackList.push($song);
+        // console.log( $scope.currentTrackList);
+        // $scope.getSong();
+
+        socket.emit('update:playlist', $song);
+        $scope.addToPlaylist($song);
+    };
+
+    $scope.addToPlaylist = function(song){
+        $scope.currentTrackList.push(song);
     };
 
     $scope.getSong = function(){
@@ -93,7 +100,7 @@ rockola.controller('search_controller', ['$scope',
     };
 
     $scope.clearFilter = function(song){
-        $scope.searchTrackList = [];
+        $scope.foundTracks = [];
         $scope.searchParam="";
     };
 
@@ -102,7 +109,14 @@ rockola.controller('search_controller', ['$scope',
           var seconds = ((millis % 60000) / 1000).toFixed(0);
           return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     };
- 
+
+    // Socket events
+    
+    socket.on('playlist:updated', function(song){
+        $scope.addToPlaylist(song);
+        console.log($scope.currentTrackList);
+    });
+
 }]);
 
 })();

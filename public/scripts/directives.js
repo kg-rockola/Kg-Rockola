@@ -21,19 +21,21 @@ rockola.directive(
 	function() {
 	  return {
 	    restrict    : 'E',
-	    templateUrl : root + 'search_song.html'
+	    templateUrl : root + 'search_song.html',
+	    controller  : 'search_controller'
 	 };
 	}
 );
 
 rockola.directive(
-	// HTML: rla-search-song
+	// HTML: rla-vote-song
 	'rlaVoteSong', 
 	// Configuration
 	function() {
 	  return {
 	    restrict    : 'E',
-	    templateUrl : root + 'vote_song.html'
+	    templateUrl : root + 'vote_song.html',
+	    controller  : 'vote_controller'
 	 };
 	}
 );

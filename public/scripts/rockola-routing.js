@@ -20,11 +20,10 @@ rockola.config(
 				}
 			)
 			.state(
-				'search',
+				'app',
 				{
-					url 	    : '/search',
-					templateUrl : root.partials    + 'search.html',
-					controller  : 'search_controller as search_controller'
+					url 	    : '/app',
+					templateUrl : root.partials    + 'app.html'
 				}
 			)
 			.state(

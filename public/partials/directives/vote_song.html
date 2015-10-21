@@ -1,25 +1,10 @@
 <md-content class="md-padding">
   <h1 class="md-display-2">
-    Vote for song
+    Vote for song {{ votemsg }}
   </h1>
-  <p>
-    Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.
-  </p>
     <ul class="trackList" >
-      <li class="track "ng-repeat="x in searchTrackList">
-        <img src="{{ x.album.images[0].url }}" width="200" height="200">
-        <div class="info" ng-controller="search_controller" ng-cloak>
-            <p>{{ x.name }}</p>
-            <p> {{ x.artists[0].name }}</p>
-            <p>{{ getDurationMinutes(x.duration_ms) }}</p>
-            <div class="demo-swipe" ng-click="onDislikeSong()">
-               <span class="no-select">Dislike Song</span>
-            </div>
-            <md-divider></md-divider>
-            <div class="demo-swipe" ng-click="onLikeSong()">                                 
-              <span class="no-select">Like Song</span>
-            </div>
-        </div>
+      <li class="track "ng-repeat="track in playlist">
+        {{ track.name }}
       </li>
     </ul>
 </md-content>

@@ -1,4 +1,4 @@
-<md-content class="md-padding">
+<md-content class="md-padding col col-md-4">
   <h1 class="md-display-2">Search</h1>
     
     <form novalidate>
@@ -22,13 +22,38 @@
 
     <ul class="trackList">
       <li class="track "ng-repeat="track in foundTracks" >
-        <img src="{{ track.album.images[0].url }}" width="200" height="200">
-        <div class="info">
-            <p>{{ track.name }}</p>
-            <p> {{ track.artists[0].name }}</p>
-            <p>{{ getDurationMinutes(track.duration_ms) }}</p>
-            <button ng-click="addSong(track)">Add Song</button>
+        
+        <div class="panel panel-default text-center">
+          <!-- Default panel contents -->
+          <div class="panel-heading">
+            <h4>
+              {{ track.name }}
+            </h4>
+          </div>
+          <div class="panel-body">
+            <img src="{{ track.album.images[0].url }}" class="img-responsive" width="200" height="200">
+          </div>
+
+          <!-- List group -->
+          <ul class="list-group">
+            <li class="list-group-item">
+              Artist: {{ track.artists[0].name }}
+            </li>
+            <li class="list-group-item">
+              Duration: {{ getDurationMinutes(track.duration_ms) }}
+            </li>
+            <li>
+              <button ng-click="addSong(track)"
+                      class="btn btn-primary"
+                >
+                  Add Song
+              </button>
+            </li>
+          </ul>
         </div>
+
       </li>
     </ul>
 </md-content>
+
+
