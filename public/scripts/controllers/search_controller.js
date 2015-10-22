@@ -14,13 +14,13 @@ rockola.controller('search_controller', ['$scope',
                                           $timeout,
                                           socket
                                         ) {
-    $scope.currentTrackList = [];
+    $scope.playlist = [];
     
     $scope.init = function() {
        $scope.searchParam      = "";
-       $scope.currentTrack     = "4th1RQAelzqgY7wL53UGQt";
+       $scope.currentTrack     = "";
        $scope.containerIframe  = "";
-       $scope.currentTrackList = [];
+       $scope.playlist = [];
        $scope.foundTracks      = [];
     }
 
@@ -36,14 +36,14 @@ rockola.controller('search_controller', ['$scope',
         }
     }
 
-    // $scope.setTimer = function(songDuration){
+     // $scope.setTimer = function(){
         
-    // }
+     // }
 
     $scope.addSong = function($song){
         // $song.score = 0;
-        // $scope.currentTrackList.push($song);
-        // console.log( $scope.currentTrackList);
+        // $scope.playlist.push($song);
+        // console.log( $scope.playlist);
         // $scope.getSong();
 
         socket.emit('update:playlist', $song);
@@ -51,26 +51,18 @@ rockola.controller('search_controller', ['$scope',
     };
 
     $scope.addToPlaylist = function(song){
-        $scope.currentTrackList.push(song);
+        $scope.playlist.push(song);
     };
 
     $scope.getSong = function(){
-        if($scope.currentTrackList.length !== 0){
+        if($scope.playlist.length !== 0){
             var ind= $scope.getIndex();
-            $scope.currentTrack=  $scope.currentTrackList[ind];
-            $scope.containerIframe= $sce.trustAsHtml('<iframe id="widgetId" src="https://embed.spotify.com/?uri=spotify:track:'+ $scope.currentTrack.id+ '" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>');
+            $scope.currentTrack=  $scope.playlist[ind];
+            var track = spotify.createFromLink('spotify:track:05JqOBN6XW4eFUVQlgR0I3');
+            //$scope.containerIframe= $sce.trustAsHtml('<iframe id="widgetId" ng-click="setTimer()" src="https://embed.spotify.com/?uri=spotify:track:'+ $scope.currentTrack.id+ '" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>');
+            
+            console.log(track);
         }
-
-        // $( "#containerIframe" ).click(function() {
-        //     alert( "Handler for .click() called." );
-        // });
-        // $( "#outerWidgetContainer" ).click(function() {
-        //     alert( "Handler for .click() called." );
-        // });        
-        // $( ".clickable .play-pause-btn" ).click(function() {
-        //     alert( "Handler for .click() called." );
-        // });
-        
     };
 
     $scope.nextSong = function(){
@@ -81,21 +73,9 @@ rockola.controller('search_controller', ['$scope',
         console.log("Paused");
     };
 
-    $scope.PauseSong = function(){
-        console.log("Paused");
-    };
-
-    $scope.onDislikeSong = function(ev) {
-      alert('You DisLike a Song!!');
-    };
-
-    $scope.onLikeSong = function(ev) {
-      alert('You Like a Song!!');
-    };
-
     $scope.getIndex = function(){
-        var rand= Math.floor( (Math.random()*$scope.currentTrackList.length) );
-        console.log("random numerber is:"+ rand);
+        var rand= Math.floor( (Math.random()*$scope.playlist.length) );
+        console.log("random number is:"+ rand);
         return rand;
     };
 
@@ -114,8 +94,9 @@ rockola.controller('search_controller', ['$scope',
     
     socket.on('playlist:updated', function(song){
         $scope.addToPlaylist(song);
-        console.log($scope.currentTrackList);
+        console.log($scope.playlist);
     });
+
 
 }]);
 
