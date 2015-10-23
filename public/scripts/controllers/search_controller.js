@@ -4,12 +4,10 @@
 
 rockola.controller('search_controller', ['$scope',
                                          '$http',
-                                         '$sce',
                                          'socket',
                                         function(
                                           $scope,
                                           $http,
-                                          $sce,
                                           socket
                                         ) {
 

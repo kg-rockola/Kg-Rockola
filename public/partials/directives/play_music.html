@@ -3,16 +3,6 @@
 		Play Music
 	</h1>
 	
-	
-	<section>
-		<button>
-			Host Party!
-		</button>
-		<button>
-			Stop party
-		</button>
-	</section>
-
 	<section ng-show="party.playlist.length <= 0">
 		<h1>No songs have been added! <strong>:(</strong></h1>
 	</section>
@@ -40,7 +30,5 @@
 	    </section>
     </div>
     
-
-
-	<div id="containerIframe" ng-bind-html="containerIframe"></div>
+	<iframe id="spotify" ng-src="{{temp}}"  width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 </md-content>
