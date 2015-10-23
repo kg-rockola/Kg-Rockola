@@ -1,10 +1,15 @@
 <md-content class="md-padding">
   <h1 class="md-display-2">
-    Vote for song {{ votemsg }}
+    Vote for song
   </h1>
     <ul class="trackList" >
-      <li class="track "ng-repeat="track in playlist">
-        {{ track.name }}
+      <li class="track "ng-repeat="track in party.playlist">
+        {{ track.song.artists[0].name }} - {{ track.song.name }}
+        <button class="btn btn-submit" 
+				ng-click="vote(track.song.id);"
+        	>
+        	Vote {{ track.votes.length }}
+        </button>
       </li>
     </ul>
 </md-content>

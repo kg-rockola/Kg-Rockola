@@ -5,103 +5,74 @@
 rockola.controller('search_controller', ['$scope',
                                          '$http',
                                          '$sce',
-                                         '$timeout',
                                          'socket',
                                         function(
                                           $scope,
                                           $http,
                                           $sce,
-                                          $timeout,
                                           socket
                                         ) {
-    $scope.currentTrackList = [];
-    
-    $scope.init = function() {
-       $scope.searchParam      = "";
-       $scope.currentTrack     = "4th1RQAelzqgY7wL53UGQt";
-       $scope.containerIframe  = "";
-       $scope.currentTrackList = [];
-       $scope.foundTracks      = [];
-    }
 
+    $scope.party            = $scope.$parent.party;
+    $scope.deviceId         = $scope.$parent.deviceId;
+    $scope.unfilteredResult = [];
+
+    console.log($scope.$parent.party);
 
     $scope.search = function(){
         if($scope.searchParam){
             var queryUrl = "https://api.spotify.com/v1/search?q="+$scope.searchParam+"&type=track";
 
             $http.get(queryUrl)
-                .success(function(response) { 
-                    $scope.foundTracks =  response.tracks.items;   
+                .success(function(response) {
+                    $scope.unfilteredResult = response.tracks.items; 
+                    $scope.foundTracks      =  $scope.filterFoundTracks($scope.unfilteredResult);   
                 }); 
         }
+
+        $scope.searchParam = '';
     }
 
-    // $scope.setTimer = function(songDuration){
-        
-    // }
-
     $scope.addSong = function($song){
-        // $song.score = 0;
-        // $scope.currentTrackList.push($song);
-        // console.log( $scope.currentTrackList);
-        // $scope.getSong();
+        var songData = {
+            song  : $song,
+            votes : [$scope.deviceId]
+        };
 
-        socket.emit('update:playlist', $song);
-        $scope.addToPlaylist($song);
+        socket.emit('add:song', songData);
+        $scope.addToPlaylist(songData);
+        $scope.foundTracks = $scope.filterFoundTracks($scope.unfilteredResult);
+
     };
 
-    $scope.addToPlaylist = function(song){
-        $scope.currentTrackList.push(song);
-    };
+    $scope.filterFoundTracks = function(tracks){
+      var playlist = $scope.party.playlist,
+          filtered = [],
+          i        = 0,
+          l        = playlist.length;
 
-    $scope.getSong = function(){
-        if($scope.currentTrackList.length !== 0){
-            var ind= $scope.getIndex();
-            $scope.currentTrack=  $scope.currentTrackList[ind];
-            $scope.containerIframe= $sce.trustAsHtml('<iframe id="widgetId" src="https://embed.spotify.com/?uri=spotify:track:'+ $scope.currentTrack.id+ '" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>');
-        }
+      var playlistSong = '',
+          dupedSong    = false;
 
-        // $( "#containerIframe" ).click(function() {
-        //     alert( "Handler for .click() called." );
-        // });
-        // $( "#outerWidgetContainer" ).click(function() {
-        //     alert( "Handler for .click() called." );
-        // });        
-        // $( ".clickable .play-pause-btn" ).click(function() {
-        //     alert( "Handler for .click() called." );
-        // });
-        
-    };
+      for(var track in tracks){
+          dupedSong = false;
+          for(i=0; (i<l); i++){
+              playlistSong = playlist[i];
+              if(playlistSong.song.id === tracks[track].id){
+                  dupedSong = true;
+              }
+          }
+          if(dupedSong === false){
+           filtered.push(tracks[track]);
+          }
+      }
 
-    $scope.nextSong = function(){
-        $scope.getSong();
-    };
-
-    $scope.PauseSong = function(){
-        console.log("Paused");
-    };
-
-    $scope.PauseSong = function(){
-        console.log("Paused");
-    };
-
-    $scope.onDislikeSong = function(ev) {
-      alert('You DisLike a Song!!');
-    };
-
-    $scope.onLikeSong = function(ev) {
-      alert('You Like a Song!!');
-    };
-
-    $scope.getIndex = function(){
-        var rand= Math.floor( (Math.random()*$scope.currentTrackList.length) );
-        console.log("random numerber is:"+ rand);
-        return rand;
-    };
+      return filtered;
+    }
 
     $scope.clearFilter = function(song){
         $scope.foundTracks = [];
-        $scope.searchParam="";
+        $scope.searchParam = '';
     };
 
     $scope.getDurationMinutes = function(millis){
@@ -112,9 +83,9 @@ rockola.controller('search_controller', ['$scope',
 
     // Socket events
     
-    socket.on('playlist:updated', function(song){
-        $scope.addToPlaylist(song);
-        console.log($scope.currentTrackList);
+    socket.on('song:added', function(playlist){
+        $scope.party.playlist = playlist;
+        $scope.party.playlist = $scope.arrangePlaylist();
     });
 
 }]);

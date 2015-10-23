@@ -3,7 +3,7 @@
 rockola.config(
 	function($stateProvider, $urlRouterProvider){
 		// Default URL
-		$urlRouterProvider.otherwise('/404');
+		$urlRouterProvider.otherwise('/app');
 
 		var root = {
 			partials    : 'partials/',

@@ -2,27 +2,41 @@
 
 'use strict';
 
-rockola.controller('vote_controller', ['$scope',
-                                         '$http',
-                                         'socket',
-                                        function(
-                                          $scope,
-                                          $http,
-                                          socket
-                                        ) {
+rockola.controller('vote_controller', [ '$scope',
+                                        '$http',
+                                        'socket',
+                                      function(
+                                         $scope,
+                                         $http,
+                                         socket
+                                      ) {
 
-    $scope.playlist = [];
+    $scope.party     = $scope.$parent.party;
+    $scope.deviceId  = $scope.$parent.deviceId;
 
-    $scope.addToPlaylist = function(song){
-        $scope.playlist.push(song);
+    $scope.vote = function(songId){
+      socket.emit('vote:song', {
+        song : songId,
+        user : $scope.deviceId
+      });
+
+      var songIndex = $scope.getSongIndex(songId),
+          userVoted = $scope.getUserVoted($scope.deviceId, songIndex);
+
+      if(userVoted === false){
+        $scope.party.playlist[songIndex].votes.push($scope.deviceId);
+        $scope.party.playlist = $scope.arrangePlaylist();
+      }
+
     };
 
     // Socket events
     
-    socket.on('get:playlist', function(playlist){
-      $scope.playlist = playlist;
-      console.log(playlist);
+    socket.on('vote:registered', function(playlist){
+      $scope.party.playlist = playlist;
+      $scope.party.playlist = $scope.arrangePlaylist();
     });
+    
 
 }]);
 

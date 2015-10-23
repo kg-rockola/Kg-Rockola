@@ -2,17 +2,45 @@
 	<h1 class="md-display-2">
 		Play Music
 	</h1>
-	<p> 
-		Para iniciar reproduccion presione <a ng-click="getSong()">aquí</a> 
-	</p>
-	<p> 
-		Next song <a ng-click="nextSong()">aquí</a> 
-	</p>
-	<p>
-		Pause song <a ng-click="PauseSong()">aquí</a> 
-	</p>
-	<p class="alert alert-danger" ng-hide="curentTrackList.length">
-		No hay canciones agregadas al Play List 
-	</p>
+	
+	
+	<section>
+		<button>
+			Host Party!
+		</button>
+		<button>
+			Stop party
+		</button>
+	</section>
+
+	<section ng-show="party.playlist.length <= 0">
+		<h1>No songs have been added! <strong>:(</strong></h1>
+	</section>
+
+    <div ng-show="party.playlist.length > 0" >
+    	<section ng-show="party.host && (party.host === deviceId)" >
+	    	<h1>You are hosting a party!</h1>
+	        <button ng-click="stopHosting()"
+	                class="btn btn-primary"
+	              >
+	          Stop hosting
+	        </button>
+	    </section>
+	    <section ng-hide="party.host" >
+	    	<h1>Host a party!</h1>
+	    	<button ng-click="host()"
+	                class="btn btn-primary"
+	              >
+	          Host
+	        </button>
+	    </section>
+	    <section ng-show="party.host && (party.host !== deviceId)" >
+	    	<h1>The party is beign hosted!</h1>
+	    	<h2>Currently listeing to: {{ party.playlist[0].song.name }}</h2>
+	    </section>
+    </div>
+    
+
+
 	<div id="containerIframe" ng-bind-html="containerIframe"></div>
 </md-content>

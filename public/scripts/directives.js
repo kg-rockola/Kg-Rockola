@@ -9,7 +9,8 @@ rockola.directive(
 	function() {
 	  return {
 	    restrict    : 'E',
-	    templateUrl : root + 'play_music.html'
+	    templateUrl : root + 'play_music.html',
+	    controller  : 'play_music_controller'
 	 };
 	}
 );
