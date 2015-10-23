@@ -4,12 +4,10 @@
 
 rockola.controller('search_controller', ['$scope',
                                          '$http',
-                                         '$sce',
                                          'socket',
                                         function(
                                           $scope,
                                           $http,
-                                          $sce,
                                           socket
                                         ) {
 
@@ -46,20 +44,6 @@ rockola.controller('search_controller', ['$scope',
 
     $scope.addToPlaylist = function(song){
         $scope.party.playlist.push(song);
-    };
-
-    $scope.getSong = function(){
-        if($scope.playlist.length !== 0){
-            var ind= $scope.getIndex();
-            $scope.currentTrack=  $scope.playlist[ind];
-            var track = spotify.createFromLink('spotify:track:05JqOBN6XW4eFUVQlgR0I3');
-            $scope.temp=$sce.trustAsResourceUrl("https://embed.spotify.com/?uri=spotify:track:"+ $scope.currentTrack.id);
-            var iframe = document.getElementById('spotify');
-            //var innerDoc = (iframe.contentDocument) ? iframe.jh : iframe.contentWindow.document;
-            //var playButton = innerDoc.getElementById("outerWidgetContainer");
-           // console.log(innerDoc);
-            console.log(track);
-        }
     };
 
 
