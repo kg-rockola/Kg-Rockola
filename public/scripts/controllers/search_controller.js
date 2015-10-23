@@ -42,9 +42,10 @@ rockola.controller('search_controller', ['$scope',
         socket.emit('add:song', songData);
         $scope.addToPlaylist(songData);
         $scope.foundTracks = $scope.filterFoundTracks($scope.unfilteredResult);
+    }
 
     $scope.addToPlaylist = function(song){
-        $scope.playlist.push(song);
+        $scope.party.playlist.push(song);
     };
 
     $scope.getSong = function(){
