@@ -78,3 +78,18 @@ ul {
 .full-screen.fs-modal > div, .full-screen.fs-modal > section {
   z-index: 99;
 }
+
+/* line 1, ../sass/_search_song.scss */
+.search-song-thumbnail {
+  width: 100%;
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+/* line 6, ../sass/_search_song.scss */
+.search-song-thumbnail > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

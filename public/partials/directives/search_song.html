@@ -1,12 +1,12 @@
-<md-content class="md-padding col col-md-4">
-  <h1 class="md-display-2">Search song</h1>
-    
+<md-content class="md-padding">
+  
     <form novalidate>
       <div>
-        <label for="songQuery">Search song by name</label>
-      </div>
-      <input id="songQuery" type="text" ng-model="searchParam"><br>
-      <div>
+      <input id="songQuery" 
+             type="text" 
+             placeholder="Search song by name"
+             ng-model="searchParam"
+            >
         <button ng-click="search()"
               class="btn btn-submit"
             >
@@ -20,40 +20,24 @@
       </div>
     </form>
 
-    <ul class="trackList">
-      <li class="track "ng-repeat="track in foundTracks" >
-        
-        <div class="panel panel-default text-center">
-          <!-- Default panel contents -->
-          <div class="panel-heading">
-            <h4>
-              {{ track.name }}
-            </h4>
-          </div>
-          <div class="panel-body">
-            <img src="{{ track.album.images[0].url }}" class="img-responsive" width="200" height="200">
-          </div>
-
-          <!-- List group -->
-          <ul class="list-group">
-            <li class="list-group-item">
-              Artist: {{ track.artists[0].name }}
-            </li>
-            <li class="list-group-item">
-              Duration: {{ getDurationMinutes(track.duration_ms) }}
-            </li>
-            <li>
-              <button ng-click="addSong(track)"
-                      class="btn btn-primary"
-                >
-                  Add Song
-              </button>
-            </li>
-          </ul>
+    <div class="text-center col col-md-4 "ng-repeat="track in foundTracks" >
+        <div class="search-song-thumbnail">
+          <img src="{{ track.album.images[0].url }}" class="img-responsive" width="100%">
         </div>
-
-      </li>
-    </ul>
+        <div>
+          <h4>
+             {{ track.name }}
+             <small class="col col-md-12" >
+               {{ track.artists[0].name }}
+             </small>
+          </h4>
+          <button ng-click="addSong(track)"
+                  class="btn btn-primary"
+              >
+                Add Song
+            </button>
+        </div>
+      </div>
 </md-content>
 
 
