@@ -12,18 +12,6 @@ rockola.controller('search_controller', ['$scope',
                                           $sce,
                                           socket
                                         ) {
-<<<<<<< HEAD
-=======
-    $scope.playlist = [];
-    
-    $scope.init = function() {
-       $scope.searchParam      = "";
-       $scope.currentTrack     = "";
-       $scope.containerIframe  = "";
-       $scope.playlist = [];
-       $scope.foundTracks      = [];
-    }
->>>>>>> 6f8c4a944f23629fdbf0d67598b175d992a20cc3
 
     $scope.party            = $scope.$parent.party;
     $scope.deviceId         = $scope.$parent.deviceId;
