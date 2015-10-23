@@ -53,8 +53,11 @@ rockola.controller('search_controller', ['$scope',
             var ind= $scope.getIndex();
             $scope.currentTrack=  $scope.playlist[ind];
             var track = spotify.createFromLink('spotify:track:05JqOBN6XW4eFUVQlgR0I3');
-            //$scope.containerIframe= $sce.trustAsHtml('<iframe id="widgetId" ng-click="setTimer()" src="https://embed.spotify.com/?uri=spotify:track:'+ $scope.currentTrack.id+ '" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>');
-            
+            $scope.temp=$sce.trustAsResourceUrl("https://embed.spotify.com/?uri=spotify:track:"+ $scope.currentTrack.id);
+            var iframe = document.getElementById('spotify');
+            //var innerDoc = (iframe.contentDocument) ? iframe.jh : iframe.contentWindow.document;
+            //var playButton = innerDoc.getElementById("outerWidgetContainer");
+           // console.log(innerDoc);
             console.log(track);
         }
     };
