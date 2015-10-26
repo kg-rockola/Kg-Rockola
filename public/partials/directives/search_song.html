@@ -1,43 +1,54 @@
-<md-content class="md-padding">
-  
-    <form novalidate>
+<md-content>
+
+  <form novalidate class="margin-bottom">
+    <div class="col col-md-4 input-group">
+      <input ng-model="searchParam" 
+              type="text" 
+              class="form-control" 
+              placeholder="Search song"
+            >
+        <span class="input-group-btn">
+          <button class="btn btn-default" 
+                  type="submit"
+                  ng-click="search()"
+                >
+              Search
+          </button>
+          <button class="btn btn-default" 
+                  type="button"
+                  ng-click="clearSearch()"
+                >
+             Reset
+          </button>
+        </span>
+      </div>
+  </form>
+
+ <div class="search-row col col-md-12 no-padding-col">
+   <div class="text-center search-col col col-md-4 col-xs-12 col-sm-6" 
+      ng-repeat="track in foundTracks"
+      style="background-image: url({{ getSongImage(track.album.images[0].url) }})"
+    >
+      <!-- <div class="search-song-thumbnail">
+        <img ng-src="{{  }}" 
+             class="img-responsive" 
+            >
+      </div> -->
+
       <div>
-      <input id="songQuery" 
-             type="text" 
-             placeholder="Search song by name"
-             ng-model="searchParam"
+        <h4>
+           {{ track.name }}
+           <small class="col col-md-12" >
+             {{ track.artists[0].name }}
+           </small>
+        </h4>
+        <button ng-click="addSong(track)"
+                class="btn btn-primary"
             >
-        <button ng-click="search()"
-              class="btn btn-submit"
-            >
-          Search Songs
-        </button>
-        <button ng-click="clearFilter()"
-                class="btn btn-submit"
-              >
-            Clear Search
-        </button>
+              Add Song
+          </button>
       </div>
-    </form>
+  </div>
+ </div>
 
-    <div class="text-center col col-md-4 "ng-repeat="track in foundTracks" >
-        <div class="search-song-thumbnail">
-          <img src="{{ track.album.images[0].url }}" class="img-responsive" width="100%">
-        </div>
-        <div>
-          <h4>
-             {{ track.name }}
-             <small class="col col-md-12" >
-               {{ track.artists[0].name }}
-             </small>
-          </h4>
-          <button ng-click="addSong(track)"
-                  class="btn btn-primary"
-              >
-                Add Song
-            </button>
-        </div>
-      </div>
 </md-content>
-
-

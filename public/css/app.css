@@ -83,13 +83,58 @@ ul {
 .search-song-thumbnail {
   width: 100%;
   position: relative;
-  height: 300px;
+  padding-bottom: 100%;
   overflow: hidden;
 }
-/* line 6, ../sass/_search_song.scss */
+/* line 7, ../sass/_search_song.scss */
 .search-song-thumbnail > img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* line 15, ../sass/_search_song.scss */
+.no-padding-col {
+  padding: 0;
+}
+
+/* line 19, ../sass/_search_song.scss */
+.margin-bottom {
+  margin-bottom: 2em;
+}
+
+/* line 23, ../sass/_search_song.scss */
+.bg-white {
+  background: whitesmoke;
+}
+
+/* line 29, ../sass/_search_song.scss */
+.search-row .search-col {
+  display: table-cell;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 0%;
+  padding-bottom: 33.333%;
+}
+/* line 38, ../sass/_search_song.scss */
+.search-row .search-col > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 768px) {
+  /* line 50, ../sass/_search_song.scss */
+  .search-row .search-col {
+    padding-bottom: 100%;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  /* line 58, ../sass/_search_song.scss */
+  .search-row .search-col {
+    padding-bottom: 50%;
+  }
 }

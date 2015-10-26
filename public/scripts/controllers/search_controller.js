@@ -15,21 +15,32 @@ rockola.controller('search_controller', ['$scope',
     $scope.deviceId         = $scope.$parent.deviceId;
     $scope.unfilteredResult = [];
 
-    console.log($scope.$parent.party);
-
     $scope.search = function(){
         if($scope.searchParam){
-            var queryUrl = "https://api.spotify.com/v1/search?q="+$scope.searchParam+"&type=track";
+            var queryUrl = "https://api.spotify.com/v1/search?q="+$scope.searchParam+"&type=track&limit=24";
 
             $http.get(queryUrl)
                 .success(function(response) {
                     $scope.unfilteredResult = response.tracks.items; 
+                    console.log($scope.unfilteredResult[1]);
                     $scope.foundTracks      =  $scope.filterFoundTracks($scope.unfilteredResult);   
                 }); 
         }
 
         $scope.searchParam = '';
     }
+
+    $scope.clearSearch = function(){
+      $scope.foundTracks      = [];
+      $scope.unfilteredResult = [];
+      $scope.searchParam      = '';
+    }
+
+    $scope.getSongImage = function(url){
+      var result = url || '/images/icons/image-not-found.png';
+      
+      return result;
+    };
 
     $scope.addSong = function($song){
         var songData = {
