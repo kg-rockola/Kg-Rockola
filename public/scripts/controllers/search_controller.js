@@ -16,13 +16,16 @@ rockola.controller('search_controller', ['$scope',
     $scope.unfilteredResult = [];
 
     $scope.search = function(){
+        
+        var offset = 0,
+            limit  = 24;
+
         if($scope.searchParam){
-            var queryUrl = "https://api.spotify.com/v1/search?q="+$scope.searchParam+"&type=track&limit=24";
+            var queryUrl = "https://api.spotify.com/v1/search?q="+$scope.searchParam+"&type=track&limit="+limit+"&offset="+offset;
 
             $http.get(queryUrl)
                 .success(function(response) {
                     $scope.unfilteredResult = response.tracks.items; 
-                    console.log($scope.unfilteredResult[1]);
                     $scope.foundTracks      =  $scope.filterFoundTracks($scope.unfilteredResult);   
                 }); 
         }

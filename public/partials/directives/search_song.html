@@ -1,7 +1,7 @@
 <md-content>
 
   <form novalidate class="margin-bottom">
-    <div class="col col-md-4 input-group">
+    <div class="col col-md-8 col-md-offset-2 input-group">
       <input ng-model="searchParam" 
               type="text" 
               class="form-control" 
@@ -26,9 +26,10 @@
 
  <div class="search-row col col-md-12 no-padding-col">
    <div class="text-center search-col col col-md-4 col-xs-12 col-sm-6" 
-      ng-repeat="track in foundTracks"
-      style="background-image: url({{ getSongImage(track.album.images[0].url) }})"
-    >
+        ng-repeat="track in foundTracks"
+        style="background-image: url({{ getSongImage(track.album.images[0].url) }})"
+        ng-click="addSong(track)"
+      >
       <!-- <div class="search-song-thumbnail">
         <img ng-src="{{  }}" 
              class="img-responsive" 
@@ -42,13 +43,7 @@
              {{ track.artists[0].name }}
            </small>
         </h4>
-        <button ng-click="addSong(track)"
-                class="btn btn-primary"
-            >
-              Add Song
-          </button>
-      </div>
-  </div>
+    </div>
  </div>
 
 </md-content>
