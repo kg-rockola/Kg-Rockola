@@ -49,9 +49,22 @@ var server = app.listen(_port, function(){
 
 // Spotify
 
+var client_id    = 'd93e2fde46004036b48b8939da51fce5',
+    redirect_uri = 'http://localhost:8888/#/';
+
 app.get('/login', function(req, res) {
   var scopes = 'user-read-private user-read-email';
-  res.redirect('https://accounts.spotify.com/authorize/?client_id=d93e2fde46004036b48b8939da51fce5&response_type=token&redirect_uri=http%3A%2F%2Flocalhost%3A8888%2F%23%2F');
+  // res.redirect('https://accounts.spotify.com/authorize/?client_id=d93e2fde46004036b48b8939da51fce5&response_type=code&redirect_uri=http://localhost:8888/callback');
+
+  res.send('test');
+
+  // res.redirect('https://accounts.spotify.com/authorize?' +
+  //   querystring.stringify({
+  //     response_type: 'code',
+  //     client_id: client_id,
+  //     redirect_uri: redirect_uri,
+  //   }));
+
 });
 
 // Spotify Ends

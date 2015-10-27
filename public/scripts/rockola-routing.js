@@ -16,7 +16,8 @@ rockola.config(
 				'login',
 				{
 					url 	    : '/login',
-					templateUrl : root.partials + 'login.html'
+					templateUrl : root.partials + 'login.html',
+					controller  : 'login_controller' 
 				}
 			)
 			.state(

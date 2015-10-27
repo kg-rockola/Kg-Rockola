@@ -1,52 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans);
 /* line 1, ../sass/_general.scss */
+body, html {
+  font-family: 'PT Sans', sans-serif;
+}
+
+/* line 5, ../sass/_general.scss */
 ul {
   list-style: none;
 }
 
-/* line 5, ../sass/_general.scss */
+/* line 9, ../sass/_general.scss */
 .tabsdemoDynamicHeight md-content {
   background-color: transparent !important;
 }
 
-/* line 7, ../sass/_general.scss */
+/* line 11, ../sass/_general.scss */
 .tabsdemoDynamicHeight md-content md-tabs {
   background: #f6f6f6;
   border: 1px solid #e1e1e1;
 }
 
-/* line 10, ../sass/_general.scss */
+/* line 14, ../sass/_general.scss */
 .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
   background: white;
 }
 
-/* line 12, ../sass/_general.scss */
+/* line 16, ../sass/_general.scss */
 .tabsdemoDynamicHeight md-content h1:first-child {
   margin-top: 0;
 }
 
-/* line 15, ../sass/_general.scss */
+/* line 19, ../sass/_general.scss */
 .track {
   margin-bottom: 10px;
 }
 
-/* line 18, ../sass/_general.scss */
+/* line 22, ../sass/_general.scss */
 .track img, .info {
   display: inline-block;
 }
 
-/* line 22, ../sass/_general.scss */
+/* line 26, ../sass/_general.scss */
 .whiteframedemoBasicUsage md-whiteframe {
   background: #fff;
   margin: 30px;
   height: 100px;
 }
 
-/* line 27, ../sass/_general.scss */
+/* line 31, ../sass/_general.scss */
 .info > .swipedemoBasicUsage .demo-swipe {
   padding: 20px 10px;
 }
 
-/* line 29, ../sass/_general.scss */
+/* line 33, ../sass/_general.scss */
 .info > .swipedemoBasicUsage .no-select {
   pointer-events: none;
   -webkit-touch-callout: none;
@@ -57,12 +63,12 @@ ul {
   user-select: none;
 }
 
-/* line 39, ../sass/_general.scss */
+/* line 43, ../sass/_general.scss */
 .no-padding-col {
   padding: 0;
 }
 
-/* line 43, ../sass/_general.scss */
+/* line 47, ../sass/_general.scss */
 .fixed-header {
   position: fixed;
 }
@@ -161,4 +167,28 @@ ul {
   .search-row .search-col {
     padding-bottom: 50%;
   }
+}
+/* line 1, ../sass/_login.scss */
+.login-page {
+  background-image: url(/images/rockola.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 0%;
+  overflow: hidden;
+}
+/* line 8, ../sass/_login.scss */
+.login-page .login-panel {
+  background: #088bd2;
+  color: white;
+  padding: 10em 10em 5em 10em;
+}
+/* line 14, ../sass/_login.scss */
+.login-page .login-button {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #088bd2;
+  margin-top: 5em;
+  border: none;
+  border-radius: 0;
+  padding: 1em 5em;
 }

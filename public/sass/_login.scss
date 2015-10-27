@@ -1,0 +1,24 @@
+.login-page{
+	background-image: url(/images/rockola.jpg);
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 0%;
+    overflow: hidden;
+	
+	.login-panel {
+		background: $konrad-blue;
+		color: white;
+		padding: 10em 10em 5em 10em;
+	}
+
+	.login-button {
+		font-weight: bold;
+		text-transform: uppercase;
+		color: $konrad-blue;
+		margin-top: 5em;
+		border: none;
+		border-radius: 0;
+		padding: 1em 5em;
+	}
+
+}
