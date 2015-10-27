@@ -47,6 +47,14 @@ var server = app.listen(_port, function(){
   // open(url);
 });
 
+// Spotify
+
+app.get('/login', function(req, res) {
+  var scopes = 'user-read-private user-read-email';
+  res.redirect('https://accounts.spotify.com/authorize/?client_id=d93e2fde46004036b48b8939da51fce5&response_type=token&redirect_uri=http%3A%2F%2Flocalhost%3A8888%2F%23%2F');
+});
+
+// Spotify Ends
 
 // Sockets
 
@@ -64,7 +72,8 @@ function handleIO(socket){
   socket.on("disconnect", disconnect);
   function disconnect(){
       console.log("Server disconnected");
-      socket.broadcast.emit('user:left', 'User disconnected');
+      // socket.disconnect(true);
+      // socket.broadcast.emit('user:left', 'User disconnected');
   }
 
   socket.emit('get:playlist', party.playlist);
@@ -190,16 +199,3 @@ function guid() { // Globally unique identifier
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
     s4() + '-' + s4() + s4() + s4();
 }
-
-// export function for listening to the socket
-// module.exports = function (socket) {
-
-//   // send the new user their name and a list of users
-//   socket.emit('message', function(data){
-//     console.log(data);
-//     socket.broadcast.emit('emit', {
-//       message : data.message
-//     });
-//   });
-
-// };

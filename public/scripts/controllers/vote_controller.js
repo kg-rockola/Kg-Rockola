@@ -30,6 +30,10 @@ rockola.controller('vote_controller', [ '$scope',
 
     };
 
+    $scope.userHasVoted = function(song){
+      console.log(song)
+    };
+
     // Socket events
     
     socket.on('vote:registered', function(playlist){

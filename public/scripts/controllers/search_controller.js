@@ -26,7 +26,7 @@ rockola.controller('search_controller', ['$scope',
             $http.get(queryUrl)
                 .success(function(response) {
                     $scope.unfilteredResult = response.tracks.items; 
-                    $scope.foundTracks      =  $scope.filterFoundTracks($scope.unfilteredResult);   
+                    $scope.foundTracks      = response.tracks.items; // $scope.filterFoundTracks($scope.unfilteredResult);   
                 }); 
         }
 
@@ -51,15 +51,33 @@ rockola.controller('search_controller', ['$scope',
             votes : [$scope.deviceId]
         };
 
-        socket.emit('add:song', songData);
-        $scope.addToPlaylist(songData);
-        $scope.foundTracks = $scope.filterFoundTracks($scope.unfilteredResult);
+        if($scope.songInPlaylist($song) === false){
+          socket.emit('add:song', songData);
+          $scope.addToPlaylist(songData);          
+        }
+        
+        // $scope.foundTracks = $scope.filterFoundTracks($scope.unfilteredResult);
+        
     }
 
     $scope.addToPlaylist = function(song){
         $scope.party.playlist.push(song);
     };
 
+    $scope.songInPlaylist = function(song){
+      var playlist = angular.copy($scope.party.playlist),
+          i        = 0,
+          l        = playlist.length;
+
+      for(i; (i<l); i++){
+        if(playlist[i].song.id === song.id){
+          return true;
+        }
+      }
+
+      return false;
+
+    }
 
     $scope.filterFoundTracks = function(tracks){
       var playlist = $scope.party.playlist,

@@ -1,13 +1,5 @@
 <md-content class="md-padding" layout="column" >
-	<h1 class="md-display-2">
-		Play Music
-	</h1>
-	
-	<section ng-show="party.playlist.length <= 0">
-		<h1>No songs have been added! <strong>:(</strong></h1>
-	</section>
-
-    <div ng-show="party.playlist.length > 0" >
+    <div ng-show="party.playlist.length" >
     	<section ng-show="party.host && (party.host === deviceId)" >
 	    	<h1>You are hosting a party!</h1>
 	        <button ng-click="stopHosting()"
@@ -29,6 +21,10 @@
 	    	<h2>Currently listeing to: {{ party.playlist[0].song.name }}</h2>
 	    </section>
     </div>
+
+    <rla-no-songs-added>
+	    <!-- Directive that shows a message whenever there is no songs in the current playlist -->
+	</rla-no-songs-added>
     
 	<iframe id="spotify" ng-src="{{temp}}"  width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 </md-content>

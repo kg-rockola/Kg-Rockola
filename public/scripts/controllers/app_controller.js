@@ -100,3 +100,5 @@ rockola.controller('app_controller', ['$scope',
 }]);
 
 })();
+
+// access thingy: https://accounts.spotify.com/authorize/?client_id=d93e2fde46004036b48b8939da51fce5&response_type=token&redirect_uri=http%3A%2F%2Flocalhost%3A8888%2F%23%2F

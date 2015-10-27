@@ -3,11 +3,11 @@
 rockola.config(
 	function($stateProvider, $urlRouterProvider){
 		// Default URL
-		$urlRouterProvider.otherwise('/app');
+		$urlRouterProvider.otherwise('/');
 
 		var root = {
 			partials    : 'partials/',
-			controllers : 'scripts/controllers/'
+			directives  : 'partials/directives/'
 		};
 
 		// Aplication states
@@ -22,8 +22,8 @@ rockola.config(
 			.state(
 				'app',
 				{
-					url 	    : '/app',
-					templateUrl : root.partials    + 'app.html'
+					url 	    : '/',
+					templateUrl : root.partials + 'app.html'
 				}
 			)
 			.state(

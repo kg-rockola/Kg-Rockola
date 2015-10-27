@@ -40,3 +40,15 @@ rockola.directive(
 	 };
 	}
 );
+
+rockola.directive(
+	// HTML: rla-no-songs-added
+	'rlaNoSongsAdded', 
+	// Configuration
+	function() {
+	  return {
+	    restrict    : 'E',
+	    templateUrl : root + 'no_songs_added.html'
+	 };
+	}
+);

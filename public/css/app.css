@@ -57,6 +57,16 @@ ul {
   user-select: none;
 }
 
+/* line 39, ../sass/_general.scss */
+.no-padding-col {
+  padding: 0;
+}
+
+/* line 43, ../sass/_general.scss */
+.fixed-header {
+  position: fixed;
+}
+
 /* line 1, ../sass/_full-screen-panels.scss */
 .full-screen {
   width: 100vw;
@@ -80,31 +90,21 @@ ul {
 }
 
 /* line 1, ../sass/_search_song.scss */
-.no-padding-col {
-  padding: 0;
+.search-song-form {
+  margin: 2em 0;
 }
 
-/* line 5, ../sass/_search_song.scss */
-.margin-bottom {
-  margin-bottom: 2em;
-}
-
-/* line 9, ../sass/_search_song.scss */
-.bg-white {
-  background: whitesmoke;
-}
-
-/* line 13, ../sass/_search_song.scss */
+/* line 1, ../sass/_image-grid.scss */
 .search-row {
   color: whitesmoke;
   font-weight: bold;
 }
-/* line 18, ../sass/_search_song.scss */
+/* line 6, ../sass/_image-grid.scss */
 .search-row small {
   display: block;
   padding: 1em 0;
 }
-/* line 23, ../sass/_search_song.scss */
+/* line 11, ../sass/_image-grid.scss */
 .search-row .search-col {
   display: table-cell;
   position: relative;
@@ -114,29 +114,50 @@ ul {
   padding-bottom: 33.333%;
   cursor: pointer;
 }
-/* line 31, ../sass/_search_song.scss */
-.search-row .search-col:hover {
-  opacity: 0.8;
-}
-/* line 35, ../sass/_search_song.scss */
-.search-row .search-col > div {
+/* line 20, ../sass/_image-grid.scss */
+.search-row .search-col > footer, .search-row .search-col header {
   position: absolute;
-  bottom: 0%;
   width: 100%;
   left: 50%;
   transform: translate(-50%, 0%);
   padding: .5em 0;
+}
+/* line 28, ../sass/_image-grid.scss */
+.search-row .search-col > footer {
+  bottom: 0%;
   background: rgba(0, 0, 0, 0.7);
+}
+/* line 33, ../sass/_image-grid.scss */
+.search-row .search-col > header {
+  visibility: hidden;
+  top: 0%;
+  background: black;
+}
+/* line 39, ../sass/_image-grid.scss */
+.search-row .search-col:hover {
+  opacity: 0.8;
+}
+/* line 42, ../sass/_image-grid.scss */
+.search-row .search-col.song-disabled {
+  opacity: 0.6;
+}
+/* line 44, ../sass/_image-grid.scss */
+.search-row .search-col.song-disabled:hover {
+  cursor: default;
+}
+/* line 45, ../sass/_image-grid.scss */
+.search-row .search-col.song-disabled > header {
+  visibility: visible;
 }
 
 @media (max-width: 768px) {
-  /* line 50, ../sass/_search_song.scss */
+  /* line 57, ../sass/_image-grid.scss */
   .search-row .search-col {
     padding-bottom: 100%;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  /* line 58, ../sass/_search_song.scss */
+  /* line 65, ../sass/_image-grid.scss */
   .search-row .search-col {
     padding-bottom: 50%;
   }

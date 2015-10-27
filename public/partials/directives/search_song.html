@@ -1,6 +1,6 @@
 <md-content>
 
-  <form novalidate class="margin-bottom">
+  <form novalidate class="search-song-form">
     <div class="col col-md-8 col-md-offset-2 input-group">
       <input ng-model="searchParam" 
               type="text" 
@@ -29,21 +29,24 @@
         ng-repeat="track in foundTracks"
         style="background-image: url({{ getSongImage(track.album.images[0].url) }})"
         ng-click="addSong(track)"
+        ng-class="{ 'song-disabled' :  songInPlaylist(track)  }"
       >
-      <!-- <div class="search-song-thumbnail">
-        <img ng-src="{{  }}" 
-             class="img-responsive" 
-            >
-      </div> -->
 
-      <div>
+      <header>
+        <h4 class="text-center" >
+            This song is already in the playlist.
+        </h4>
+      </header>
+
+      <footer>
         <h4>
            {{ track.name }}
            <small class="col col-md-12" >
              {{ track.artists[0].name }}
            </small>
         </h4>
-    </div>
+    </footer>
+
  </div>
 
 </md-content>
