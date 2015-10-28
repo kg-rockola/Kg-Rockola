@@ -54,13 +54,13 @@ var client_id     = 'd93e2fde46004036b48b8939da51fce5', // Your client id
     client_secret = 'c89bba53d0f0411eb4858209d88a2ab0'; // Your client secret
 
 app.get('/authentication', function(req, res) {
-  var scopes = 'user-read-private user-read-email';
+  var scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
   // res.redirect('https://accounts.spotify.com/authorize/?client_id=d93e2fde46004036b48b8939da51fce5&response_type=code&redirect_uri=http://localhost:8888/callback');
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
   // your application requests authorization
-  var scope = 'user-read-private user-read-email';
+  // var scope = 'user-read-private user-read-email';
   
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
@@ -109,7 +109,10 @@ app.get('/callback', function(req, res) {
       if (!error && response.statusCode === 200) {
 
         var access_token  = body.access_token,
-            refresh_token = body.refresh_token;
+            refresh_token = body.refresh_token,
+            user_id       = '';
+
+        console.log(body)
 
         var options = {
           url: 'https://api.spotify.com/v1/me',
@@ -119,15 +122,16 @@ app.get('/callback', function(req, res) {
 
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
-          console.log(body);
+          user_id = body.id;
+          res.redirect('/#/hosting?' +
+            querystring.stringify({
+              access_token  : access_token,
+              refresh_token : refresh_token,
+              user_id       : user_id
+            }));
         });
 
-        // we can also pass the token to the browser to make requests from there
-        res.redirect('/#/hosting?' +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token
-          }));
+        
       } else {
         console.log('invalid token')
         res.redirect('/?' +

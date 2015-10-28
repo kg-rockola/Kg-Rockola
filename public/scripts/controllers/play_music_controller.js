@@ -20,8 +20,6 @@ rockola.controller('play_music_controller', ['$scope',
   $scope.host = function(){
       socket.emit('host:party', $scope.deviceId);
       $scope.party.host = $scope.deviceId;
-      $scope.getHashParams();
-      //$state.go('hosting');
   }
 
   // Socket events
