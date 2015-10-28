@@ -1,0 +1,20 @@
+<section class="full-screen hosting-page" >
+	<div class="fs-item" >
+		<div class="login-panel text-center">
+			<img src="/images/icons/konrad-logo.png" alt="Konrad Group" class="img-responsive">
+			<button class="btn btn-default login-button" ng-click="getSong()">
+				Get playlist
+			</button>
+			<a href="/authentication" class="btn btn-default login-button" ng-click="stopHosting()" >
+				Stop Hosting
+			</a>
+		</div>
+
+		<div class="intrinsic-container" >
+			<iframe id="spotify" ng-src="{{ temp }}"  width="300" height="380" frameborder="0" allowtransparency="true">
+				<!-- Playing playlist -->
+			</iframe>
+		</div>
+
+	</div>
+</section>

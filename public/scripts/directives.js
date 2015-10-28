@@ -52,3 +52,16 @@ rockola.directive(
 	 };
 	}
 );
+
+
+rockola.directive(
+	// HTML: rla-authentication
+	'rlaAuthentication', 
+	// Configuration
+	function() {
+	  return {
+	    restrict    : 'E',
+	    templateUrl : root + 'authentication.html'
+	 };
+	}
+);

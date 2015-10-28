@@ -73,6 +73,61 @@ ul {
   position: fixed;
 }
 
+/* line 51, ../sass/_general.scss */
+md-tabs-wrapper {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  background: #088bd2 !important;
+  top: 0;
+  left: 0;
+}
+
+/* line 61, ../sass/_general.scss */
+div > md-content {
+  padding-top: 48px;
+}
+
+/* line 65, ../sass/_general.scss */
+md-tabs.md-default-theme .md-tab {
+  color: white;
+  font-weight: bold;
+}
+
+/* line 70, ../sass/_general.scss */
+md-tabs.md-default-theme .md-tab.md-active, md-tabs.md-default-theme .md-tab.md-focused {
+  background: white;
+  color: #088bd2;
+}
+
+/* line 75, ../sass/_general.scss */
+md-tabs-canvas {
+  height: 47px;
+}
+
+/* line 79, ../sass/_general.scss */
+md-pagination-wrapper {
+  height: 0;
+}
+
+/* line 83, ../sass/_general.scss */
+.intrinsic-container {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 100%;
+  margin-top: 1em;
+}
+
+/* line 91, ../sass/_general.scss */
+.intrinsic-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 /* line 1, ../sass/_full-screen-panels.scss */
 .full-screen {
   width: 100vw;
@@ -182,8 +237,9 @@ ul {
   color: white;
   padding: 10em 10em 5em 10em;
 }
-/* line 14, ../sass/_login.scss */
-.login-page .login-button {
+
+/* line 16, ../sass/_login.scss */
+.login-button {
   font-weight: bold;
   text-transform: uppercase;
   color: #088bd2;
@@ -191,4 +247,15 @@ ul {
   border: none;
   border-radius: 0;
   padding: 1em 5em;
+}
+
+@media (max-width: 768px) {
+  /* line 29, ../sass/_login.scss */
+  .login-page .login-button {
+    padding: 1em 2em;
+  }
+}
+/* line 35, ../sass/_login.scss */
+.hosting-page {
+  background: #088bd2;
 }

@@ -9,8 +9,8 @@ rockola.controller('app_controller', ['$scope',
                                         socket
                                     ){
 
-    $scope.party    = [];
-    $scope.deviceId = '';
+    $scope.party      = [];
+    $scope.deviceId   = '';
 
     $scope.addToPlaylist = function(song){
         $scope.party.playlist.push(song);
@@ -81,7 +81,18 @@ rockola.controller('app_controller', ['$scope',
 		return mostPopular;
 
 	}
-    
+	
+	$scope.getHashParams = function(){
+		var hashParams = {};
+	    var e, r = /([^&;=]+)=?([^&;]*)/g,
+	        q 	 = window.location.hash.replace('#/hosting?', '');
+	    while ( e = r.exec(q)) {
+	        hashParams[e[1]] = decodeURIComponent(e[2]);
+	    }
+	    
+	    return hashParams;
+	}
+
     // Socket events
 
     socket.on('init', function(data){

@@ -2,6 +2,7 @@
 <html ng-app="rockola">
   <head>
     <title>RocKGola</title>
+    <base href="/">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
@@ -10,11 +11,10 @@
 
   <body ng-controller="app_controller as appCtrl" >
     <!-- Routing template container -->
-
     <section ui-view >
       <!-- Content -->
     </section>
-    
+
     <!-- Angular Material Dependencies -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
@@ -33,6 +33,7 @@
     <script src="scripts/services/socket_service.js"></script>
     <!-- Core controllers -->
     <script src="scripts/controllers/app_controller.js"></script>
+    <script src="scripts/controllers/hosting_controller.js"></script>
     <script src="scripts/controllers/login_controller.js"></script>
     <script src="scripts/controllers/play_music_controller.js"></script>
     <script src="scripts/controllers/search_controller.js"></script>

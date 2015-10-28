@@ -11,10 +11,6 @@ rockola.controller('login_controller', [ '$scope',
                                          socket
                                       ) {
 
-  $http.get('/login', function(r){
-    console.log(r);
-  })
-
 
 }]);
 
