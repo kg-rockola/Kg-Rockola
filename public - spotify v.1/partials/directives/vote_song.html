@@ -1,0 +1,32 @@
+<md-content>
+
+    <div class="search-row col col-md-12 no-padding-col" ng-show="party.playlist.length" >
+       <div class="text-center search-col col col-md-4 col-xs-12 col-sm-6" 
+            ng-repeat="track in party.playlist"
+            style="background-image: url({{ getSongImage(track.song.album.images[0].url) }})"
+            ng-click="vote(track.song.id);"
+          >
+
+            <footer>
+              <h4>
+                 {{ track.song.name }}
+                 <small class="col col-md-12" >
+                   {{ track.song.artists[0].name }}
+                 </small>
+                 <small>
+                   Votes: {{ track.votes.length }}
+                 </small>
+                 <small>
+                   Position: {{ (party.playlist.indexOf(track) + 1) }}
+                 </small>
+              </h4>
+            </footer>
+
+     </div>
+  </div>
+
+  <rla-no-songs-added>
+    <!-- Directive that shows a message whenever there is no songs in the current playlist -->
+  </rla-no-songs-added>
+
+</md-content>
