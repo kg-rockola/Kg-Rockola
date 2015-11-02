@@ -31,7 +31,7 @@
           ng-repeat="track in foundTracks"
           style="background-image: url({{ getSongImage(track.snippet.thumbnails.high.url) }})"
           ng-click="addSong(track)"
-          ng-class="{ 'song-disabled' :  songInPlaylist(track)  }"
+          ng-class="{ 'song-disabled' :  songInPlaylist(track.id.videoId)  }"
         >
 
         <header>

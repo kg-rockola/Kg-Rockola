@@ -5,7 +5,13 @@
             ng-repeat="track in party.playlist"
             style="background-image: url({{ getSongImage(track.song.snippet.thumbnails.high.url) }})"
             ng-click="vote(track.song.id.videoId);"
+            ng-class="{ 'song-disabled' :  userHasVoted(track.song.id.videoId)  }"
           >
+            <header>
+              <h4 class="text-center" >
+                  You have already voted for this song
+              </h4>
+            </header>
 
             <footer>
               <h4>

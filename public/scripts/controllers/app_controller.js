@@ -16,12 +16,12 @@ rockola.controller('app_controller', ['$scope',
         $scope.party.playlist.push(song);
     };
 
-    $scope.getSongIndex = function(song){
+    $scope.getSongIndex = function(songId){
 	  var i = 0,
 	      l = $scope.party.playlist.length;
 	  for(; (i<l); i++){
-	    var  track = $scope.party.playlist[i].song;
-	    if(track.id === song){
+	    var  videoId = $scope.party.playlist[i].song.id.videoId;
+	    if(videoId === songId){
 	      return i;
 	    }
 	  }
@@ -31,20 +31,36 @@ rockola.controller('app_controller', ['$scope',
 	};
 
 	$scope.getUserVoted = function(user, songIndex){
-	  var votes = $scope.party.playlist[songIndex].votes,
-	      i = 0,
-	      l = $scope.party.playlist[songIndex].votes.length;
+		console.log(songIndex);
+		var votes = $scope.party.playlist[songIndex].votes,
+		    i = 0,
+		    l = $scope.party.playlist[songIndex].votes.length;
 
-	  for(; (i<l); i++){
-	    var  vote = votes[i];
-	    if(vote === user){
-	      return true;
-	    }
-	  }
+		for(; (i<l); i++){
+		    var  vote = votes[i];
+		    if(vote === user){
+		      return true;
+		    }
+		}
 
-	  return false;
+	  	return false;
 
 	}
+
+	$scope.songInPlaylist = function(song){
+      var playlist = angular.copy($scope.party.playlist),
+          i        = 0,
+          l        = playlist.length;
+
+      for(i; (i<l); i++){
+        if(playlist[i].song.id.videoId === song){
+          return true;
+        }
+      }
+
+      return false;
+
+    }
 
 	$scope.arrangePlaylist = function(){
 		var i 		 = 0,
@@ -97,8 +113,6 @@ rockola.controller('app_controller', ['$scope',
 
     socket.on('init', function(data){
       $scope.party = data.party;
-
-      console.log(data.youtube);
 
       var uniqueId = sessionStorage.getItem('deviceId');
 

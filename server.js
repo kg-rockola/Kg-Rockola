@@ -83,7 +83,7 @@ function handleIO(socket){
   });
 
   socket.on('vote:song', function(voteData){
-    var songIndex = getSongIndex(voteData.song),
+    var songIndex = getSongIndex(voteData.song.id.videoId),
         userVoted = getUserVoted(voteData.user, songIndex);
 
     if(userVoted === false){

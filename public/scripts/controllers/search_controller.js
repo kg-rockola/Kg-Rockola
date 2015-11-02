@@ -69,21 +69,6 @@ rockola.controller('search_controller', ['$scope',
         $scope.party.playlist.push(song);
     };
 
-    $scope.songInPlaylist = function(song){
-      var playlist = angular.copy($scope.party.playlist),
-          i        = 0,
-          l        = playlist.length;
-
-      for(i; (i<l); i++){
-        if(playlist[i].song.id === song.id){
-          return true;
-        }
-      }
-
-      return false;
-
-    }
-
     $scope.filterFoundTracks = function(tracks){
       var playlist = $scope.party.playlist,
           filtered = [],

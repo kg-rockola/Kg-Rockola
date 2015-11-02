@@ -1,19 +1,18 @@
-.login-page{
+.start-party-page{
 	background-image: url(/images/rockola.jpg);
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 0%;
     overflow: hidden;
-	
-	.login-panel {
-		background: $konrad-blue;
-		color: white;
-		padding: 10em 10em 5em 10em;
-	}
-
 }
 
-.login-button {
+.start-party-panel {
+	background: rgba(0,0,0,0.3);
+	color: white;
+	padding: 10em 10em 5em 10em;
+}
+
+.app-button{
 	font-weight: bold;
 	text-transform: uppercase;
 	color: $konrad-blue;
@@ -21,17 +20,9 @@
 	border: none;
 	border-radius: 0;
 	padding: 1em 5em;
-}
-
-
-@media (max-width: 768px) { 
-	.login-page {
-		.login-button  {
-			padding: 1em 2em;
+		&:hover{
+			opacity: 0.8;
+			color: $konrad-blue;
+			background: whitesmoke;
 		}
-	}
-}
-
-.hosting-page { 
-	background: $konrad-blue;
 }

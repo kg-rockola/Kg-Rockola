@@ -22,7 +22,7 @@ rockola.controller('vote_controller', [ '$scope',
 
       var songIndex = $scope.getSongIndex(songId),
           userVoted = $scope.getUserVoted($scope.deviceId, songIndex);
-
+          
       if(userVoted === false){
         $scope.party.playlist[songIndex].votes.push($scope.deviceId);
         $scope.party.playlist = $scope.arrangePlaylist();
@@ -30,8 +30,10 @@ rockola.controller('vote_controller', [ '$scope',
 
     };
 
-    $scope.userHasVoted = function(song){
-      console.log(song)
+    $scope.userHasVoted = function(songId){
+      var songIndex = $scope.getSongIndex(songId),
+          userVoted = $scope.getUserVoted($scope.deviceId, songIndex);
+        return userVoted;
     };
 
     // Socket events

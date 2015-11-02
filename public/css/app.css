@@ -180,22 +180,23 @@ ul {
   }
 }
 /* line 1, ../sass/_login.scss */
-.login-page {
+.start-party-page {
   background-image: url(/images/rockola.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 0%;
   overflow: hidden;
 }
-/* line 8, ../sass/_login.scss */
-.login-page .login-panel {
-  background: #088bd2;
+
+/* line 9, ../sass/_login.scss */
+.start-party-panel {
+  background: rgba(0, 0, 0, 0.3);
   color: white;
   padding: 10em 10em 5em 10em;
 }
 
-/* line 16, ../sass/_login.scss */
-.login-button {
+/* line 15, ../sass/_login.scss */
+.app-button {
   font-weight: bold;
   text-transform: uppercase;
   color: #088bd2;
@@ -204,16 +205,11 @@ ul {
   border-radius: 0;
   padding: 1em 5em;
 }
-
-@media (max-width: 768px) {
-  /* line 29, ../sass/_login.scss */
-  .login-page .login-button {
-    padding: 1em 2em;
-  }
-}
-/* line 35, ../sass/_login.scss */
-.hosting-page {
-  background: #088bd2;
+/* line 23, ../sass/_login.scss */
+.app-button:hover {
+  opacity: 0.8;
+  color: #088bd2;
+  background: whitesmoke;
 }
 
 /* line 1, ../sass/_navigation-tabs.scss */
