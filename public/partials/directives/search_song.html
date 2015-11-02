@@ -1,4 +1,4 @@
-<md-content>
+<section>
 
   <form novalidate class="search-song-form">
     <div class="col col-md-8 col-md-offset-2 input-group">
@@ -23,30 +23,30 @@
         </span>
       </div>
   </form>
+  
+  <rla-player></rla-player>
 
- <div class="search-row col col-md-12 no-padding-col">
-   <div class="text-center search-col col col-md-4 col-xs-12 col-sm-6" 
-        ng-repeat="track in foundTracks"
-        style="background-image: url({{ getSongImage(track.album.images[0].url) }})"
-        ng-click="addSong(track)"
-        ng-class="{ 'song-disabled' :  songInPlaylist(track)  }"
-      >
+  <div class="search-row col col-md-12 no-padding-col">
+     <div class="text-center search-col col col-md-4 col-xs-12 col-sm-6" 
+          ng-repeat="track in foundTracks"
+          style="background-image: url({{ getSongImage(track.snippet.thumbnails.high.url) }})"
+          ng-click="addSong(track)"
+          ng-class="{ 'song-disabled' :  songInPlaylist(track)  }"
+        >
 
-      <header>
-        <h4 class="text-center" >
-            This song is already in the playlist.
-        </h4>
-      </header>
+        <header>
+          <h4 class="text-center" >
+              This song is already in the playlist.
+          </h4>
+        </header>
 
-      <footer>
-        <h4>
-           {{ track.name }}
-           <small class="col col-md-12" >
-             {{ track.artists[0].name }}
-           </small>
-        </h4>
-    </footer>
+        <footer>
+          <h4>
+             {{ track.snippet.title }}
+          </h4>
+      </footer>
 
- </div>
+    </div>
+  </div>
 
-</md-content>
+</section>

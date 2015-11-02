@@ -21,17 +21,21 @@ rockola.controller('search_controller', ['$scope',
             limit  = 24;
 
         if($scope.searchParam){
-            var queryUrl = "https://api.spotify.com/v1/search?q="+$scope.searchParam+"&type=track&limit="+limit+"&offset="+offset;
-
-            $http.get(queryUrl)
-                .success(function(response) {
-                    $scope.unfilteredResult = response.tracks.items; 
-                    $scope.foundTracks      = response.tracks.items; // $scope.filterFoundTracks($scope.unfilteredResult);   
-                }); 
+           socket.emit('searching:youtube', $scope.searchParam);
         }
 
         $scope.searchParam = '';
     }
+
+    $scope.youtubeSearch = function(){
+      socket.emit('searching:youtube', $scope.searchParam);
+    }
+
+    socket.on('youtube:result', function(result){
+      // $scope.unfilteredResult = response.tracks.items; 
+      console.log(result)
+      $scope.foundTracks = result.items; 
+    });
 
     $scope.clearSearch = function(){
       $scope.foundTracks      = [];
@@ -46,6 +50,7 @@ rockola.controller('search_controller', ['$scope',
     };
 
     $scope.addSong = function($song){
+      console.log($song);
         var songData = {
             song  : $song,
             votes : [$scope.deviceId]
@@ -55,7 +60,7 @@ rockola.controller('search_controller', ['$scope',
           socket.emit('add:song', songData);
           $scope.addToPlaylist(songData);          
         }
-        
+        console.log($scope.party.playlist);
         // $scope.foundTracks = $scope.filterFoundTracks($scope.unfilteredResult);
         
     }

@@ -1,0 +1,38 @@
+.tab-padding { 
+	padding-top: 69px 
+}
+
+.tab-container {
+	background: $konrad-blue;
+	.nav-tabs {
+		float: right;
+		margin: 1em 0;
+		border: none;
+		> li {
+			&.active > a:hover, & > a:hover, &.active > a:focus, & > a:focus {
+				background: transparent;
+				opacity: 0.8;
+				border-color : $konrad-blue;
+			}
+			&.active > a:hover, &.active > a:focus {
+				background: whitesmoke;
+				color: $konrad-blue;
+				border: none;
+				cursor: pointer;
+			}
+			a {
+				color: white;
+				text-transform: uppercase;
+			}
+			&.active a {
+				color: $konrad-blue;
+				border: none;
+				border-radius: 0px;
+			}
+		}
+	}
+}
+
+.logo-container {
+	padding-top: 1.5em;
+}

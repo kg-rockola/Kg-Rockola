@@ -2,37 +2,21 @@
 var open   = require("open");
 var _port  = 8888;
 
-/**
- * This is an example of a basic node.js script that performs
- * the Authorization Code oAuth2 flow to authenticate against
- * the Spotify Accounts.
- *
- * For more information, read
- * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
- */
-
 var express       = require('express'); // Express web server framework
 var request       = require('request'); // "Request" library
 var querystring   = require('querystring');
 var cookieParser  = require('cookie-parser');
 var redirect_uri  = 'http://localhost:'+_port+'/callback'; // Your redirect uri
 
-/**
- * Generates a random string containing numbers and letters
- * @param  {number} length The length of the string
- * @return {string} The generated string
- */
-var generateRandomString = function(length) {
-  var text = '';
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-  for (var i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-};
+// Youtube
 
-var stateKey = 'spotify_auth_state';
+var YouTube_Node = require('youtube-node'),
+    youtube      = new YouTube_Node(),
+    appKey       = "AIzaSyDrvTaEi2w7ASFkKQKs7HP_3wGce5IGtk8";
+
+youtube.setKey(appKey);
+youtube.addParam('type', 'video');
 
 var app = express();
 
@@ -44,127 +28,6 @@ var server = app.listen(_port, function(){
   console.log("Serving at: "+url);
   // open(url);
 });
-
-// Spotify
-
-var redirect_uri =  'http://localhost:8888/callback',//'http://localhost:8888/#/auth',
-    app_uri      = 'http://localhost:8888/#/';
-// Client Variables
-var client_id     = 'd93e2fde46004036b48b8939da51fce5', // Your client id
-    client_secret = 'c89bba53d0f0411eb4858209d88a2ab0'; // Your client secret
-
-app.get('/authentication', function(req, res) {
-  var scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
-  // res.redirect('https://accounts.spotify.com/authorize/?client_id=d93e2fde46004036b48b8939da51fce5&response_type=code&redirect_uri=http://localhost:8888/callback');
-
-  var state = generateRandomString(16);
-  res.cookie(stateKey, state);
-  // your application requests authorization
-  // var scope = 'user-read-private user-read-email';
-  
-  res.redirect('https://accounts.spotify.com/authorize?' +
-    querystring.stringify({
-      response_type: 'code',
-      client_id: client_id,
-      scope: scope,
-      redirect_uri: redirect_uri,
-      state: state
-    }));
-
-});
-
-app.get('/callback', function(req, res) {
-  // your application requests refresh and access tokens
-  // after checking the state parameter
-  
-  var code        = req.query.code  || null;
-  var state       = req.query.state || null;
-  var storedState = req.cookies ? req.cookies[stateKey] : null;
-
-  if (state === null || state !== storedState) {
-    console.log('Invalid state');
-    res.redirect('/#' +
-      querystring.stringify({
-        error: 'state_mismatch'
-      }));
-  } else {
-    console.log('Valid state');
-    res.clearCookie(stateKey);
-
-    var authOptions = {
-      url: 'https://accounts.spotify.com/api/token',
-      form: {
-        code: code,
-        redirect_uri: redirect_uri,
-        grant_type: 'authorization_code'
-      },
-      headers: {
-        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
-      },
-      json: true
-    };
-
-    request.post(authOptions, function(error, response, body) {
-      if (!error && response.statusCode === 200) {
-
-        var access_token  = body.access_token,
-            refresh_token = body.refresh_token;
-
-        var options = {
-          url: 'https://api.spotify.com/v1/me',
-          headers: { 'Authorization': 'Bearer ' + access_token },
-          json: true
-        };
-
-        // use the access token to access the Spotify Web API
-        request.get(options, function(error, response, body) {
-
-          res.redirect('/#/hosting?' +
-            querystring.stringify({
-              access_token  : access_token,
-              refresh_token : refresh_token,
-              user_id       : body.id
-            }));
-
-        });
-
-        
-      } else {
-        console.log('invalid token')
-        res.redirect('/?' +
-          querystring.stringify({
-            error: 'invalid_token'
-          }));
-      }
-    });
-  }
-});
-
-app.get('/refresh_token', function(req, res) {
-
-  // requesting access token from refresh token
-  var refresh_token = req.query.refresh_token;
-  var authOptions = {
-    url: 'https://accounts.spotify.com/api/token',
-    headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
-    form: {
-      grant_type: 'refresh_token',
-      refresh_token: refresh_token
-    },
-    json: true
-  };
-
-  request.post(authOptions, function(error, response, body) {
-    if (!error && response.statusCode === 200) {
-      var access_token = body.access_token;
-      res.send({
-        'access_token': access_token
-      });
-    }
-  });
-});
-
-// Spotify Ends
 
 // Sockets
 
@@ -202,6 +65,16 @@ function handleIO(socket){
   socket.on('host:party', function(hostId){
     party['host'] = hostId;
     socket.broadcast.emit('hosting:party', hostId)
+  });
+
+  socket.on('searching:youtube', function(query){
+    youtube.search(query, 24, function(error, result){
+      if(error){
+        socket.emit('youtube:result:failed', error);
+      } else {
+        socket.emit('youtube:result', result);
+      }
+    })
   });
 
   socket.on('stop:party', function(){

@@ -98,6 +98,8 @@ rockola.controller('app_controller', ['$scope',
     socket.on('init', function(data){
       $scope.party = data.party;
 
+      console.log(data.youtube);
+
       var uniqueId = sessionStorage.getItem('deviceId');
 
       if(uniqueId){
