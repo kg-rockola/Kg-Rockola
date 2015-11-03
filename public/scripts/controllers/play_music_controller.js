@@ -3,23 +3,44 @@
 'use strict';
 
 rockola.controller('play_music_controller', ['$scope',
-                           '$http',
-                           'socket',
-                           '$state',
-                           '$sce',
-                          function(
-                            $scope,
-                            $http,
-                            socket,
-                            $state,
-                            $sce
-                          ){
+                                             '$http',
+                                             'socket',
+                                             '$state',
+                                             'youtube_player',
+                                            function(
+                                              $scope,
+                                              $http,
+                                              socket,
+                                              $state,
+                                              youtube_player
+                                            ){
 
-  $scope.party = $scope.$parent.party;
+  $scope.party           = $scope.$parent.party;
+  $scope.youtube_player  = youtube_player;
 
-  $scope.host = function(){
-      socket.emit('host:party', $scope.deviceId);
-      $scope.party.host = $scope.deviceId;
+  $scope.host = function(){      
+     YT.ready(
+          function() {
+             $scope.startParty();
+          }
+        );
+  }
+
+  $scope.startParty = function(){
+    socket.emit('host:party', $scope.deviceId);
+    $scope.party.host = $scope.deviceId;
+    var songId = $scope.party.playlist[0].song.id.videoId;
+    $scope.youtube_player.init(songId, $scope.party.playlist);
+  }
+
+  $scope.stopHosting = function(){
+    socket.emit('stop:party');
+    $scope.party.host = null;
+    $scope.youtube_player.destroy();
+  }
+
+  if($scope.party.host){
+    $scope.host();
   }
 
   // Socket events
@@ -32,78 +53,16 @@ rockola.controller('play_music_controller', ['$scope',
     $scope.party.host = null;
   });
 
+  if($scope.party.host === $scope.deviceId){
+    if(YT){
+      YT.ready(
+          function() {
+             $scope.startParty();
+          }
+        );
+    }
+  }
+
 }]);
 
 })();
-
-/*
-var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-      function onYouTubeIframeAPIReady(id) {
-
-        player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: id,
-          events: {
-            'onReady'       : onPlayerReady,
-            'onStateChange' : onPlayerStateChange
-          }
-        });
-      }
-
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        event.target.playVideo();
-      }
-
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-      var done = false;
-      function onPlayerStateChange(event) {
-        var state = event.data;
-        
-        switch(state){
-          case -1:
-            // Unstarted 
-            console.log('Unstarted.');
-            break;
-          case 0:
-            // Ended
-            console.log('Ended.');
-            break;
-          case 1:
-            // Playing
-            console.log('Playing.');
-            break; 
-          case 2:
-            // Paused
-            console.log('Paused.');
-            break;
-          case 3:
-            // Buffering
-            console.log('Buffering.');
-            break; 
-          case 5:
-            // Video cued
-            console.log('Cued.');
-            break; 
-          default:
-            // Error
-            console.log('An error ocurred, event type not expected: Event id = '+state);
-            break;
-        }
-
-
-      }
-      function destroy() {
-        player.destroy();
-      } */

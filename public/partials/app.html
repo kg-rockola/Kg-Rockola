@@ -10,34 +10,20 @@
     <!-- Nav pills -->
     <ul class="nav nav-tabs text-center col-md-10" role="tablist">
       <li role="presentation" class="active col-md-2">
-        <a href="#add-song">Add Song</a>
+        <a ui-sref="addSong">Add Song</a>
       </li>
       <li role="presentation" class="col-md-2">
-        <a href="#vote">Vote</a>
+        <a ui-sref="vote">Vote</a>
       </li>
       <li role="presentation" class="col-md-2">
-        <a href="#play">Play</a>
+        <a ui-sref="play">Play</a>
       </li>
     </ul>
   </nav>
+   
    <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane fade in active" id="add-song">
-      <rla-search-song></rla-search-song>
-    </div>
-    <div role="tabpanel" class="tab-pane fade" id="vote">
-      <rla-vote-song></rla-vote-song>
-    </div>
-    <div role="tabpanel" class="tab-pane fade" id="play">
-      <rla-play-music></rla-play-music>
-    </div>
-  </div>
+  <section ui-view >
+    
+  </section>
 
 </section>
-
-<script>
-    $('#navigation-tabs a').click(function (e) {
-      e.preventDefault();
-        $(this).tab('show');
-    });
-</script>

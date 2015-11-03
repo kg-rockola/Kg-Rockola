@@ -89,3 +89,15 @@ rockola.directive(
 	 };
 	}
 );
+
+rockola.directive(
+	// HTML: rla-player
+	'rlaPlayer', 
+	// Configuration
+	function() {
+	  return {
+	    restrict    : 'E',
+	    templateUrl : root + 'player.html'
+	 };
+	}
+);

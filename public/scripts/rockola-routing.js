@@ -8,6 +8,7 @@ rockola.config(
 			 	$urlRouterProvider, 
 			 	$locationProvider
 			){
+
 			// $locationProvider.html5Mode(true);
 			// Default URL
 			$urlRouterProvider.otherwise('/');
@@ -20,33 +21,10 @@ rockola.config(
 			// Aplication states
 			$stateProvider
 				.state(
-					'app',
+					'addSong',
 					{
-						url 	    : '/',
-						templateUrl : root.partials + 'app.html'
-					}
-				)
-				.state(
-					'login',
-					{
-						url 	    : '/login',
-						templateUrl : root.partials + 'login.html',
-						controller  : 'login_controller' 
-					}
-				)
-				.state(
-					'hosting',
-					{
-						url 	    : '/hosting',
-						templateUrl : root.partials + 'hosting.html',
-						controller  : 'hosting_controller'
-					}
-				)
-				.state(
-					'404',
-					{
-						url 	    : '/404',
-						templateUrl : root.partials + '404.html'
+						url 	    : '/addSong',
+						templateUrl : root.directives + 'search_song.html'
 					}
 				)
 	

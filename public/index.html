@@ -9,12 +9,44 @@
   </head>
 
   <body ng-controller="app_controller as appCtrl" >
-    <!-- Routing template container -->
+    
+    <section ng-init="init()" ng-cloak id="navigation-tabs" >
+
+    <!-- Nav wrapper -->
+      <nav class="navbar-fixed-top tab-container">
+        <!-- Logo -->
+        <div class="logo-container pull-left col-md-2">
+          <img src="images/icons/konrad-logo.png" alt="Konrad logo" height="25px" class="hidden-xs">
+          <img src="images/icons/konrad-logo-small.png" alt="Konrad logo" height="25px" class="visible-xs">
+        </div>
+        <!-- Nav pills -->
+        <ul class="nav nav-tabs text-center col-md-10" role="tablist">
+          <li role="presentation" class="active col-md-2">
+            <a ui-sref="addSong">Add Song</a>
+          </li>
+          <li role="presentation" class="col-md-2">
+            <a ui-sref="vote">Vote</a>
+          </li>
+          <li role="presentation" class="col-md-2">
+            <a ui-sref="play">Play</a>
+          </li>
+        </ul>
+      </nav>
+       
+       <!-- Tab panes -->
+      <section ui-view >
+        
+      </section>
+
+    </section>
 
     <section ui-view >
       <!-- Content -->
     </section>
     
+
+    <!-- Youtube -->
+    <script async="true" src="https://www.youtube.com/iframe_api"></script>
     <!-- jQuery -->
     <script src="scripts/Vendor/jquery.min.js"></script>
     <!-- Bootstrap.js -->
@@ -25,6 +57,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
     <!-- Ui-Router  -->
     <script src="scripts/Vendor/angular-ui-router.min.js" ></script>
+    <script src="scripts/Vendor/statehelper.min.js" ></script>
     <!-- Core app -->
     <script src="scripts/app.js"></script>
     <!-- Directives -->
@@ -33,6 +66,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <!-- Services -->
     <script src="scripts/services/socket_service.js"></script>
+    <script src="scripts/services/youtube_player.js"></script>
     <!-- Core controllers -->
     <script src="scripts/controllers/app_controller.js"></script>
     <script src="scripts/controllers/hosting_controller.js"></script>

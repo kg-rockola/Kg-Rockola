@@ -227,6 +227,24 @@ ul {
   background: whitesmoke;
 }
 
+/* line 37, ../sass/_host-party.scss */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+
+/* line 43, ../sass/_host-party.scss */
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 /* line 1, ../sass/_navigation-tabs.scss */
 .tab-padding {
   padding-top: 69px;
