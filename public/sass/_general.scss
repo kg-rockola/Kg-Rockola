@@ -7,18 +7,26 @@ ul{
 }
 
 .tabsdemoDynamicHeight md-content {
-  background-color: transparent !important; }
-  .tabsdemoDynamicHeight md-content md-tabs {
-    background: #f6f6f6;
-    border: 1px solid #e1e1e1; }
-    .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
-      background: white; }
-  .tabsdemoDynamicHeight md-content h1:first-child {
-    margin-top: 0; }
+  background-color: transparent !important; 
+}
 
-.track{
+.tabsdemoDynamicHeight md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1; 
+}
+
+.tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+  background: white; 
+}
+
+.tabsdemoDynamicHeight md-content h1:first-child {
+  margin-top: 0; 
+}
+
+.track {
 	margin-bottom: 10px;
 }
+
 .track img, .info{
 	display: inline-block;
 }
@@ -28,18 +36,26 @@ ul{
   margin: 30px;
   height: 100px; }
 
-.info> .swipedemoBasicUsage .demo-swipe {
-  padding: 20px 10px; }
-.info> .swipedemoBasicUsage .no-select {
+.info > .swipedemoBasicUsage .demo-swipe {
+  padding: 20px 10px; 
+}
+
+.info > .swipedemoBasicUsage .no-select {
   pointer-events: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none; 
+}
 
 
 .no-padding-col {
   padding: 0;
+}
+
+.no-songs-added {
+  background: darken($konrad-blue, 5.5);
+  color: white;
 }

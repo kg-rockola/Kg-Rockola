@@ -25,7 +25,6 @@ app.use(express.static(__dirname + '/public'))
 
 var server = app.listen(_port, function(){
   var url = "http://localhost:"+_port;
-  console.log("Serving at: "+url);
   // open(url);
 });
 
@@ -41,10 +40,8 @@ io.on("connection", handleIO);
 
 function handleIO(socket){
   // Logs
-  console.log("Server connected");
   socket.on("disconnect", disconnect);
   function disconnect(){
-      console.log("Server disconnected");
       // socket.disconnect(true);
       // socket.broadcast.emit('user:left', 'User disconnected');
   }
@@ -83,9 +80,9 @@ function handleIO(socket){
   });
 
   socket.on('vote:song', function(voteData){
-    var songIndex = getSongIndex(voteData.song.id.videoId),
+    var songIndex = getSongIndex(voteData.song),
         userVoted = getUserVoted(voteData.user, songIndex);
-
+    
     if(userVoted === false){
       party.playlist[songIndex].votes.push(voteData.user);
       party.playlist = arrangePlaylist();
@@ -163,8 +160,8 @@ function getSongIndex(song){
   var i = 0,
       l = party.playlist.length;
   for(; (i<l); i++){
-    var  track = party.playlist[i].song;
-    if(track.id === song){
+    var  trackId = party.playlist[i].song.id.videoId;
+    if(trackId === song){
       return i;
     }
   }

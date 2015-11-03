@@ -31,7 +31,6 @@ rockola.controller('app_controller', ['$scope',
 	};
 
 	$scope.getUserVoted = function(user, songIndex){
-		console.log(songIndex);
 		var votes = $scope.party.playlist[songIndex].votes,
 		    i = 0,
 		    l = $scope.party.playlist[songIndex].votes.length;
@@ -47,13 +46,13 @@ rockola.controller('app_controller', ['$scope',
 
 	}
 
-	$scope.songInPlaylist = function(song){
+	$scope.songInPlaylist = function(songId){
       var playlist = angular.copy($scope.party.playlist),
           i        = 0,
           l        = playlist.length;
 
       for(i; (i<l); i++){
-        if(playlist[i].song.id.videoId === song){
+        if(playlist[i].song.id.videoId === songId){
           return true;
         }
       }
@@ -97,17 +96,6 @@ rockola.controller('app_controller', ['$scope',
 		return mostPopular;
 
 	}
-	
-	$scope.getHashParams = function(){
-		var hashParams = {};
-	    var e, r = /([^&;=]+)=?([^&;]*)/g,
-	        q 	 = window.location.hash.replace('#/hosting?', '');
-	    while ( e = r.exec(q)) {
-	        hashParams[e[1]] = decodeURIComponent(e[2]);
-	    }
-	    
-	    return hashParams;
-	}
 
     // Socket events
 
@@ -128,5 +116,3 @@ rockola.controller('app_controller', ['$scope',
 }]);
 
 })();
-
-// access thingy: https://accounts.spotify.com/authorize/?client_id=d93e2fde46004036b48b8939da51fce5&response_type=token&redirect_uri=http%3A%2F%2Flocalhost%3A8888%2F%23%2F

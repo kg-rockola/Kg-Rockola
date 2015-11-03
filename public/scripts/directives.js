@@ -55,13 +55,37 @@ rockola.directive(
 
 
 rockola.directive(
-	// HTML: rla-authentication
-	'rlaAuthentication', 
+	// HTML: rla-host
+	'rlaHost', 
 	// Configuration
 	function() {
 	  return {
 	    restrict    : 'E',
-	    templateUrl : root + 'authentication.html'
+	    templateUrl : root + 'host.html'
+	 };
+	}
+);
+
+rockola.directive(
+	// HTML: rla-hosted
+	'rlaHosted', 
+	// Configuration
+	function() {
+	  return {
+	    restrict    : 'E',
+	    templateUrl : root + 'hosted.html'
+	 };
+	}
+);
+
+rockola.directive(
+	// HTML: rla-hosting
+	'rlaHosting', 
+	// Configuration
+	function() {
+	  return {
+	    restrict    : 'E',
+	    templateUrl : root + 'hosting.html'
 	 };
 	}
 );

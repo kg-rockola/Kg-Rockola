@@ -1,15 +1,22 @@
-.start-party-page{
-	background-image: url(/images/rockola.jpg);
+.party-page{
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 0%;
     overflow: hidden;
 }
 
-.start-party-panel {
+.party-panel {
 	background: rgba(0,0,0,0.3);
 	color: white;
 	padding: 10em 10em 5em 10em;
+}
+
+.host {
+	background-image: url(/images/rockola.jpg);
+}
+
+.hosted {
+	background-image: url(/images/party.jpg);
 }
 
 .app-button{

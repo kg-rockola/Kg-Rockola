@@ -22,45 +22,45 @@ ul {
   background-color: transparent !important;
 }
 
-/* line 11, ../sass/_general.scss */
+/* line 13, ../sass/_general.scss */
 .tabsdemoDynamicHeight md-content md-tabs {
   background: #f6f6f6;
   border: 1px solid #e1e1e1;
 }
 
-/* line 14, ../sass/_general.scss */
+/* line 18, ../sass/_general.scss */
 .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
   background: white;
 }
 
-/* line 16, ../sass/_general.scss */
+/* line 22, ../sass/_general.scss */
 .tabsdemoDynamicHeight md-content h1:first-child {
   margin-top: 0;
 }
 
-/* line 19, ../sass/_general.scss */
+/* line 26, ../sass/_general.scss */
 .track {
   margin-bottom: 10px;
 }
 
-/* line 22, ../sass/_general.scss */
+/* line 30, ../sass/_general.scss */
 .track img, .info {
   display: inline-block;
 }
 
-/* line 26, ../sass/_general.scss */
+/* line 34, ../sass/_general.scss */
 .whiteframedemoBasicUsage md-whiteframe {
   background: #fff;
   margin: 30px;
   height: 100px;
 }
 
-/* line 31, ../sass/_general.scss */
+/* line 39, ../sass/_general.scss */
 .info > .swipedemoBasicUsage .demo-swipe {
   padding: 20px 10px;
 }
 
-/* line 33, ../sass/_general.scss */
+/* line 43, ../sass/_general.scss */
 .info > .swipedemoBasicUsage .no-select {
   pointer-events: none;
   -webkit-touch-callout: none;
@@ -71,9 +71,15 @@ ul {
   user-select: none;
 }
 
-/* line 43, ../sass/_general.scss */
+/* line 54, ../sass/_general.scss */
 .no-padding-col {
   padding: 0;
+}
+
+/* line 58, ../sass/_general.scss */
+.no-songs-added {
+  background: #0779b7;
+  color: white;
 }
 
 /* line 1, ../sass/_full-screen-panels.scss */
@@ -179,23 +185,32 @@ ul {
     padding-bottom: 50%;
   }
 }
-/* line 1, ../sass/_login.scss */
-.start-party-page {
-  background-image: url(/images/rockola.jpg);
+/* line 1, ../sass/_host-party.scss */
+.party-page {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 0%;
   overflow: hidden;
 }
 
-/* line 9, ../sass/_login.scss */
-.start-party-panel {
+/* line 8, ../sass/_host-party.scss */
+.party-panel {
   background: rgba(0, 0, 0, 0.3);
   color: white;
   padding: 10em 10em 5em 10em;
 }
 
-/* line 15, ../sass/_login.scss */
+/* line 14, ../sass/_host-party.scss */
+.host {
+  background-image: url(/images/rockola.jpg);
+}
+
+/* line 18, ../sass/_host-party.scss */
+.hosted {
+  background-image: url(/images/party.jpg);
+}
+
+/* line 22, ../sass/_host-party.scss */
 .app-button {
   font-weight: bold;
   text-transform: uppercase;
@@ -205,7 +220,7 @@ ul {
   border-radius: 0;
   padding: 1em 5em;
 }
-/* line 23, ../sass/_login.scss */
+/* line 30, ../sass/_host-party.scss */
 .app-button:hover {
   opacity: 0.8;
   color: #088bd2;

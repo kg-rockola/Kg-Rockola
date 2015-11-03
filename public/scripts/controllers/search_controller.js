@@ -33,7 +33,6 @@ rockola.controller('search_controller', ['$scope',
 
     socket.on('youtube:result', function(result){
       // $scope.unfilteredResult = response.tracks.items; 
-      console.log(result)
       $scope.foundTracks = result.items; 
     });
 
@@ -49,24 +48,21 @@ rockola.controller('search_controller', ['$scope',
       return result;
     };
 
-    $scope.addSong = function($song){
-      console.log($song);
+    $scope.addSong = function(song){
         var songData = {
-            song  : $song,
+            song  : song,
             votes : [$scope.deviceId]
         };
 
-        if($scope.songInPlaylist($song) === false){
+        if($scope.songInPlaylist(song.id.videoId) === false){
           socket.emit('add:song', songData);
           $scope.addToPlaylist(songData);          
         }
-        console.log($scope.party.playlist);
-        // $scope.foundTracks = $scope.filterFoundTracks($scope.unfilteredResult);
         
     }
 
-    $scope.addToPlaylist = function(song){
-        $scope.party.playlist.push(song);
+    $scope.addToPlaylist = function(songData){
+        $scope.party.playlist.push(songData);
     };
 
     $scope.filterFoundTracks = function(tracks){

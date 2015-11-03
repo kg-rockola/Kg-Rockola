@@ -1,6 +1,6 @@
-<md-content>
+<section>
 
-    <div class="search-row col col-md-12 no-padding-col" ng-show="party.playlist.length" >
+    <div class="search-row col col-md-12 no-padding-col tab-padding" ng-show="party.playlist.length" >
        <div class="text-center search-col col col-md-4 col-xs-12 col-sm-6" 
             ng-repeat="track in party.playlist"
             style="background-image: url({{ getSongImage(track.song.snippet.thumbnails.high.url) }})"
@@ -32,4 +32,4 @@
     <!-- Directive that shows a message whenever there is no songs in the current playlist -->
   </rla-no-songs-added>
 
-</md-content>
+</section>
