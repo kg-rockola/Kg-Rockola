@@ -39,10 +39,6 @@ rockola.controller('play_music_controller', ['$scope',
     $scope.youtube_player.destroy();
   }
 
-  if($scope.party.host){
-    $scope.host();
-  }
-
   // Socket events
 
   socket.on('hosting:party', function(id){

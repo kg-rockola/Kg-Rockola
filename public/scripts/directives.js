@@ -48,7 +48,8 @@ rockola.directive(
 	function() {
 	  return {
 	    restrict    : 'E',
-	    templateUrl : root + 'no_songs_added.html'
+	    templateUrl : root + 'no_songs_added.html',
+	    controller  : 'no_songs_added as no_songs_ctrl'
 	 };
 	}
 );

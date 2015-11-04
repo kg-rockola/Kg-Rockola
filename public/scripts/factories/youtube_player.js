@@ -1,8 +1,14 @@
-rockola.factory('youtube_player', ['$rootScope',
+rockola.factory('youtube_player', [ // Dependencies
+                                    'party',
                                   function (
-                                    $rootScope
+                                    // Dependencies
+                                    party
                                   ){
 
+    // Dependency injection
+    var _party = party;
+
+    // Elements
     var youtube_player = {};
 
     youtube_player.player   = null;
@@ -14,10 +20,11 @@ rockola.factory('youtube_player', ['$rootScope',
       }
     }
 
-    youtube_player.next = function(songId){
-        console.log(youtube_player.player)
+    youtube_player.next = function(){
         if(youtube_player.player){
-          youtube_player.player.loadVideoById(songId);
+          party.playlist.splice(0, 1);
+          var next_song_id = _party.playlist[0].song.id.videoId;
+          youtube_player.player.loadVideoById(next_song_id);
         }
     }
 
@@ -66,10 +73,11 @@ rockola.factory('youtube_player', ['$rootScope',
 
     // Init function
 
-    youtube_player.init = function(songId, playlist){
-      youtube_player.playlist = playlist;
+    youtube_player.init = function(){
+      var first_song_id = _party.playlist[0].song.id.videoId;
+
       youtube_player.player = new YT.Player('player', {
-          videoId: songId,
+          videoId: first_song_id,
           events: {
             'onReady'       : youtube_player.onPlayerReady,
             'onStateChange' : youtube_player.onPlayerStateChange

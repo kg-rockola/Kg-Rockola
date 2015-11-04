@@ -109,6 +109,66 @@ ul {
   margin: 2em 0;
 }
 
+/* line 5, ../sass/_search_song.scss */
+.search-input {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-top: none;
+  border-left: none;
+  padding: 2em 3em 2em 2em;
+  border-right: none;
+  font-size: 1.2em;
+  border-radius: 0;
+  transition: all 0.5s ease-in-out;
+}
+/* line 16, ../sass/_search_song.scss */
+.search-input:hover, .search-input:focus {
+  border-bottom-color: #909090;
+}
+
+/* line 22, ../sass/_search_song.scss */
+.button-group button {
+  margin-top: 1em;
+  padding: .5em;
+  color: #088bd2;
+  background: white;
+  border: none;
+  border-radius: 0;
+  border: 1px solid #088bd2;
+  transition: all 0.5s ease-in-out;
+}
+/* line 31, ../sass/_search_song.scss */
+.button-group button:hover, .button-group button:focus {
+  background: white;
+  border: 1px solid #088bd2;
+  color: #088bd2;
+  opacity: 0.7;
+}
+/* line 37, ../sass/_search_song.scss */
+.button-group button:first-child {
+  border-right: none;
+}
+
+@media (max-width: 400px) {
+  /* line 44, ../sass/_search_song.scss */
+  .logo-container {
+    display: none;
+  }
+
+  /* line 47, ../sass/_search_song.scss */
+  .nav-tabs {
+    width: 100%;
+  }
+  /* line 49, ../sass/_search_song.scss */
+  .nav-tabs li {
+    width: 100%;
+  }
+
+  /* line 53, ../sass/_search_song.scss */
+  .tab-padding {
+    padding-top: 149px !important;
+  }
+}
 /* line 1, ../sass/_image-grid.scss */
 .search-row {
   color: whitesmoke;
@@ -245,47 +305,47 @@ ul {
   height: 100%;
 }
 
-/* line 1, ../sass/_navigation-tabs.scss */
+/* line 2, ../sass/_navigation-tabs.scss */
 .tab-padding {
   padding-top: 69px;
 }
 
-/* line 5, ../sass/_navigation-tabs.scss */
+/* line 6, ../sass/_navigation-tabs.scss */
 .tab-container {
   background: #088bd2;
 }
-/* line 7, ../sass/_navigation-tabs.scss */
+/* line 8, ../sass/_navigation-tabs.scss */
 .tab-container .nav-tabs {
   float: right;
   margin: 1em 0;
   border: none;
 }
-/* line 12, ../sass/_navigation-tabs.scss */
+/* line 13, ../sass/_navigation-tabs.scss */
 .tab-container .nav-tabs > li.active > a:hover, .tab-container .nav-tabs > li > a:hover, .tab-container .nav-tabs > li.active > a:focus, .tab-container .nav-tabs > li > a:focus {
   background: transparent;
   opacity: 0.8;
   border-color: #088bd2;
 }
-/* line 17, ../sass/_navigation-tabs.scss */
+/* line 18, ../sass/_navigation-tabs.scss */
 .tab-container .nav-tabs > li.active > a:hover, .tab-container .nav-tabs > li.active > a:focus {
   background: whitesmoke;
   color: #088bd2;
   border: none;
   cursor: pointer;
 }
-/* line 23, ../sass/_navigation-tabs.scss */
+/* line 24, ../sass/_navigation-tabs.scss */
 .tab-container .nav-tabs > li a {
   color: white;
   text-transform: uppercase;
 }
-/* line 27, ../sass/_navigation-tabs.scss */
+/* line 28, ../sass/_navigation-tabs.scss */
 .tab-container .nav-tabs > li.active a {
   color: #088bd2;
   border: none;
   border-radius: 0px;
 }
 
-/* line 36, ../sass/_navigation-tabs.scss */
+/* line 37, ../sass/_navigation-tabs.scss */
 .logo-container {
   padding-top: 1.5em;
 }

@@ -3,6 +3,5 @@
 var rockola = angular.module("rockola", 
   [
     // Dependencies.
-    'ui.router',
-    'ui.router.stateHelper'
+    'ui.router'
   ]);

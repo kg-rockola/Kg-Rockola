@@ -15,29 +15,24 @@
     <!-- Nav wrapper -->
       <nav class="navbar-fixed-top tab-container">
         <!-- Logo -->
-        <div class="logo-container pull-left col-md-2">
+        <div class="logo-container pull-left col-md-3">
           <img src="images/icons/konrad-logo.png" alt="Konrad logo" height="25px" class="hidden-xs">
           <img src="images/icons/konrad-logo-small.png" alt="Konrad logo" height="25px" class="visible-xs">
         </div>
         <!-- Nav pills -->
-        <ul class="nav nav-tabs text-center col-md-10" role="tablist">
-          <li role="presentation" class="active col-md-2">
-            <a ui-sref="addSong">Add Song</a>
+        <ul class="nav nav-tabs text-center col-md-9" role="tablist">
+          <li role="presentation" class="col-md-3" ng-class="{ 'active' :  match_state('search')  }" >
+            <a ui-sref="search">Search</a>
           </li>
-          <li role="presentation" class="col-md-2">
+          <li role="presentation" class="col-md-3" ng-class="{ 'active' :  match_state('vote')  }" >
             <a ui-sref="vote">Vote</a>
           </li>
-          <li role="presentation" class="col-md-2">
+          <li role="presentation" class="col-md-3" ng-class="{ 'active' :  match_state('play')  }" >
             <a ui-sref="play">Play</a>
           </li>
         </ul>
       </nav>
        
-       <!-- Tab panes -->
-      <section ui-view >
-        
-      </section>
-
     </section>
 
     <section ui-view >
@@ -64,16 +59,20 @@
     <script src="scripts/directives.js"></script>
     <!-- Socket.io -->
     <script src="/socket.io/socket.io.js"></script>
-    <!-- Services -->
-    <script src="scripts/services/socket_service.js"></script>
-    <script src="scripts/services/youtube_player.js"></script>
+    <!-- Factories -->
+    <script src="scripts/factories/socket.js"></script>
+    <script src="scripts/factories/client.js"></script>
+    <script src="scripts/factories/search.js"></script>
+    <script src="scripts/factories/party.js"></script>
+    <script src="scripts/factories/vote.js"></script>
+    <script src="scripts/factories/youtube_player.js"></script>
     <!-- Core controllers -->
-    <script src="scripts/controllers/app_controller.js"></script>
-    <script src="scripts/controllers/hosting_controller.js"></script>
-    <script src="scripts/controllers/login_controller.js"></script>
-    <script src="scripts/controllers/play_music_controller.js"></script>
-    <script src="scripts/controllers/search_controller.js"></script>
-    <script src="scripts/controllers/vote_controller.js"></script>
+    <script src="scripts/controllers/app.js"></script>
+    <script src="scripts/controllers/hosting.js"></script>
+    <script src="scripts/controllers/no_songs_added.js"></script>
+    <script src="scripts/controllers/play_music.js"></script>
+    <script src="scripts/controllers/search.js"></script>
+    <script src="scripts/controllers/vote.js"></script>
     <!-- App routing config -->
     <script src="scripts/rockola-routing.js"></script>
   </body>
