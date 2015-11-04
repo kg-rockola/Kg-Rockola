@@ -2,10 +2,10 @@
 
     <div class="search-row col col-md-12 no-padding-col tab-padding" ng-show="vote_ctrl.party.playlist.length" >
        <div class="text-center search-col col col-md-4 col-xs-12 col-sm-6" 
-            ng-repeat="YouTube_Song_Object in vote_ctrl.party.playlist"
-            style="background-image: url({{ YouTube_Song_Object.song.snippet.thumbnails.high.url }})"
-            ng-click="vote(YouTube_Song_Object.song.id.videoId);"
-            ng-class="{ 'song-disabled' :  userHasVoted(YouTube_Song_Object.song.id.videoId)  }"
+            ng-repeat="item in vote_ctrl.party.playlist"
+            style="background-image: url({{ vote_ctrl.search.thumbnail(item.song.snippet.thumbnails.high.url) }})"
+            ng-click="vote(item.song.id.videoId);"
+            ng-class="{ 'song-disabled' :  vote_ctrl.vote.user_has_voted(item.song)  }"
           >
             <header>
               <h4 class="text-center" >
@@ -15,12 +15,12 @@
 
             <footer>
               <h4>
-                 {{ YouTube_Song_Object.song.snippet.title }}
+                 {{ item.song.snippet.title }}
                  <small>
-                   Votes: {{ YouTube_Song_Object.votes.length }}
+                   Votes: {{ item.votes.length }}
                  </small>
                  <small>
-                   Position: {{ (vote_ctrl.party.playlist.indexOf(YouTube_Song_Object) + 1) }}
+                   Position: {{ (vote_ctrl.party.playlist.indexOf(item) + 1) }}
                  </small>
               </h4>
             </footer>

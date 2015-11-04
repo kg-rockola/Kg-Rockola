@@ -12,17 +12,17 @@ rockola.factory('vote', [ // Dependencies
     // Models
     var client = $client,
         socket = $socket,
-        party  = party;
+        party  = $party;
 
     // Factory object
     var vote = {};
     
     // Methods
 	vote.user_has_voted = function(YouTube_Song_Object){
-
+    console.log(YouTube_Song_Object);
 		var song_index = party.find(YouTube_Song_Object),
-            votes      = party.playlist[song_index].votes,
-            device_id  = client.device_id,
+        votes      = party.playlist[song_index].votes,
+        device_id  = client.device_id,
 		    i          = 0,
 		    l          = votes.length;
 

@@ -6,11 +6,13 @@ rockola.controller('vote_controller', [ 'party',
                                         'vote',
                                         'client',
                                         'socket',
+                                        'search',
                                       function(
                                          $party,
                                          $vote,
                                          $client,
-                                         $socket
+                                         $socket,
+                                         $search
                                       ) {
 
     // Controller alias.
@@ -18,19 +20,14 @@ rockola.controller('vote_controller', [ 'party',
 
     // Controller members.
     _this.party  = $party;
+    _this.vote   = $vote;
     _this.client = $client;
     _this.socket = $socket;
-    _this.vote   = $vote;
+    _this.search = $search;
 
     // Controller methods.
-    _this.vote = function(YouTube_Song_Object){
+    _this.asd = function(YouTube_Song_Object){
       _this.vote.add_vote(YouTube_Song_Object);
-    };
-
-    _this.userHasVoted = function(songId){
-      var songIndex = _this.getSongIndex(songId),
-          userVoted = _this.getUserVoted(_this.deviceId, songIndex);
-        return userVoted;
     };
 
     // Socket events.
