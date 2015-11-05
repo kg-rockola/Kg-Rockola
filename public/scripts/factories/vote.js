@@ -19,7 +19,6 @@ rockola.factory('vote', [ // Dependencies
     
     // Methods
 	vote.user_has_voted = function(YouTube_Song_Object){
-    console.log(YouTube_Song_Object);
 		var song_index = party.find(YouTube_Song_Object),
         votes      = party.playlist[song_index].votes,
         device_id  = client.device_id,
@@ -33,23 +32,51 @@ rockola.factory('vote', [ // Dependencies
 		    }
 		}
 
-	  	return false;
-
+  	return false;
 	};
 
-    vote.add_vote = function(YouTube_Song_Object){    
-      var song_index = _this.party.find(YouTube_Song_Object),
-          userVoted  = vote.user_has_voted(YouTube_Song_Object);
-          
-      if(userVoted === false){
-        _this.party.playlist[song_index].votes.push(_this.deviceId);
-        _this.party.playlist = _this.arrangePlaylist();
-        socket.emit('vote:song', {
-            song : YouTube_Song_Object,
-            user : _this.deviceId
-          });
+  vote.get_most_rated = function($playlist){
+    var i            = 0,
+        l            = $playlist.length,
+        most_rated   = $playlist[0].votes.length,
+        most_popular = 0;
+
+    for(; (i<l); i++){
+      var track = $playlist[i].votes.length;
+      if(track > most_rated){
+        most_rated   = track;
+        most_popular = i;
       }
     }
+
+    return most_popular;
+  }
+
+  vote.arrange_playlist = function(){
+    var i        = 0,
+        playlist = party.playlist.slice(),
+        filtered = [],
+        l        = playlist.length;
+
+    for(i; (i<l); i++){
+      var most_rated = vote.get_most_rated(playlist);
+      filtered.push(playlist[most_rated]);
+      playlist.splice(most_rated, 1);
+    }
+
+    return filtered;
+  }
+
+  vote.add_vote = function(YouTube_Song_Object){    
+    var song_index = party.find(YouTube_Song_Object),
+        user_voted = vote.user_has_voted(YouTube_Song_Object);
+
+    if(user_voted === false){
+      party.playlist[song_index].votes.push(client.device_id);
+      party.playlist = vote.arrange_playlist();
+      socket.emit('vote:song', party.playlist);
+    }
+  }
 
     // Return object.
     return vote;

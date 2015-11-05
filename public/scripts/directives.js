@@ -62,7 +62,8 @@ rockola.directive(
 	function() {
 	  return {
 	    restrict    : 'E',
-	    templateUrl : root + 'host.html'
+	    templateUrl : root + 'host.html',
+	    controller  : 'host_controller as host_ctrl'
 	 };
 	}
 );
@@ -74,7 +75,8 @@ rockola.directive(
 	function() {
 	  return {
 	    restrict    : 'E',
-	    templateUrl : root + 'hosted.html'
+	    templateUrl : root + 'hosted.html',
+	    controller  : 'hosted_controller as hosted_ctrl'
 	 };
 	}
 );
@@ -86,7 +88,8 @@ rockola.directive(
 	function() {
 	  return {
 	    restrict    : 'E',
-	    templateUrl : root + 'hosting.html'
+	    templateUrl : root + 'hosting.html',
+	    controller  : 'hosting_controller as hosting_ctrl'
 	 };
 	}
 );

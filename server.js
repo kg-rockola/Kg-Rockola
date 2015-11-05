@@ -32,8 +32,9 @@ var server = app.listen(_port, function(){
 
 var io       = require("socket.io").listen(server);
 var party    = {
-  host     : null,
-  playlist : []
+  host         : null,
+  playlist     : [],
+  current_song : null
 };
 
 io.on("connection", handleIO);
@@ -46,17 +47,24 @@ function handleIO(socket){
       // socket.broadcast.emit('user:left', 'User disconnected');
   }
 
-  socket.emit('get:playlist', party.playlist);
+  socket.on('update:current_song', function($current_song){
+    party.current_song = $current_song;
+    socket.broadcast.emit('current_song:updated', $current_song);
+  });
 
   socket.emit("init", {
     party    : party,
     deviceId : guid()
   });
   
-  socket.on('add:song', function(songData){
-      party.playlist.push(songData);
-      party.playlist = arrangePlaylist();
-      socket.broadcast.emit('song:added', party.playlist);
+  socket.on('add:song', function($playlist){
+      party.playlist = $playlist;
+      socket.broadcast.emit('song:added', $playlist);
+  });
+
+  socket.on('add:song', function($playlist){
+      party.playlist = $playlist;
+      socket.broadcast.emit('song:added', $playlist);
   });
 
   socket.on('host:party', function(hostId){
@@ -79,16 +87,9 @@ function handleIO(socket){
     socket.broadcast.emit('party:stoped', null)
   });
 
-  socket.on('vote:song', function(voteData){
-    var songIndex = getSongIndex(voteData.song),
-        userVoted = getUserVoted(voteData.user, songIndex);
-    
-    if(userVoted === false){
-      party.playlist[songIndex].votes.push(voteData.user);
-      party.playlist = arrangePlaylist();
-      socket.broadcast.emit('vote:registered', party.playlist);
-    }
-
+  socket.on('vote:song', function($playlist){
+    party.playlist = $playlist;
+    socket.broadcast.emit('vote:registered', $playlist);
   });
 
 };
@@ -105,70 +106,6 @@ io.configure(function(){
 });
 
 // Helpers 
-
-function arrangePlaylist(){
-  var i        = 0,
-      playlist = party.playlist.slice(),
-      filtered = [],
-      l        = playlist.length;
-
-    for(i; (i<l); i++){
-      var mostRated = getMostRated(playlist);
-      filtered.push(playlist[mostRated]);
-      playlist.splice(mostRated, 1);
-    }
-
-    return filtered;
-}
-
-
-function getMostRated(playlist){
-  var i           = 0,
-      l           = playlist.length,
-      mostRated   = playlist[0].votes.length,
-      mostPopular = 0;
-
-  for(; (i<l); i++){
-    var track = playlist[i].votes.length;
-    if(track > mostRated){
-      mostRated   = track;
-      mostPopular = i;
-    }
-  }
-
-  return mostPopular;
-
-}
-
-function getUserVoted(user, songIndex){
-  var votes = party.playlist[songIndex].votes,
-      i = 0,
-      l = party.playlist[songIndex].votes.length;
-
-  for(; (i<l); i++){
-    var  vote = votes[i];
-    if(vote === user){
-      return true;
-    }
-  }
-
-  return false;
-
-}
-
-function getSongIndex(song){
-  var i = 0,
-      l = party.playlist.length;
-  for(; (i<l); i++){
-    var  trackId = party.playlist[i].song.id.videoId;
-    if(trackId === song){
-      return i;
-    }
-  }
-
-  return false;
-
-}
 
 function guid() { // Globally unique identifier
   function s4() {

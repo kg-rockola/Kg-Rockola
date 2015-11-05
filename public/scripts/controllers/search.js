@@ -32,11 +32,6 @@ rockola.controller('search_controller', ['socket',
     }
 
     // Socket events
-    _this.socket.on('song:added', function(playlist){
-      _this.party.playlist = playlist;
-      _this.party.playlist = _this.arrangePlaylist();
-    });
-
     _this.socket.on('youtube:result', function(result){
       _this.found_tracks = result.items; 
     });

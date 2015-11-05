@@ -1,12 +1,15 @@
 rockola.factory('youtube_player', [ // Dependencies
                                     'party',
+                                    'socket',
                                   function (
                                     // Dependencies
-                                    party
+                                    $party,
+                                    $socket
                                   ){
 
     // Dependency injection
-    var _party = party;
+    var party  = $party,
+        socket = $socket;
 
     // Elements
     var youtube_player = {};
@@ -21,13 +24,24 @@ rockola.factory('youtube_player', [ // Dependencies
     }
 
     youtube_player.next = function(){
-        if(youtube_player.player){
-          party.playlist.splice(0, 1);
-          var next_song_id = _party.playlist[0].song.id.videoId;
-          youtube_player.player.loadVideoById(next_song_id);
-        }
+      youtube_player.player.loadVideoById(party.current_song.id.videoId);
     }
 
+    youtube_player.end = function(){
+      party.current_song = party.playlist[0].song;
+      socket.emit('update:current_song', party.current_song);
+      youtube_player.next();
+    }
+
+    youtube_player.unstarted = function(){
+      if(!party.current_song){
+        party.current_song = party.playlist[0].song;  
+      }
+      if(party.find(party.current_song) !== -1){
+        party.remove_song(party.current_song);
+      }
+      socket.emit('update:current_song', party.current_song);
+    }
     // Events
 
     youtube_player.onPlayerReady = function(event) {
@@ -41,11 +55,12 @@ rockola.factory('youtube_player', [ // Dependencies
           case -1:
             // Unstarted 
             console.log('Unstarted.');
+            youtube_player.unstarted();
             break;
           case 0:
             // Ended
             console.log('Ended.');
-            youtube_player.next();
+            youtube_player.end();
             break;
           case 1:
             // Playing
@@ -71,18 +86,29 @@ rockola.factory('youtube_player', [ // Dependencies
 
       }
 
+    youtube_player.get_first_song = function(){
+      if(party.current_song){
+        return party.current_song
+      } else {
+        return party.playlist[0].song;
+      }
+    }
+
     // Init function
 
     youtube_player.init = function(){
-      var first_song_id = _party.playlist[0].song.id.videoId;
+      if( party.playlist.length || party.current_song ){
+        var first_song    = youtube_player.get_first_song();
+        var first_song_id = first_song.id.videoId;
 
-      youtube_player.player = new YT.Player('player', {
-          videoId: first_song_id,
-          events: {
-            'onReady'       : youtube_player.onPlayerReady,
-            'onStateChange' : youtube_player.onPlayerStateChange
-          }
-        });
+        youtube_player.player = new YT.Player('player', {
+            videoId: first_song_id,
+            events: {
+              'onReady'       : youtube_player.onPlayerReady,
+              'onStateChange' : youtube_player.onPlayerStateChange
+            }
+          });
+      }
     }
 
     // Return object.

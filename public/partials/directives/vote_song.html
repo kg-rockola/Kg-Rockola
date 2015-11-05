@@ -4,7 +4,7 @@
        <div class="text-center search-col col col-md-4 col-xs-12 col-sm-6" 
             ng-repeat="item in vote_ctrl.party.playlist"
             style="background-image: url({{ vote_ctrl.search.thumbnail(item.song.snippet.thumbnails.high.url) }})"
-            ng-click="vote(item.song.id.videoId);"
+            ng-click="vote_ctrl.vote.add_vote(item.song);"
             ng-class="{ 'song-disabled' :  vote_ctrl.vote.user_has_voted(item.song)  }"
           >
             <header>

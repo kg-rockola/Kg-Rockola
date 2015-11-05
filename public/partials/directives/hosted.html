@@ -7,14 +7,14 @@
 			<ul>
 				<li class="row">
 					<h4>
-						Listeing to: <strong class="col col-md-12">{{ party.playlist[0].song.snippet.title }}</strong>
+						Listeing to: <strong class="col col-md-12">{{ play_ctrl.party.current_song.snippet.title }}</strong>
 					</h4>
 				</li>
-				<li ng-show="party.playlist[1]"  class="row">
+				<!-- <li ng-show="play_ctrl.party.playlist[1]"  class="row">
 					<h4>
-						Next: <strong class="col col-md-12">{{ party.playlist[1].song.snippet.title }}</strong>
+						Next: <strong class="col col-md-12">{{ play_ctrl.party.playlist[1].song.snippet.title }}</strong>
 					</h4>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 	</div>

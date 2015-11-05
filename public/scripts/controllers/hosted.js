@@ -2,15 +2,13 @@
 
 'use strict';
 
-rockola.controller('hosting_controller', ['youtube_player',
+rockola.controller('hosted_controller', ['youtube_player',
                                           'party',
-                                          '$state',
                                           'client',
                                           'socket',
                                         function(
                                            $youtube_player,
                                            $party,
-                                           $state,
                                            $client,
                                            $socket
                                         ){
@@ -23,26 +21,9 @@ rockola.controller('hosting_controller', ['youtube_player',
   _this.party          = $party;
   _this.client         = $client;
   _this.socket         = $socket;
-  _this.partying       = false;
 
   // Methods
-  _this.stop_hosting = function(){
-    _this.socket.emit('stop:party');
-    _this.party.host = null;
-    _this.youtube_player.destroy();
-    _this.partying = false;
-  }
-
-  _this.start_party = function(){
-    YT.ready(
-      function() {
-        _this.youtube_player.init();
-        _this.partying = true;
-      }
-    );
-  }
-
-  console.log(_this.party.current_song)
+  
 
 }]);
 

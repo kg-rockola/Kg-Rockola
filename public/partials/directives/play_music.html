@@ -1,20 +1,20 @@
 <section layout="column" >
 
-    <div ng-show="party.playlist.length" >
+    <div ng-show="play_ctrl.party.playlist.length" >
 
-    	<section ng-show="party.host && (party.host === deviceId)" >
+    	<section ng-show="play_ctrl.party.host && (play_ctrl.party.host === play_ctrl.client.device_id)" >
 	    	<rla-hosting>
 	    		<!-- Injects the embeded youtube player and the option to stop a party -->
 	    	</rla-hosting>
 	    </section>
 	
-	    <section ng-hide="party.host" >
+	    <section ng-hide="play_ctrl.party.host" >
 	        <rla-host>
 				<!-- Injects the option to host a party -->
 	        </rla-host>
 	    </section>
 
-	    <section ng-show="party.host && (party.host !== deviceId)" class="full-screen" >
+	    <section ng-show="play_ctrl.party.host && (play_ctrl.party.host !== play_ctrl.client.device_id)" class="full-screen" >
 	    	<rla-hosted>
 				<!-- Injects information about the party playlist -->
 	    	</rla-hosted>

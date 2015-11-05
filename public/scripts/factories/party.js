@@ -9,28 +9,26 @@ rockola.factory('party', [ // Dependencies
 
   // Models.
   var client = $client,
-      socket = $socket,
-      device_id = client.device_id;
+      socket = $socket;
 
   // Main object.
   var party     = {};
 
   // Main object members.
-  party.host     = null;
-  party.playlist = [];
+  party.host         = null;
+  party.current_song = null;
+  party.playlist     = [];
 
   // Methods.
   party.add_song = function(YouTube_Song_Object){
     if(party.find(YouTube_Song_Object) === -1){
-
       var new_song = {
         song  : YouTube_Song_Object,
-        votes : [device_id]
+        votes : [client.device_id]
       }
 
-      socket.emit('add:song', new_song);
       party.playlist.push(new_song);
-
+      socket.emit('add:song', party.playlist);
     }
   };
 
@@ -50,6 +48,12 @@ rockola.factory('party', [ // Dependencies
 
   };
 
+  party.remove_song = function(YouTube_Song_Object){
+    var song_index = party.find(YouTube_Song_Object);
+    party.playlist.splice(song_index, 1);
+    socket.emit('add:song', party.playlist);
+  };
+
   party.arrange_playlist = function(){
   var i        = 0,
       l        = playlist.length,
@@ -64,7 +68,7 @@ rockola.factory('party', [ // Dependencies
 
     return filtered;
 
-  }
+  };
 
   // Helpers.
   function get_most_rated(playlist){
