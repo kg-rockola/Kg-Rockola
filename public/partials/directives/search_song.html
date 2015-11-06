@@ -24,7 +24,7 @@
       </div>
   </form>
 
-  <div class="search-row col col-md-12 no-padding-col">
+  <!-- <div class="search-row col col-md-12 no-padding-col">
      <div class="text-center search-col col col-md-4 col-xs-12 col-sm-6" 
           ng-repeat="YouTube_Song_Object in search_ctrl.found_tracks"
           style="background-image: url({{ search_ctrl.search.thumbnail(YouTube_Song_Object.snippet.thumbnails.high.url) }})"
@@ -44,5 +44,17 @@
 
     </div>
   </div>
+ -->
+  <ul class="list-group" >
+    <li class="list-group-item"
+        ng-repeat="YouTube_Song_Object in search_ctrl.found_tracks"
+        ng-click="search_ctrl.log_song(YouTube_Song_Object)"
+        ng-class="{ 'song-disabled' :  ( search_ctrl.party.find(YouTube_Song_Object) !== -1) }"
+      >
+      {{ YouTube_Song_Object.snippet.title }}
+    </li>    
+  </ul>
 
 </section>
+
+<!-- ng-click="search_ctrl.party.add_song(YouTube_Song_Object)" -->

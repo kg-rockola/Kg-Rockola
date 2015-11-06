@@ -13,6 +13,7 @@ var redirect_uri  = 'http://localhost:'+_port+'/callback'; // Your redirect uri
 
 var YouTube_Node = require('youtube-node'),
     youtube      = new YouTube_Node(),
+    youtube_search = require('youtube-search'),
     appKey       = "AIzaSyDrvTaEi2w7ASFkKQKs7HP_3wGce5IGtk8";
 
 youtube.setKey(appKey);
@@ -73,6 +74,8 @@ function handleIO(socket){
   });
 
   socket.on('searching:youtube', function(query){
+    youtube.addParam('part','fileDetails');
+    
     youtube.search(query, 24, function(error, result){
       if(error){
         socket.emit('youtube:result:failed', error);
