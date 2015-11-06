@@ -1,32 +1,15 @@
 <section>
 
-    <div class="search-row col col-md-12 no-padding-col tab-padding" ng-show="vote_ctrl.party.playlist.length" >
-       <div class="text-center search-col col col-md-4 col-xs-12 col-sm-6" 
-            ng-repeat="item in vote_ctrl.party.playlist"
-            style="background-image: url({{ vote_ctrl.search.thumbnail(item.song.snippet.thumbnails.high.url) }})"
-            ng-click="vote_ctrl.vote.add_vote(item.song);"
-            ng-class="{ 'song-disabled' :  vote_ctrl.vote.user_has_voted(item.song)  }"
-          >
-            <header>
-              <h4 class="text-center" >
-                  You have already voted for this song
-              </h4>
-            </header>
+    <ul class="list-group" >
+      <li class="list-group-item clearfix"
+          ng-repeat="item in vote_ctrl.party.playlist"
+          ng-click="vote_ctrl.vote.add_vote(item.song)"
+          ng-class="{ 'song-disabled' :  vote_ctrl.vote.user_has_voted(item.song)  }"
+        > 
+          <h5>{{$index+1}}. {{ item.song.snippet.title }} <strong class="disabled-msg"> - Vote registered!</strong></h5>
+      </li>    
+    </ul>
 
-            <footer>
-              <h4>
-                 {{ item.song.snippet.title }}
-                 <small>
-                   Votes: {{ item.votes.length }}
-                 </small>
-                 <small>
-                   Position: {{ (vote_ctrl.party.playlist.indexOf(item) + 1) }}
-                 </small>
-              </h4>
-            </footer>
-
-     </div>
-  </div>
 
   <rla-no-songs-added>
     <!-- Directive that shows a message whenever there is no songs in the current playlist -->

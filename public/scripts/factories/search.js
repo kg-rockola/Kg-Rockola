@@ -11,6 +11,10 @@ rockola.factory('search', [ // Dependencies
     // Models.
     var socket = $socket;
 
+    // Main object members.
+    search_engine.query_result = [];
+
+
     // Methods.
     search_engine.request = function(query){
       socket.emit('searching:youtube', query);
