@@ -59,19 +59,3 @@
 	}
 
 }
-
-@media (max-width: $screen-sm-min) { 
-	.search-row{
-		.search-col {
-			padding-bottom: 100%;
-		}
-	}
-}
-
-@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { 
-	.search-row{
-		.search-col {
-			padding-bottom: 50%;
-		}
-	}
-}

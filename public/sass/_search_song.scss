@@ -55,6 +55,24 @@
 			opacity: 0.6;
 				&:hover{ cursor: default; }
 		}
+		// .list-group-item {
+		//     overflow: hidden;
+		// 	&:hover {
+	 //    		.preview-animation {
+	 //    			width: 100%;
+	 //    		}
+  //   		}
+		// } 
+		.preview-animation {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 0%;
+		    padding-bottom: 100%;
+		    background: blue;
+		    transition: width 6s linear;
+		}
+
 }
 
 @media (max-width: $screen-xss) { 

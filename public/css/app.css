@@ -169,23 +169,33 @@ ul {
 .list-group .song-disabled:hover {
   cursor: default;
 }
+/* line 66, ../sass/_search_song.scss */
+.list-group .preview-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  padding-bottom: 100%;
+  background: blue;
+  transition: width 6s linear;
+}
 
 @media (max-width: 440px) {
-  /* line 61, ../sass/_search_song.scss */
+  /* line 79, ../sass/_search_song.scss */
   .logo-container {
     display: none;
   }
 
-  /* line 64, ../sass/_search_song.scss */
+  /* line 82, ../sass/_search_song.scss */
   .nav-tabs {
     width: 100%;
   }
-  /* line 66, ../sass/_search_song.scss */
+  /* line 84, ../sass/_search_song.scss */
   .nav-tabs li {
     width: 100%;
   }
 
-  /* line 70, ../sass/_search_song.scss */
+  /* line 88, ../sass/_search_song.scss */
   .tab-padding {
     padding-top: 149px !important;
   }
@@ -254,18 +264,6 @@ ul {
   height: 500px;
 }
 
-@media (max-width: 768px) {
-  /* line 65, ../sass/_image-grid.scss */
-  .search-row .search-col {
-    padding-bottom: 100%;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  /* line 73, ../sass/_image-grid.scss */
-  .search-row .search-col {
-    padding-bottom: 50%;
-  }
-}
 /* line 1, ../sass/_host-party.scss */
 .party-page {
   background-size: cover;

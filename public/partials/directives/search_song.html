@@ -54,7 +54,8 @@
         ng-repeat="YouTube_Song_Object in search_ctrl.found_tracks"
         ng-click="search_ctrl.log_song(YouTube_Song_Object)"
         ng-class="{ 'song-disabled' :  ( search_ctrl.party.find(YouTube_Song_Object) !== -1) }"
-      >
+      > 
+        <div class="preview-animation"></div>
         <div class="pull-right">
           <button class="btn btn-default" 
                   type="button"
@@ -63,7 +64,7 @@
               >
             Add
           </button>
-          <span ng-show="( search_ctrl.party.find(YouTube_Song_Object) !== -1 )" >This song is already in the playlist</span>
+          <h5 ng-show="( search_ctrl.party.find(YouTube_Song_Object) !== -1 )" >Song added to the playlist!</h5>
         </div>
         <h5>{{ YouTube_Song_Object.snippet.title }}</h5>
     </li>    
