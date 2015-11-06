@@ -59,3 +59,14 @@ ul {
   background: darken($konrad-blue, 5.5);
   color: white;
 }
+
+.btn-konrad {
+  background: white;
+  border-radius: 0;
+  border: 1px solid $konrad-blue;
+  color: $konrad-blue;
+    &:hover {
+      color: $konrad-blue;
+      opacity: 0.8;
+    }
+}

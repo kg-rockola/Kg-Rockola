@@ -82,6 +82,19 @@ ul {
   color: white;
 }
 
+/* line 63, ../sass/_general.scss */
+.btn-konrad {
+  background: white;
+  border-radius: 0;
+  border: 1px solid #088bd2;
+  color: #088bd2;
+}
+/* line 68, ../sass/_general.scss */
+.btn-konrad:hover {
+  color: #088bd2;
+  opacity: 0.8;
+}
+
 /* line 1, ../sass/_full-screen-panels.scss */
 .full-screen {
   width: 100vw;
@@ -116,7 +129,22 @@ ul {
   top: 70px;
   background: rgba(255, 255, 255, 0.8);
 }
-/* line 12, ../sass/_search_song.scss */
+/* line 10, ../sass/_search_song.scss */
+.search-song-form .input-group .input-group-addon {
+  border: 0;
+  border-radius: 50%;
+  transition: all 0.5s ease-in-out;
+  text-transform: uppercase;
+  background: whitesmoke;
+  width: auto;
+  padding: 1em;
+}
+/* line 18, ../sass/_search_song.scss */
+.search-song-form .input-group .input-group-addon:hover, .search-song-form .input-group .input-group-addon:focus {
+  cursor: pointer;
+  color: #48baf8;
+}
+/* line 25, ../sass/_search_song.scss */
 .search-song-form .search-input {
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -128,12 +156,12 @@ ul {
   border-radius: 0;
   transition: all 0.5s ease-in-out;
 }
-/* line 23, ../sass/_search_song.scss */
+/* line 36, ../sass/_search_song.scss */
 .search-song-form .search-input:hover, .search-song-form .search-input:focus {
-  border-bottom-color: #909090;
+  color: #48baf8;
 }
 
-/* line 30, ../sass/_search_song.scss */
+/* line 43, ../sass/_search_song.scss */
 .button-group button {
   margin-top: 1em;
   padding: .5em;
@@ -144,32 +172,54 @@ ul {
   border: 1px solid #088bd2;
   transition: all 0.5s ease-in-out;
 }
-/* line 39, ../sass/_search_song.scss */
+/* line 52, ../sass/_search_song.scss */
 .button-group button:hover, .button-group button:focus {
   background: white;
   border: 1px solid #088bd2;
   color: #088bd2;
   opacity: 0.7;
 }
-/* line 45, ../sass/_search_song.scss */
+/* line 58, ../sass/_search_song.scss */
 .button-group button:first-child {
   border-right: none;
 }
 
-/* line 51, ../sass/_search_song.scss */
+/* line 64, ../sass/_search_song.scss */
 .list-group {
   padding-top: 10em;
   z-index: 1;
 }
-/* line 54, ../sass/_search_song.scss */
-.list-group .song-disabled {
+/* line 67, ../sass/_search_song.scss */
+.list-group .disabled-msg {
+  display: none;
+}
+/* line 70, ../sass/_search_song.scss */
+.list-group .list-group-item.song-disabled {
   opacity: 0.6;
 }
-/* line 56, ../sass/_search_song.scss */
-.list-group .song-disabled:hover {
+/* line 72, ../sass/_search_song.scss */
+.list-group .list-group-item.song-disabled .disabled-msg {
+  display: inline-block;
+}
+/* line 75, ../sass/_search_song.scss */
+.list-group .list-group-item.song-disabled:hover {
   cursor: default;
 }
-/* line 66, ../sass/_search_song.scss */
+/* line 77, ../sass/_search_song.scss */
+.list-group .list-group-item {
+  overflow: hidden;
+}
+/* line 79, ../sass/_search_song.scss */
+.list-group .list-group-item:not(.song-disabled) {
+  transition: all 0.2s ease-in-out;
+}
+/* line 81, ../sass/_search_song.scss */
+.list-group .list-group-item:not(.song-disabled):hover, .list-group .list-group-item:not(.song-disabled):focus {
+  cursor: pointer;
+  color: #48baf8;
+  border-top-color: #48baf8;
+}
+/* line 91, ../sass/_search_song.scss */
 .list-group .preview-animation {
   position: absolute;
   top: 0;
@@ -181,26 +231,26 @@ ul {
 }
 
 @media (max-width: 440px) {
-  /* line 79, ../sass/_search_song.scss */
+  /* line 104, ../sass/_search_song.scss */
   .logo-container {
     display: none;
   }
 
-  /* line 82, ../sass/_search_song.scss */
+  /* line 107, ../sass/_search_song.scss */
   .nav-tabs {
     width: 100%;
   }
-  /* line 84, ../sass/_search_song.scss */
+  /* line 109, ../sass/_search_song.scss */
   .nav-tabs li {
     width: 100%;
   }
 
-  /* line 88, ../sass/_search_song.scss */
+  /* line 113, ../sass/_search_song.scss */
   .tab-padding {
     padding-top: 149px !important;
   }
 
-  /* line 92, ../sass/_search_song.scss */
+  /* line 117, ../sass/_search_song.scss */
   .search-song-form .input-group {
     top: 150px;
   }

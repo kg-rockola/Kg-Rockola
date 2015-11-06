@@ -7,6 +7,19 @@
 			padding: 2em 0 3em 0;
 			top: 70px;
     		background: rgba(255,255,255, 0.8);
+    			.input-group-addon {
+    				border: 0;
+    				border-radius: 50%;
+    				transition: all 0.5s ease-in-out;
+    				text-transform: uppercase;
+    				background: whitesmoke;
+    				width: auto;
+    				padding: 1em;
+    					&:hover, &:focus {
+    						cursor: pointer;
+						    color: lighten($konrad-blue, 20);
+						}
+    			}
 		}
 
 		.search-input {
@@ -21,7 +34,7 @@
 			transition: all 0.5s ease-in-out;
 
 				&:hover, &:focus {
-				    border-bottom-color: #909090;
+				    color: lighten($konrad-blue, 20);
 				}
 		}
 }
@@ -51,18 +64,30 @@
 .list-group {
 	padding-top: 10em;
 	z-index: 1;
-		.song-disabled {
+		.disabled-msg { 
+			display: none 
+		}
+		.list-group-item.song-disabled {
 			opacity: 0.6;
+			.disabled-msg { 
+				display: inline-block;
+			}
 				&:hover{ cursor: default; }
 		}
-		// .list-group-item {
-		//     overflow: hidden;
-		// 	&:hover {
-	 //    		.preview-animation {
-	 //    			width: 100%;
-	 //    		}
-  //   		}
-		// } 
+		.list-group-item {
+			overflow: hidden;
+			&:not(.song-disabled) {
+				transition: all 0.2s ease-in-out;
+					&:hover, &:focus {
+						cursor: pointer;
+					    color: lighten($konrad-blue, 20);
+					    border-top-color: lighten($konrad-blue, 20);
+			    		// .preview-animation {
+			    		// 	width: 100%;
+			    		// }
+			    		}
+			 }
+		} 
 		.preview-animation {
 		    position: absolute;
 		    top: 0;
