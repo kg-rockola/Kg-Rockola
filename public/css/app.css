@@ -199,6 +199,11 @@ ul {
   .tab-padding {
     padding-top: 149px !important;
   }
+
+  /* line 92, ../sass/_search_song.scss */
+  .search-song-form .input-group {
+    top: 150px;
+  }
 }
 /* line 1, ../sass/_image-grid.scss */
 .search-row {
