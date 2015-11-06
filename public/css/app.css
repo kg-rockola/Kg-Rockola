@@ -108,9 +108,16 @@ ul {
 .search-song-form {
   margin: 2em 0;
 }
-
-/* line 5, ../sass/_search_song.scss */
-.search-input {
+/* line 4, ../sass/_search_song.scss */
+.search-song-form .input-group {
+  position: fixed;
+  z-index: 2;
+  padding: 2em 0 3em 0;
+  top: 70px;
+  background: rgba(255, 255, 255, 0.8);
+}
+/* line 12, ../sass/_search_song.scss */
+.search-song-form .search-input {
   -webkit-box-shadow: none;
   box-shadow: none;
   border-top: none;
@@ -121,12 +128,12 @@ ul {
   border-radius: 0;
   transition: all 0.5s ease-in-out;
 }
-/* line 16, ../sass/_search_song.scss */
-.search-input:hover, .search-input:focus {
+/* line 23, ../sass/_search_song.scss */
+.search-song-form .search-input:hover, .search-song-form .search-input:focus {
   border-bottom-color: #909090;
 }
 
-/* line 22, ../sass/_search_song.scss */
+/* line 30, ../sass/_search_song.scss */
 .button-group button {
   margin-top: 1em;
   padding: .5em;
@@ -137,34 +144,48 @@ ul {
   border: 1px solid #088bd2;
   transition: all 0.5s ease-in-out;
 }
-/* line 31, ../sass/_search_song.scss */
+/* line 39, ../sass/_search_song.scss */
 .button-group button:hover, .button-group button:focus {
   background: white;
   border: 1px solid #088bd2;
   color: #088bd2;
   opacity: 0.7;
 }
-/* line 37, ../sass/_search_song.scss */
+/* line 45, ../sass/_search_song.scss */
 .button-group button:first-child {
   border-right: none;
 }
 
-@media (max-width: 400px) {
-  /* line 44, ../sass/_search_song.scss */
+/* line 51, ../sass/_search_song.scss */
+.list-group {
+  padding-top: 10em;
+  z-index: 1;
+}
+/* line 54, ../sass/_search_song.scss */
+.list-group .song-disabled {
+  opacity: 0.6;
+}
+/* line 56, ../sass/_search_song.scss */
+.list-group .song-disabled:hover {
+  cursor: default;
+}
+
+@media (max-width: 440px) {
+  /* line 61, ../sass/_search_song.scss */
   .logo-container {
     display: none;
   }
 
-  /* line 47, ../sass/_search_song.scss */
+  /* line 64, ../sass/_search_song.scss */
   .nav-tabs {
     width: 100%;
   }
-  /* line 49, ../sass/_search_song.scss */
+  /* line 66, ../sass/_search_song.scss */
   .nav-tabs li {
     width: 100%;
   }
 
-  /* line 53, ../sass/_search_song.scss */
+  /* line 70, ../sass/_search_song.scss */
   .tab-padding {
     padding-top: 149px !important;
   }
@@ -186,11 +207,11 @@ ul {
   position: relative;
   background-repeat: no-repeat;
   background-position: 50% 0%;
+  background-size: cover;
   padding-bottom: 33.33%;
   background-color: #c8c8c8;
   cursor: pointer;
   transition: opacity .5s ease-in-out;
-  background-size: cover;
 }
 /* line 23, ../sass/_image-grid.scss */
 .search-row .search-col > footer, .search-row .search-col header {
