@@ -23,7 +23,6 @@ rockola.controller('search_controller', ['socket',
     // Methods.
     _this.get_songs = function(){
       _this.search.request(_this.query);
-      _this.query = '';
     }
 
     _this.clear_search = function(){

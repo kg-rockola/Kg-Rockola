@@ -1,20 +1,28 @@
 .search-song-form {
 	margin: 2em 0;
-}
 
-.search-input {
-	-webkit-box-shadow: none;
-    box-shadow: none;
-	border-top: none;
-	border-left: none;
-	padding: 1em;
-	border-right: none;
-	font-size: 1.2em;
-	border-radius: 0;
-	transition: all 0.5s ease-in-out;
+		.input-group {
+			position: fixed;
+			z-index: 2;
+			padding: 2em 0 3em 0;
+			top: 70px;
+    		background: rgba(255,255,255, 0.8);
+		}
 
-		&:hover, &:focus {
-		    border-bottom-color: #909090;
+		.search-input {
+			-webkit-box-shadow: none;
+		    box-shadow: none;
+			border-top: none;
+			border-left: none;
+			padding: 1em;
+			border-right: none;
+			font-size: 1.2em;
+			border-radius: 0;
+			transition: all 0.5s ease-in-out;
+
+				&:hover, &:focus {
+				    border-bottom-color: #909090;
+				}
 		}
 }
 
@@ -38,6 +46,15 @@
 			border-right: none;
 		}
 	}
+}
+
+.list-group {
+	padding-top: 10em;
+	z-index: 1;
+		.song-disabled {
+			opacity: 0.6;
+				&:hover{ cursor: default; }
+		}
 }
 
 @media (max-width: $screen-xss) { 

@@ -74,8 +74,6 @@ function handleIO(socket){
   });
 
   socket.on('searching:youtube', function(query){
-    youtube.addParam('part','fileDetails');
-    console.log(youtube.getParts())
     youtube.search(query, 24, function(error, result){
       if(error){
         socket.emit('youtube:result:failed', error);

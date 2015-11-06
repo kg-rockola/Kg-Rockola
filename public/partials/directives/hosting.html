@@ -3,15 +3,15 @@
 	<div class="fs-item col col-md-6 col-sm-12 col-xs-12" >
 		<div class="party-panel text-center row">
 			<h1>You are hosting a party!</h1>
-			<div class="video-wrapper" ng-show="hosting_ctrl.partying === true"  >
+			<div class="video-wrapper" ng-show="hosting_ctrl.partying"  >
 				<div id="player">
 					<!-- Embeded video player -->
 				</div>	
 			</div>
-			<button class="btn btn-default app-button col-md-12" ng-click="hosting_ctrl.start_party()" ng-hide="hosting_ctrl.partying === true" >
+			<button class="btn btn-default app-button col-md-12" ng-click="hosting_ctrl.start_party()" ng-hide="hosting_ctrl.partying" >
 	          Start party
 	        </button>
-	        <button class="btn btn-default app-button col-md-12" ng-click="hosting_ctrl.stop_hosting()" ng-show="hosting_ctrl.partying === true" >
+	        <button class="btn btn-default app-button col-md-12" ng-click="hosting_ctrl.stop_hosting()" ng-show="hosting_ctrl.partying" >
 	          Stop party
 	        </button>
 		</div>
