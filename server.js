@@ -7,6 +7,7 @@ var request       = require('request'); // "Request" library
 var querystring   = require('querystring');
 var cookieParser  = require('cookie-parser');
 var redirect_uri  = 'http://localhost:'+_port+'/callback'; // Your redirect uri
+var helpers       = require('./lib/helpers.js');
 
 
 // Youtube
@@ -54,7 +55,7 @@ function handleIO(socket){
 
   socket.emit("init", {
     party    : party,
-    deviceId : guid()
+    deviceId : helpers.guid()
   });
   
   socket.on('add:song', function($playlist){
@@ -107,14 +108,3 @@ io.configure(function(){
     ]);
 });
 
-// Helpers 
-
-function guid() { // Globally unique identifier
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4();
-}
