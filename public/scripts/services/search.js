@@ -12,8 +12,8 @@ rockola.factory('search', [ // Dependencies
     var socket = $socket;
 
     // Main object members.
+    search_engine.query        = '';
     search_engine.query_result = [];
-
 
     // Methods.
     search_engine.request = function(query){

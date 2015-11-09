@@ -28,50 +28,48 @@ rockola.controller('app_controller', ['$scope',
 
     // Socket events
     socket.on('init', function(data){
+    	party.host        = data.party.host;
+    	party.playlist    = data.party.playlist;
+      party.current_song = data.party.current_song;
 
-      	party.host        = data.party.host;
-      	party.playlist    = data.party.playlist;
-        party.current_song = data.party.current_song;
+    	var unique_id    = sessionStorage.getItem('deviceId'),
+          current_song = sessionStorage.getItem('currentSong');
 
-      	var unique_id    = sessionStorage.getItem('deviceId'),
-            current_song = sessionStorage.getItem('currentSong');
+    if(unique_id){
+    	client.device_id = unique_id;
+    } else {
+        client.device_id = data.deviceId;
+        sessionStorage.setItem('deviceId', data.deviceId);
+    }
 
-	    if(unique_id){
-	    	client.device_id = unique_id;
-	    } else {
-	        client.device_id = data.deviceId;
-	        sessionStorage.setItem('deviceId', data.deviceId);
-	    }
+    if(current_song){
+      party.current_song = current_song;
+    } else {
+      party.current_song = data.current_song;
+      sessionStorage.setItem('current_song', data.current_song);
+    }
 
-      if(current_song){
-        party.current_song = current_song;
-      } else {
-        party.current_song = data.current_song;
-        sessionStorage.setItem('current_song', data.current_song);
-      }
+  });
 
-    });
+  socket.on('vote:registered', function($playlist){
+    party.playlist = $playlist;
+  });
 
-    // Socket events.
-    socket.on('vote:registered', function($playlist){
-      party.playlist = $playlist;
-    });
+  socket.on('song:added', function($playlist){
+    party.playlist = $playlist;
+  });
 
-    socket.on('song:added', function($playlist){
-      party.playlist = $playlist;
-    });
+  socket.on('hosting:party', function(id){
+    party.host = id;
+  });
 
-    socket.on('hosting:party', function(id){
-      party.host = id;
-    });
+  socket.on('party:stoped', function(id){
+    party.host = null;
+  });
 
-    socket.on('party:stoped', function(id){
-      party.host = null;
-    });
-
-    socket.on('current_song:updated', function($current_song){
-      party.current_song = $current_song;
-    });
+  socket.on('current_song:updated', function($current_song){
+    party.current_song = $current_song;
+  });
 
 
 }]);

@@ -1,5 +1,7 @@
 'use strict';
 
+// Tag directives
+
 var root = 'partials/directives/';
 
 rockola.directive(
@@ -105,3 +107,18 @@ rockola.directive(
 	 };
 	}
 );
+
+// Attributes directives
+
+rockola.directive('focusMe', function($timeout) {
+  return {
+    scope: {
+      focusMeIf:"="
+    },
+    link: function ( scope, element, attrs ) {
+      if (scope.focusMeIf===undefined || scope.focusMeIf) {
+        $timeout( function () { element[0].focus(); } );
+      }
+    }
+  };
+});

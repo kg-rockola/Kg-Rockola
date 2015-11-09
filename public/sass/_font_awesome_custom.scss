@@ -1,0 +1,31 @@
+.fa-check-circle {
+    color: $check;
+    font-size: 1.2em;
+    margin-right: 1em;
+}
+
+.fa-times-circle {
+	color: $red;
+	font-size: 1.2em;
+    margin-right: 1em;
+}
+
+.kg-tooltip {
+    display: inline;
+    position: relative;
+}
+
+.kg-tooltip:hover:after {
+    background: $konrad-blue;
+    border-radius: 10px 10px 10px 0;
+    bottom: 26px;
+    color: #fff;
+    content: attr(tooltip);
+    left: 20%;
+    padding: .5em;
+    position: absolute;
+    z-index: 98;
+    min-width: 150px;
+    max-width: 250px;
+    text-align: center;
+}

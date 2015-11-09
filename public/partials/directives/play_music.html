@@ -2,12 +2,6 @@
 
     <div ng-show="play_ctrl.party.playlist.length" >
 
-    	<section ng-show="play_ctrl.party.host && (play_ctrl.party.host === play_ctrl.client.device_id)" >
-	    	<rla-hosting>
-	    		<!-- Injects the embeded youtube player and the option to stop a party -->
-	    	</rla-hosting>
-	    </section>
-	
 	    <section ng-hide="play_ctrl.party.host" >
 	        <rla-host>
 				<!-- Injects the option to host a party -->

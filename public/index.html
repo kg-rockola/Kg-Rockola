@@ -5,39 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/app.css">
   </head>
 
   <body ng-controller="app_controller as appCtrl" >
     
-    <section ng-init="init()" ng-cloak id="navigation-tabs" >
-
-    <!-- Nav wrapper -->
-      <nav class="navbar-fixed-top tab-container">
-        <!-- Logo -->
-        <div class="logo-container pull-left col-md-3" ui-sref="search">
-          <img src="images/icons/konrad-logo.png" alt="Konrad logo" height="25px" class="hidden-xs">
-          <img src="images/icons/konrad-logo-small.png" alt="Konrad logo" height="25px" class="visible-xs">
-        </div>
-        <!-- Nav pills -->
-        <ul class="nav nav-tabs text-center col-md-9" role="tablist">
-          <li role="presentation" class="col-md-3" ng-class="{ 'active' :  match_state('search')  }" >
-            <a ui-sref="search">I want to listen</a>
-          </li>
-          <li role="presentation" class="col-md-3" ng-class="{ 'active' :  match_state('vote')  }" >
-            <a ui-sref="vote">Vote</a>
-          </li>
-          <li role="presentation" class="col-md-3" ng-class="{ 'active' :  match_state('play')  }" >
-            <a ui-sref="play">Play</a>
-          </li>
-        </ul>
-      </nav>
-       
-    </section>
-
-    <section ui-view >
-      <!-- Content -->
-    </section>
+    <div ui-view>
+      <!-- App state content -->
+    </div>
     
 
     <!-- Youtube -->
@@ -61,13 +37,13 @@
     <script src="scripts/directives.js"></script>
     <!-- Socket.io -->
     <script src="/socket.io/socket.io.js"></script>
-    <!-- Factories -->
-    <script src="scripts/factories/socket.js"></script>
-    <script src="scripts/factories/client.js"></script>
-    <script src="scripts/factories/search.js"></script>
-    <script src="scripts/factories/party.js"></script>
-    <script src="scripts/factories/vote.js"></script>
-    <script src="scripts/factories/youtube_player.js"></script>
+    <!-- Services -->
+    <script src="scripts/services/socket.js"></script>
+    <script src="scripts/services/client.js"></script>
+    <script src="scripts/services/search.js"></script>
+    <script src="scripts/services/party.js"></script>
+    <script src="scripts/services/vote.js"></script>
+    <script src="scripts/services/youtube_player.js"></script>
     <!-- Core controllers -->
     <script src="scripts/controllers/app.js"></script>
     <script src="scripts/controllers/hosting.js"></script>

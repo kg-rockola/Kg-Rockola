@@ -1,12 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=PT+Sans);
-/*
-
-@media (max-width: @screen-xs-max) { ... }
-@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
-@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
-@media (min-width: @screen-lg-min) { ... }
-
-*/
 /* line 1, ../sass/_general.scss */
 body, html {
   font-family: 'PT Sans', sans-serif;
@@ -95,24 +87,34 @@ ul {
   opacity: 0.8;
 }
 
-/* line 1, ../sass/_full-screen-panels.scss */
+/* line 74, ../sass/_general.scss */
+.konrad-logo:hover {
+  cursor: pointer;
+}
+
+/* line 78, ../sass/_general.scss */
+.kg-thumbnail {
+  max-width: 100%;
+}
+
+/* line 1, ../sass/_full_screen_panels.scss */
 .full-screen {
   width: 100vw;
   height: 100vh;
   position: relative;
 }
-/* line 6, ../sass/_full-screen-panels.scss */
+/* line 6, ../sass/_full_screen_panels.scss */
 .full-screen > .fs-item {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-/* line 13, ../sass/_full-screen-panels.scss */
+/* line 13, ../sass/_full_screen_panels.scss */
 .full-screen.fs-modal {
   background: rgba(0, 0, 0, 0.5);
 }
-/* line 16, ../sass/_full-screen-panels.scss */
+/* line 16, ../sass/_full_screen_panels.scss */
 .full-screen.fs-modal > div, .full-screen.fs-modal > section {
   z-index: 99;
 }
@@ -121,15 +123,15 @@ ul {
 .search-song-form {
   margin: 2em 0;
 }
-/* line 4, ../sass/_search_song.scss */
+/* line 3, ../sass/_search_song.scss */
 .search-song-form .input-group {
   position: fixed;
   z-index: 2;
-  padding: 2em 0 3em 0;
-  top: 70px;
+  padding: 3em 0 2em 0;
+  top: 68px;
   background: rgba(255, 255, 255, 0.8);
 }
-/* line 10, ../sass/_search_song.scss */
+/* line 9, ../sass/_search_song.scss */
 .search-song-form .input-group .input-group-addon {
   border: 0;
   border-radius: 50%;
@@ -139,12 +141,12 @@ ul {
   width: auto;
   padding: 1em;
 }
-/* line 18, ../sass/_search_song.scss */
+/* line 17, ../sass/_search_song.scss */
 .search-song-form .input-group .input-group-addon:hover, .search-song-form .input-group .input-group-addon:focus {
   cursor: pointer;
   color: #48baf8;
 }
-/* line 25, ../sass/_search_song.scss */
+/* line 24, ../sass/_search_song.scss */
 .search-song-form .search-input {
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -156,12 +158,12 @@ ul {
   border-radius: 0;
   transition: all 0.5s ease-in-out;
 }
-/* line 36, ../sass/_search_song.scss */
+/* line 35, ../sass/_search_song.scss */
 .search-song-form .search-input:hover, .search-song-form .search-input:focus {
   color: #48baf8;
 }
 
-/* line 43, ../sass/_search_song.scss */
+/* line 42, ../sass/_search_song.scss */
 .button-group button {
   margin-top: 1em;
   padding: .5em;
@@ -172,100 +174,120 @@ ul {
   border: 1px solid #088bd2;
   transition: all 0.5s ease-in-out;
 }
-/* line 52, ../sass/_search_song.scss */
+/* line 51, ../sass/_search_song.scss */
 .button-group button:hover, .button-group button:focus {
   background: white;
   border: 1px solid #088bd2;
   color: #088bd2;
   opacity: 0.7;
 }
-/* line 58, ../sass/_search_song.scss */
+/* line 57, ../sass/_search_song.scss */
 .button-group button:first-child {
   border-right: none;
 }
 
-/* line 64, ../sass/_search_song.scss */
+/* line 63, ../sass/_search_song.scss */
+.song-results, .vote-list {
+  padding-top: 8em;
+}
+
+/* line 67, ../sass/_search_song.scss */
 .list-group {
-  padding-top: 10em;
   z-index: 1;
 }
-/* line 67, ../sass/_search_song.scss */
+/* line 69, ../sass/_search_song.scss */
 .list-group .disabled-msg {
   display: none;
 }
-/* line 70, ../sass/_search_song.scss */
+/* line 72, ../sass/_search_song.scss */
 .list-group .list-group-item.song-disabled {
+  transition: .5s opacity linear;
   opacity: 0.6;
 }
-/* line 72, ../sass/_search_song.scss */
+/* line 75, ../sass/_search_song.scss */
 .list-group .list-group-item.song-disabled .disabled-msg {
   display: inline-block;
 }
-/* line 75, ../sass/_search_song.scss */
+/* line 78, ../sass/_search_song.scss */
 .list-group .list-group-item.song-disabled:hover {
   cursor: default;
 }
-/* line 77, ../sass/_search_song.scss */
+/* line 80, ../sass/_search_song.scss */
 .list-group .list-group-item {
-  overflow: hidden;
+  padding-bottom: 1em;
+  transition: all 0.2s linear;
 }
-/* line 79, ../sass/_search_song.scss */
-.list-group .list-group-item:not(.song-disabled) {
-  transition: all 0.2s ease-in-out;
-}
-/* line 81, ../sass/_search_song.scss */
-.list-group .list-group-item:not(.song-disabled):hover, .list-group .list-group-item:not(.song-disabled):focus {
+/* line 83, ../sass/_search_song.scss */
+.list-group .list-group-item:hover, .list-group .list-group-item:focus {
   cursor: pointer;
   color: #48baf8;
   border-top-color: #48baf8;
 }
-/* line 91, ../sass/_search_song.scss */
+/* line 94, ../sass/_search_song.scss */
+.list-group .list-group-item.song-disabled:hover, .list-group .list-group-item.song-disabled:focus {
+  cursor: default;
+  color: #535353;
+  border-top-color: #c3c3c3;
+}
+/* line 101, ../sass/_search_song.scss */
+.list-group .list-group-item.user-voted:hover, .list-group .list-group-item.user-voted:focus {
+  cursor: pointer;
+  color: #df7c72;
+  border-top-color: #df7c72;
+}
+/* line 108, ../sass/_search_song.scss */
 .list-group .preview-animation {
   position: absolute;
-  top: 0;
+  height: .5em;
+  bottom: 0;
   left: 0;
   width: 0%;
-  padding-bottom: 100%;
-  background: blue;
-  transition: width 6s linear;
+  opacity: 0;
+  background: #48baf8;
+  transition: all 0s linear;
 }
 
-@media (max-width: 440px) {
-  /* line 104, ../sass/_search_song.scss */
+@media (max-width: 500px) {
+  /* line 122, ../sass/_search_song.scss */
   .logo-container {
     display: none;
   }
 
-  /* line 107, ../sass/_search_song.scss */
+  /* line 125, ../sass/_search_song.scss */
   .nav-tabs {
     width: 100%;
   }
-  /* line 109, ../sass/_search_song.scss */
+  /* line 127, ../sass/_search_song.scss */
   .nav-tabs li {
     width: 100%;
   }
 
-  /* line 113, ../sass/_search_song.scss */
+  /* line 131, ../sass/_search_song.scss */
   .tab-padding {
     padding-top: 149px !important;
   }
 
-  /* line 117, ../sass/_search_song.scss */
+  /* line 135, ../sass/_search_song.scss */
   .search-song-form .input-group {
-    top: 150px;
+    top: 145px;
+  }
+
+  /* line 139, ../sass/_search_song.scss */
+  .kg-thumbnail {
+    width: 100%;
   }
 }
-/* line 1, ../sass/_image-grid.scss */
+/* line 1, ../sass/_image_grid.scss */
 .search-row {
   color: whitesmoke;
   font-weight: bold;
 }
-/* line 6, ../sass/_image-grid.scss */
+/* line 6, ../sass/_image_grid.scss */
 .search-row small {
   display: block;
   padding: 1em 0;
 }
-/* line 11, ../sass/_image-grid.scss */
+/* line 11, ../sass/_image_grid.scss */
 .search-row .search-col {
   padding: .5em;
   display: table-cell;
@@ -278,7 +300,7 @@ ul {
   cursor: pointer;
   transition: opacity .5s ease-in-out;
 }
-/* line 23, ../sass/_image-grid.scss */
+/* line 23, ../sass/_image_grid.scss */
 .search-row .search-col > footer, .search-row .search-col header {
   position: absolute;
   width: 100%;
@@ -286,40 +308,40 @@ ul {
   transform: translate(-50%, 0%);
   padding: .5em 0;
 }
-/* line 31, ../sass/_image-grid.scss */
+/* line 31, ../sass/_image_grid.scss */
 .search-row .search-col > footer {
   bottom: 0%;
   background: rgba(0, 0, 0, 0.8);
 }
-/* line 36, ../sass/_image-grid.scss */
+/* line 36, ../sass/_image_grid.scss */
 .search-row .search-col > header {
   visibility: hidden;
   top: 0%;
   background: rgba(0, 0, 0, 0.8);
 }
-/* line 42, ../sass/_image-grid.scss */
+/* line 42, ../sass/_image_grid.scss */
 .search-row .search-col:hover {
   opacity: 0.8;
 }
-/* line 45, ../sass/_image-grid.scss */
+/* line 45, ../sass/_image_grid.scss */
 .search-row .search-col.song-disabled {
   opacity: 0.6;
 }
-/* line 47, ../sass/_image-grid.scss */
+/* line 47, ../sass/_image_grid.scss */
 .search-row .search-col.song-disabled:hover {
   cursor: default;
 }
-/* line 48, ../sass/_image-grid.scss */
+/* line 48, ../sass/_image_grid.scss */
 .search-row .search-col.song-disabled > header {
   visibility: visible;
 }
-/* line 56, ../sass/_image-grid.scss */
+/* line 56, ../sass/_image_grid.scss */
 .search-row .search-img {
   width: 100%;
   height: 500px;
 }
 
-/* line 1, ../sass/_host-party.scss */
+/* line 1, ../sass/_host_party.scss */
 .party-page {
   background-size: cover;
   background-repeat: no-repeat;
@@ -327,24 +349,24 @@ ul {
   overflow: hidden;
 }
 
-/* line 8, ../sass/_host-party.scss */
+/* line 8, ../sass/_host_party.scss */
 .party-panel {
   background: rgba(0, 0, 0, 0.3);
   color: white;
   padding: 10em 10em 5em 10em;
 }
 
-/* line 14, ../sass/_host-party.scss */
+/* line 14, ../sass/_host_party.scss */
 .host {
   background-image: url(/images/rockola.jpg);
 }
 
-/* line 18, ../sass/_host-party.scss */
+/* line 18, ../sass/_host_party.scss */
 .hosted {
   background-image: url(/images/party.jpg);
 }
 
-/* line 22, ../sass/_host-party.scss */
+/* line 22, ../sass/_host_party.scss */
 .app-button {
   font-weight: bold;
   text-transform: uppercase;
@@ -354,14 +376,14 @@ ul {
   border-radius: 0;
   padding: 1em 5em;
 }
-/* line 30, ../sass/_host-party.scss */
+/* line 30, ../sass/_host_party.scss */
 .app-button:hover {
   opacity: 0.8;
   color: #088bd2;
   background: whitesmoke;
 }
 
-/* line 37, ../sass/_host-party.scss */
+/* line 37, ../sass/_host_party.scss */
 .video-wrapper {
   position: relative;
   padding-bottom: 56.25%;
@@ -370,7 +392,7 @@ ul {
   height: 0;
 }
 
-/* line 43, ../sass/_host-party.scss */
+/* line 43, ../sass/_host_party.scss */
 .video-wrapper iframe {
   position: absolute;
   top: 0;
@@ -379,47 +401,83 @@ ul {
   height: 100%;
 }
 
-/* line 2, ../sass/_navigation-tabs.scss */
+/* line 2, ../sass/_navigation_tabs.scss */
 .tab-padding {
   padding-top: 69px;
 }
 
-/* line 6, ../sass/_navigation-tabs.scss */
+/* line 6, ../sass/_navigation_tabs.scss */
 .tab-container {
   background: #088bd2;
 }
-/* line 8, ../sass/_navigation-tabs.scss */
+/* line 8, ../sass/_navigation_tabs.scss */
 .tab-container .nav-tabs {
   float: right;
   margin: 1em 0;
   border: none;
 }
-/* line 13, ../sass/_navigation-tabs.scss */
+/* line 13, ../sass/_navigation_tabs.scss */
 .tab-container .nav-tabs > li.active > a:hover, .tab-container .nav-tabs > li > a:hover, .tab-container .nav-tabs > li.active > a:focus, .tab-container .nav-tabs > li > a:focus {
   background: transparent;
   opacity: 0.8;
   border-color: #088bd2;
 }
-/* line 18, ../sass/_navigation-tabs.scss */
+/* line 18, ../sass/_navigation_tabs.scss */
 .tab-container .nav-tabs > li.active > a:hover, .tab-container .nav-tabs > li.active > a:focus {
   background: whitesmoke;
   color: #088bd2;
   border: none;
   cursor: pointer;
 }
-/* line 24, ../sass/_navigation-tabs.scss */
+/* line 24, ../sass/_navigation_tabs.scss */
 .tab-container .nav-tabs > li a {
   color: white;
   text-transform: uppercase;
 }
-/* line 28, ../sass/_navigation-tabs.scss */
+/* line 28, ../sass/_navigation_tabs.scss */
 .tab-container .nav-tabs > li.active a {
   color: #088bd2;
   border: none;
   border-radius: 0px;
 }
 
-/* line 37, ../sass/_navigation-tabs.scss */
+/* line 37, ../sass/_navigation_tabs.scss */
 .logo-container {
   padding-top: 1.5em;
+}
+
+/* line 1, ../sass/_font_awesome_custom.scss */
+.fa-check-circle {
+  color: #27ae60;
+  font-size: 1.2em;
+  margin-right: 1em;
+}
+
+/* line 7, ../sass/_font_awesome_custom.scss */
+.fa-times-circle {
+  color: #c0392b;
+  font-size: 1.2em;
+  margin-right: 1em;
+}
+
+/* line 13, ../sass/_font_awesome_custom.scss */
+.kg-tooltip {
+  display: inline;
+  position: relative;
+}
+
+/* line 18, ../sass/_font_awesome_custom.scss */
+.kg-tooltip:hover:after {
+  background: #088bd2;
+  border-radius: 10px 10px 10px 0;
+  bottom: 26px;
+  color: #fff;
+  content: attr(tooltip);
+  left: 20%;
+  padding: .5em;
+  position: absolute;
+  z-index: 98;
+  min-width: 150px;
+  max-width: 250px;
+  text-align: center;
 }

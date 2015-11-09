@@ -2,7 +2,10 @@
 $konrad-blue : #088bd2;
 $light-gray  : #ccc;
 $dark-gray   : #909090;
+$red         : #c0392b;
 $black       : #202020;
+$check       : #27ae60;
+$preview-bar : #48baf8;
 
 // Media Queries
 
@@ -14,18 +17,15 @@ $screen-md-max : 1999px;
 // Small
 $screen-sm-min : 768px;
 $screen-sm-max : 991px;
+// More small smallest
+$screen-ss     : 500px;
 // Extra Small
 $screen-xs-max : 480px;
-// Smallest
-$screen-xss    : 440px;
 
 // Snippets
 
-/*
+// @media (max-width: @screen-xs-max) { ... }
+// @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
+// @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
+// @media (min-width: @screen-lg-min) { ... }
 
-@media (max-width: @screen-xs-max) { ... }
-@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
-@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
-@media (min-width: @screen-lg-min) { ... }
-
-*/

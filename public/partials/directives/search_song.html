@@ -4,13 +4,15 @@
     <div class="col col-md-12 col-sm-12 col-xs-12 input-group">
       <div class="col col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
           <div class="col col-md-10 col-sm-10 col-xs-10">
-            <input ng-model="search_ctrl.query" 
-               type="text" 
-               class="form-control search-input pull-left" 
-               autocomplete="true"
-               placeholder="Search song or artist"
-               ng-keyup="search_ctrl.get_songs()"
-            />
+            <input ng-model="search_ctrl.search.query" 
+                   type="text" 
+                   class="form-control search-input pull-left" 
+                   autocomplete="true"
+                   focus-me
+                   focus-me-if="true"
+                   placeholder="Search song or artist"
+                   ng-keyup="search_ctrl.get_songs()"
+                />
           </div>
           <div class="col col-md-2 col-sm-2 col-xs-2">
             <span class="input-group-addon pull-left"
@@ -23,54 +25,29 @@
     </div>
   </form>
 
-  <!-- <div class="search-row col col-md-12 no-padding-col">
-     <div class="text-center search-col col col-md-4 col-xs-12 col-sm-6" 
-          ng-repeat="YouTube_Song_Object in search_ctrl.found_tracks"
-          style="background-image: url({{ search_ctrl.search.thumbnail(YouTube_Song_Object.snippet.thumbnails.high.url) }})"
-          ng-click="search_ctrl.party.add_song(YouTube_Song_Object)"
-          ng-class="{ 'song-disabled' :  ( search_ctrl.party.find(YouTube_Song_Object) !== -1) }"
-        >
-
-        <header>
-          <h4 class="text-center" >
-              This song is already in the playlist.
-          </h4>
-        </header>
-
-        <footer>
-          <h4>{{ YouTube_Song_Object.snippet.title }}</h4>
-      </footer>
-
-    </div>
-  </div>
- -->
-  <ul class="list-group" >
+  <ul class="list-group song-results" >
     <li class="list-group-item clearfix"
         ng-repeat="YouTube_Song_Object in search_ctrl.search.query_result"
         ng-click="search_ctrl.party.add_song(YouTube_Song_Object)"
-        ng-class="{ 'song-disabled' :  ( search_ctrl.party.find(YouTube_Song_Object) !== -1) }"
+        ng-class="{ 
+                      'song-disabled' :  ( search_ctrl.party.find(YouTube_Song_Object) !== -1),
+                      'user-voted'    :  ( search_ctrl.vote.user_has_voted(YouTube_Song_Object) )
+                  }"
       > 
-        <div class="preview-animation"></div>
-        <!-- <div class="pull-right col col-md-2 ">
-          <button class="btn btn-konrad" 
-                  type="button"
-                  ng-hide="( search_ctrl.party.find(YouTube_Song_Object) !== -1 )"
-              >
-            Preview
-          </button>
-          <h5 class="col col-md-12" ng-show="( search_ctrl.party.find(YouTube_Song_Object) !== -1 )" >Song added to the playlist!</h5>
-        </div> -->
-        <div class="col col-md-10 col-sm-10 col-xs-11">
-            <div class="col col-md-2 col-sm-2 hidden-xs">
-              <img class="img-responsive" ng-src="{{ search_ctrl.search.thumbnail(YouTube_Song_Object.snippet.thumbnails.default.url) }}" alt="{{ YouTube_Song_Object.snippet.title }} thumbnail">
+        <div class="col col-md-10 col-sm-10 col-xs-12">
+            <div class="col col-md-2 col-sm-2 col-xs-12">
+              <img class="img-responsive kg-thumbnail" ng-src="{{ search_ctrl.search.thumbnail(YouTube_Song_Object.snippet.thumbnails.default.url) }}" alt="{{ YouTube_Song_Object.snippet.title }} thumbnail">
             </div>
             <div class="col col-md-10 col-sm-10 col-xs-12" >
-              <h5>{{ YouTube_Song_Object.snippet.title }}<strong class="disabled-msg"> - Added!</strong></h5>
+              <h4>
+                <span class="kg-tooltip" tooltip="Song added to the playlist!"><i class="disabled-msg fa fa-check-circle"></i></span> 
+                <!-- <span class="kg-tooltip" tooltip="Song added to the playlist!"><i class="disabled-msg fa fa-times-circle"></i></span> -->
+                {{ YouTube_Song_Object.snippet.title }}
+              </h4>
             </div>
         </div>
+        <div class="preview-animation"></div>
     </li>    
   </ul>
 
 </section>
-
-<!-- ng-click="search_ctrl.party.add_song(YouTube_Song_Object)" -->

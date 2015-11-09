@@ -19,20 +19,24 @@ rockola.factory('vote', [ // Dependencies
     
     // Methods
 	vote.user_has_voted = function(YouTube_Song_Object){
-		var song_index = party.find(YouTube_Song_Object),
-        votes      = party.playlist[song_index].votes,
-        device_id  = client.device_id,
-		    i          = 0,
-		    l          = votes.length;
+		var song_index = party.find(YouTube_Song_Object);
 
-		for(i=0; (i<l); i++){
-		    var  vote = votes[i];
-		    if(vote === device_id){
-		      return true;
-		    }
-		}
+    if( song_index !== -1 ){
+      var votes      = party.playlist[song_index].votes,
+          device_id  = client.device_id,
+          i          = 0,
+          l          = votes.length;
 
-  	return false;
+      for(i=0; (i<l); i++){
+          var  vote = votes[i];
+          if(vote === device_id){
+            return true;
+          }
+      }
+
+    } 
+
+    return false;
 	};
 
   vote.get_most_rated = function($playlist){

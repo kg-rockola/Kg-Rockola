@@ -38,11 +38,11 @@ rockola.controller('hosting_controller', ['youtube_player',
       function() {
         _this.youtube_player.init();
         _this.partying = true;
+        _this.socket.emit('host:party', _this.client.device_id);
+        _this.party.host = _this.client.device_id;
       }
     );
   }
-
-  console.log(_this.party.current_song)
 
 }]);
 

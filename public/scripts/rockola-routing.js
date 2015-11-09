@@ -11,7 +11,7 @@ rockola.config(
 
 			// $locationProvider.html5Mode(true);
 			// Default URL
-			$urlRouterProvider.otherwise('/search');
+			$urlRouterProvider.otherwise('/app/search');
 	
 			var root = {
 				partials    : 'partials/',
@@ -20,28 +20,47 @@ rockola.config(
 	
 			// Aplication states
 			$stateProvider
+				// App state
 				.state(
-					'search',
+					'app',
 					{
-						url 	    : '/search',
-						templateUrl : root.directives + 'search_song.html',
-						controller  : 'search_controller as search_ctrl'
+						url 	    : '/app',
+						templateUrl : root.partials + 'app.html',
+						abstract    : true
 					}
 				)
+					// App children states
+					.state(
+						'app.search',
+						{
+							url 	    : '/search',
+							templateUrl : root.directives + 'search_song.html',
+							controller  : 'search_controller as search_ctrl'
+						}
+					)
+					.state(
+						'app.vote',
+						{
+							url 	    : '/vote',
+							templateUrl : root.directives + 'vote_song.html',
+							controller  : 'vote_controller as vote_ctrl'
+						}
+					)
+					.state(
+						'app.play',
+						{
+							url 	    : '/play',
+							templateUrl : root.directives + 'play_music.html',
+							controller  : 'play_music_controller as play_ctrl'
+						}
+					)
+			// Host state
 				.state(
-					'vote',
+					'hosting',
 					{
-						url 	    : '/vote',
-						templateUrl : root.directives + 'vote_song.html',
-						controller  : 'vote_controller as vote_ctrl'
-					}
-				)
-				.state(
-					'play',
-					{
-						url 	    : '/play',
-						templateUrl : root.directives + 'play_music.html',
-						controller  : 'play_music_controller as play_ctrl'
+						url 	    : '/hosting',
+						templateUrl : root.directives + 'hosting.html',
+						controller  : 'hosting_controller as hosting_ctrl'
 					}
 				)
 	

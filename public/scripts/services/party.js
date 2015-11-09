@@ -32,6 +32,15 @@ rockola.factory('party', [ // Dependencies
     }
   };
 
+  party.remove_song = function(YouTube_Song_Object){
+    var song_index = party.find(YouTube_Song_Object);
+
+    if(song_index !== -1){
+      party.playlist.slice(song_index,1);
+      socket.emit('remove:song', party.playlist);
+    }
+  }
+
   party.find = function(YouTube_Song_Object){
     var i           = 0,
         l           = party.playlist.length,

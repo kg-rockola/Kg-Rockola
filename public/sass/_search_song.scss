@@ -1,11 +1,10 @@
 .search-song-form {
 	margin: 2em 0;
-
 		.input-group {
 			position: fixed;
 			z-index: 2;
-			padding: 2em 0 3em 0;
-			top: 70px;
+			padding: 3em 0 2em 0;
+			top: 68px;
     		background: rgba(255,255,255, 0.8);
     			.input-group-addon {
     				border: 0;
@@ -61,13 +60,17 @@
 	}
 }
 
+.song-results, .vote-list {
+	padding-top: 8em;
+}
+
 .list-group {
-	padding-top: 10em;
 	z-index: 1;
 		.disabled-msg { 
 			display: none 
 		}
 		.list-group-item.song-disabled {
+			transition: .5s opacity linear;
 			opacity: 0.6;
 			.disabled-msg { 
 				display: inline-block;
@@ -75,32 +78,47 @@
 				&:hover{ cursor: default; }
 		}
 		.list-group-item {
-			overflow: hidden;
-			&:not(.song-disabled) {
-				transition: all 0.2s ease-in-out;
-					&:hover, &:focus {
-						cursor: pointer;
-					    color: lighten($konrad-blue, 20);
-					    border-top-color: lighten($konrad-blue, 20);
+			padding-bottom: 1em;
+			transition: all 0.2s linear;
+				&:hover, &:focus {
+					cursor: pointer;
+				    color: lighten($konrad-blue, 20);
+				    border-top-color: lighten($konrad-blue, 20);
 			    		// .preview-animation {
+			    		// 	transition: width 6s linear;
+			    		// 	opacity: 1;
 			    		// 	width: 100%;
 			    		// }
-			    		}
-			 }
+		    	}
+				&.song-disabled {
+					&:hover, &:focus {
+						cursor: default;
+					    color: lighten($black, 20);
+					    border-top-color: lighten($dark-gray, 20);
+					}
+				}
+				&.user-voted {
+					&:hover, &:focus {
+						cursor: pointer;
+					    color: lighten($red, 20);
+					    border-top-color: lighten($red, 20);
+					}
+				}
 		} 
 		.preview-animation {
 		    position: absolute;
-		    top: 0;
+		    height: .5em;
+		    bottom: 0;
 		    left: 0;
 		    width: 0%;
-		    padding-bottom: 100%;
-		    background: blue;
-		    transition: width 6s linear;
+		    opacity: 0;
+		    background: $preview-bar;
+		    transition: all 0s linear;
 		}
 
 }
 
-@media (max-width: $screen-xss) { 
+@media (max-width: $screen-ss) { 
 	.logo-container {
 		display: none;
 	}
@@ -115,7 +133,10 @@
 	}
 	.search-song-form {
 		.input-group {
-			top: 150px;
+			top: 145px;
 		}
+	}
+	.kg-thumbnail {
+		width: 100%;
 	}
 }

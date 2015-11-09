@@ -1,12 +1,12 @@
 <section>
 
-    <ul class="list-group" >
+    <ul class="list-group vote-list" ng-show="vote_ctrl.party.playlist.length" >
       <li class="list-group-item clearfix"
-          ng-repeat="item in vote_ctrl.party.playlist"
+          ng-repeat="item in vote_ctrl.party.playlist track by item.song.id.videoId"
           ng-click="vote_ctrl.vote.add_vote(item.song)"
           ng-class="{ 'song-disabled' :  vote_ctrl.vote.user_has_voted(item.song)  }"
         > 
-          <h5>{{$index+1}}. {{ item.song.snippet.title }} <strong class="disabled-msg"> - Vote registered!</strong></h5>
+          <h5><i class="disabled-msg fa fa-check-circle"></i> {{ item.song.snippet.title }}</h5>
       </li>    
     </ul>
 
