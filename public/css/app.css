@@ -197,45 +197,31 @@ ul {
 }
 /* line 69, ../sass/_search_song.scss */
 .list-group .disabled-msg {
-  display: none;
+  visibility: hidden;
 }
 /* line 72, ../sass/_search_song.scss */
 .list-group .list-group-item.song-disabled {
-  transition: .5s opacity linear;
-  opacity: 0.6;
+  background: #ecf0f1;
 }
-/* line 75, ../sass/_search_song.scss */
+/* line 74, ../sass/_search_song.scss */
 .list-group .list-group-item.song-disabled .disabled-msg {
-  display: inline-block;
+  visibility: visible;
 }
-/* line 78, ../sass/_search_song.scss */
+/* line 77, ../sass/_search_song.scss */
 .list-group .list-group-item.song-disabled:hover {
   cursor: default;
 }
-/* line 80, ../sass/_search_song.scss */
+/* line 79, ../sass/_search_song.scss */
 .list-group .list-group-item {
   padding-bottom: 1em;
   transition: all 0.2s linear;
 }
 /* line 83, ../sass/_search_song.scss */
-.list-group .list-group-item:hover, .list-group .list-group-item:focus {
+.list-group .list-group-item:not(.song-disabled):hover, .list-group .list-group-item:not(.song-disabled):focus {
   cursor: pointer;
-  color: #48baf8;
-  border-top-color: #48baf8;
+  background: #f8f9fa;
 }
-/* line 94, ../sass/_search_song.scss */
-.list-group .list-group-item.song-disabled:hover, .list-group .list-group-item.song-disabled:focus {
-  cursor: default;
-  color: #535353;
-  border-top-color: #c3c3c3;
-}
-/* line 101, ../sass/_search_song.scss */
-.list-group .list-group-item.user-voted:hover, .list-group .list-group-item.user-voted:focus {
-  cursor: pointer;
-  color: #df7c72;
-  border-top-color: #df7c72;
-}
-/* line 108, ../sass/_search_song.scss */
+/* line 93, ../sass/_search_song.scss */
 .list-group .preview-animation {
   position: absolute;
   height: .5em;
@@ -248,31 +234,31 @@ ul {
 }
 
 @media (max-width: 500px) {
-  /* line 122, ../sass/_search_song.scss */
+  /* line 107, ../sass/_search_song.scss */
   .logo-container {
     display: none;
   }
 
-  /* line 125, ../sass/_search_song.scss */
+  /* line 110, ../sass/_search_song.scss */
   .nav-tabs {
     width: 100%;
   }
-  /* line 127, ../sass/_search_song.scss */
+  /* line 112, ../sass/_search_song.scss */
   .nav-tabs li {
     width: 100%;
   }
 
-  /* line 131, ../sass/_search_song.scss */
+  /* line 116, ../sass/_search_song.scss */
   .tab-padding {
     padding-top: 149px !important;
   }
 
-  /* line 135, ../sass/_search_song.scss */
+  /* line 120, ../sass/_search_song.scss */
   .search-song-form .input-group {
     top: 145px;
   }
 
-  /* line 139, ../sass/_search_song.scss */
+  /* line 124, ../sass/_search_song.scss */
   .kg-thumbnail {
     width: 100%;
   }

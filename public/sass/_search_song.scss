@@ -67,42 +67,27 @@
 .list-group {
 	z-index: 1;
 		.disabled-msg { 
-			display: none 
+			visibility: hidden;
 		}
 		.list-group-item.song-disabled {
-			transition: .5s opacity linear;
-			opacity: 0.6;
+			background: #ecf0f1;
 			.disabled-msg { 
-				display: inline-block;
+				visibility: visible;
 			}
 				&:hover{ cursor: default; }
 		}
 		.list-group-item {
 			padding-bottom: 1em;
 			transition: all 0.2s linear;
-				&:hover, &:focus {
-					cursor: pointer;
-				    color: lighten($konrad-blue, 20);
-				    border-top-color: lighten($konrad-blue, 20);
-			    		// .preview-animation {
-			    		// 	transition: width 6s linear;
-			    		// 	opacity: 1;
-			    		// 	width: 100%;
-			    		// }
-		    	}
-				&.song-disabled {
-					&:hover, &:focus {
-						cursor: default;
-					    color: lighten($black, 20);
-					    border-top-color: lighten($dark-gray, 20);
-					}
-				}
-				&.user-voted {
+				&:not(.song-disabled){
 					&:hover, &:focus {
 						cursor: pointer;
-					    color: lighten($red, 20);
-					    border-top-color: lighten($red, 20);
-					}
+					    background: lighten($light-gray, 4);
+					    // border-top-color: lighten($konrad-blue, 20);
+			    	}
+				}
+				&.user-voted {
+					// 
 				}
 		} 
 		.preview-animation {
