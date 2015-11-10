@@ -1,0 +1,10 @@
+.list-group {
+  margin: 0;
+  .list-group-item {
+    border-radius: 0;
+    	strong {
+    		color: $konrad-blue;
+    		margin-right: 1em;
+    	}
+  }
+}

@@ -72,11 +72,21 @@ rockola.factory('party', [ // Dependencies
 
   };
 
-  party.remove_song = function(YouTube_Song_Object){
-    var song_index = party.find(YouTube_Song_Object);
-    party.playlist.splice(song_index, 1);
-    socket.emit('add:song', party.playlist);
-  };
+  // party.remove_song = function(YouTube_Song_Object){
+  //   var song_index = party.find(YouTube_Song_Object);
+  //   party.playlist.splice(song_index, 1);
+  //   socket.emit('add:song', party.playlist);
+  // };
+
+  party.get_next_song = function(){
+      for(var song in party.playlist){
+        if(party.playlist[song].state === 'playing' || party.playlist[song].state === 'unstarted' ){
+          return party.playlist[song];
+        }
+      }
+
+      return false;
+    }
 
   party.arrange_playlist = function(){
   var i        = 0,

@@ -1,10 +1,13 @@
 <section class="full-screen party-page hosted">
 	
-	<div class="fs-col col-md-8 col-sm-6 hidden-xs">
+	<div class="fs-col col-md-8 col-sm-6 bg-default hidden-xs">
 		<div class="video-wrapper" ng-show="hosting_ctrl.partying"  >
 			<div id="player">
 				<!-- Embeded video player -->
 			</div>	
+		</div>
+		<div class="fs-item" ng-hide="hosting_ctrl.partying" >
+			<img src="/images/icons/konrad-logo.png" alt="Konrad Group" class="img-responsive">
 		</div>
 	</div>
 
@@ -25,8 +28,9 @@
 			</li>
 		    <li class="list-group-item clearfix"
 		        ng-repeat="item in hosting_ctrl.party.playlist track by item.song.id.videoId"
+		        ng-class="{ 'song-disabled' : ( item.state === 'ended' ) }"
 		      > 
-		        <h5><strong>{{ $index+1 }}.</strong> {{ item.song.snippet.title }}</h5>
+		        <h5><strong>{{ $index+1 }}.</strong> {{ item.song.snippet.title }}  {{ item.state }}</h5>
 		    </li>    
 	    </ul>
 	</div>

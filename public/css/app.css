@@ -114,20 +114,11 @@ ul {
 }
 
 /* line 95, ../sass/_general.scss */
-.list-group {
-  margin: 0;
-}
-/* line 97, ../sass/_general.scss */
-.list-group .list-group-item {
-  border-radius: 0;
-}
-
-/* line 102, ../sass/_general.scss */
 .hidden {
   visibility: hidden;
 }
 
-/* line 105, ../sass/_general.scss */
+/* line 98, ../sass/_general.scss */
 .visible {
   visibility: visible;
 }
@@ -162,9 +153,27 @@ ul {
   border-right: 1px solid #088bd2;
 }
 
+/* line 1, ../sass/_lists.scss */
+.list-group {
+  margin: 0;
+}
+/* line 3, ../sass/_lists.scss */
+.list-group .list-group-item {
+  border-radius: 0;
+}
+/* line 5, ../sass/_lists.scss */
+.list-group .list-group-item strong {
+  color: #088bd2;
+  margin-right: 1em;
+}
+
 /* line 2, ../sass/_backgrounds.scss */
 .bg-white {
   background: white;
+}
+/* line 5, ../sass/_backgrounds.scss */
+.bg-default {
+  background: #088bd2;
 }
 
 /* line 1, ../sass/_full_screen_panels.scss */
@@ -174,24 +183,25 @@ ul {
   position: relative;
 }
 /* line 6, ../sass/_full_screen_panels.scss */
-.full-screen > .fs-item {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-/* line 13, ../sass/_full_screen_panels.scss */
 .full-screen.fs-modal {
   background: rgba(0, 0, 0, 0.5);
 }
-/* line 16, ../sass/_full_screen_panels.scss */
+/* line 9, ../sass/_full_screen_panels.scss */
 .full-screen.fs-modal > div, .full-screen.fs-modal > section {
   z-index: 99;
 }
 
-/* line 22, ../sass/_full_screen_panels.scss */
+/* line 15, ../sass/_full_screen_panels.scss */
 .fs-col {
   height: 100vh;
+}
+
+/* line 19, ../sass/_full_screen_panels.scss */
+.fs-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* line 1, ../sass/_search_song.scss */

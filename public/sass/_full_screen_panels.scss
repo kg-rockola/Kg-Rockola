@@ -1,14 +1,7 @@
-.full-screen { // fs
+.full-screen { 
 	width: 100vw;
 	height: 100vh;
 	position: relative;
-	
-	> .fs-item {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
 
 	&.fs-modal {
 		background: rgba(0,0,0,0.5);
@@ -21,6 +14,13 @@
 
 .fs-col {
 	height: 100vh;
+}
+
+.fs-item {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 // @for $i from 1 through 12 {

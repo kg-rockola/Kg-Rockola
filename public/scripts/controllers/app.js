@@ -49,6 +49,8 @@ rockola.controller('app_controller', ['$scope',
       sessionStorage.setItem('current_song', data.current_song);
     }
 
+    console.log(party.playlist)
+
   });
 
   socket.on('vote:registered', function($playlist){
@@ -63,11 +65,15 @@ rockola.controller('app_controller', ['$scope',
     party.playlist = $playlist;
   });
 
-  socket.on('hosting:party', function(id){
-    party.host = id;
+  socket.on('playlist:updated', function($playlist){
+    party.playlist = $playlist;
   });
 
-  socket.on('party:stoped', function(id){
+  socket.on('hosting:party', function($id){
+    party.host = $id;
+  });
+
+  socket.on('party:stoped', function(){
     party.host = null;
   });
 

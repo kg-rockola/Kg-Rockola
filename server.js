@@ -59,14 +59,19 @@ function handleIO(socket){
   });
   
   socket.on('add:song', function($playlist){
-      party.playlist = $playlist;
-      socket.broadcast.emit('song:added', $playlist);
+    party.playlist = $playlist;
+    socket.broadcast.emit('song:added', $playlist);
   });
 
   socket.on('remove:song', function($playlist){
-      party.playlist = $playlist;
-      socket.broadcast.emit('song:removed', $playlist);
+    party.playlist = $playlist;
+    socket.broadcast.emit('song:removed', $playlist);
   });
+
+  socket.on('update:playlist', function($playlist){
+    party.playlist = $playlist;
+    socket.broadcast.emit('playlist:updated', $playlist);
+  })
 
   socket.on('host:party', function(hostId){
     party['host'] = hostId;
