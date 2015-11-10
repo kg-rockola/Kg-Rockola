@@ -1,25 +1,34 @@
 <section class="full-screen party-page hosted">
+	
+	<div class="fs-col col-md-8 col-sm-6 hidden-xs">
+		<div class="video-wrapper" ng-show="hosting_ctrl.partying"  >
+			<div id="player">
+				<!-- Embeded video player -->
+			</div>	
+		</div>
+	</div>
 
-	<div class="col col-md-6 col-sm-12 col-xs-12" >
-		<div class="party-panel text-center row">
-			<h1>You are hosting a party!</h1>
-			<div class="video-wrapper" ng-show="hosting_ctrl.partying"  >
-				<div id="player">
-					<!-- Embeded video player -->
-				</div>	
-			</div>
-			<div class="button-group">
-				<button class="btn btn-default app-button col-md-6" ng-click="hosting_ctrl.start_party()" ng-hide="hosting_ctrl.partying" >
-		          Start party
-		        </button>
-		        <button class="btn btn-default app-button col-md-6" ng-click="hosting_ctrl.go_back()" ng-hide="hosting_ctrl.partying" >
-		          Go back
-		        </button>
-		        <button class="btn btn-default app-button col-md-12" ng-click="hosting_ctrl.stop_hosting()" ng-show="hosting_ctrl.partying" >
+	<div class="fs-col col-md-4 col-sm-6 col-xs-12 scroll bg-white no-padding">
+		<ul class="list-group">
+			<li class="list-group-item clearfix" >
+		        <div class="button-group col-md-12 col-sm-12 col-xs-12" ng-hide="hosting_ctrl.partying" >
+		        	<button class="btn btn-default app-button col-md-6 col-sm-6 col-xs-6" ng-click="hosting_ctrl.start_party()" ng-hide="hosting_ctrl.partying" >
+			          Start party
+			        </button>
+			        <button class="btn btn-default app-button col-md-6 col-sm-6 col-xs-6" ng-click="hosting_ctrl.go_back()" ng-hide="hosting_ctrl.partying" >
+			          Go back
+			        </button>
+		        </div>
+			    <button class="btn btn-default app-button col-md-12 col-sm-12 col-xs-12" ng-click="hosting_ctrl.stop_hosting()" ng-show="hosting_ctrl.partying" >
 		          Stop party
 		        </button>
-			</div>
-		</div>
+			</li>
+		    <li class="list-group-item clearfix"
+		        ng-repeat="item in hosting_ctrl.party.playlist track by item.song.id.videoId"
+		      > 
+		        <h5><strong>{{ $index+1 }}.</strong> {{ item.song.snippet.title }}</h5>
+		    </li>    
+	    </ul>
 	</div>
 	
 </section>

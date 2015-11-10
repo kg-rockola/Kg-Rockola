@@ -18,3 +18,15 @@
 			}
 	}
 }
+
+.fs-col {
+	height: 100vh;
+}
+
+// @for $i from 1 through 12 {
+
+// 	.fs-col-#{$i} {
+// 		height: 100vh;
+// 	}
+
+// }

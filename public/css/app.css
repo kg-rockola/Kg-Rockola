@@ -10,49 +10,59 @@ ul {
 }
 
 /* line 9, ../sass/_general.scss */
+.scroll {
+  overflow-y: auto;
+}
+
+/* line 13, ../sass/_general.scss */
+.no-padding {
+  padding: 0 !important;
+}
+
+/* line 17, ../sass/_general.scss */
 .tabsdemoDynamicHeight md-content {
   background-color: transparent !important;
 }
 
-/* line 13, ../sass/_general.scss */
+/* line 21, ../sass/_general.scss */
 .tabsdemoDynamicHeight md-content md-tabs {
   background: #f6f6f6;
   border: 1px solid #e1e1e1;
 }
 
-/* line 18, ../sass/_general.scss */
+/* line 26, ../sass/_general.scss */
 .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
   background: white;
 }
 
-/* line 22, ../sass/_general.scss */
+/* line 30, ../sass/_general.scss */
 .tabsdemoDynamicHeight md-content h1:first-child {
   margin-top: 0;
 }
 
-/* line 26, ../sass/_general.scss */
+/* line 34, ../sass/_general.scss */
 .track {
   margin-bottom: 10px;
 }
 
-/* line 30, ../sass/_general.scss */
+/* line 38, ../sass/_general.scss */
 .track img, .info {
   display: inline-block;
 }
 
-/* line 34, ../sass/_general.scss */
+/* line 42, ../sass/_general.scss */
 .whiteframedemoBasicUsage md-whiteframe {
   background: #fff;
   margin: 30px;
   height: 100px;
 }
 
-/* line 39, ../sass/_general.scss */
+/* line 47, ../sass/_general.scss */
 .info > .swipedemoBasicUsage .demo-swipe {
   padding: 20px 10px;
 }
 
-/* line 43, ../sass/_general.scss */
+/* line 51, ../sass/_general.scss */
 .info > .swipedemoBasicUsage .no-select {
   pointer-events: none;
   -webkit-touch-callout: none;
@@ -63,52 +73,61 @@ ul {
   user-select: none;
 }
 
-/* line 54, ../sass/_general.scss */
+/* line 62, ../sass/_general.scss */
 .no-padding-col {
   padding: 0;
 }
 
-/* line 58, ../sass/_general.scss */
+/* line 66, ../sass/_general.scss */
 .no-songs-added {
   background: #0779b7;
   color: white;
 }
 
-/* line 63, ../sass/_general.scss */
+/* line 71, ../sass/_general.scss */
 .btn-konrad {
   background: white;
   border-radius: 0;
   border: 1px solid #088bd2;
   color: #088bd2;
 }
-/* line 68, ../sass/_general.scss */
+/* line 76, ../sass/_general.scss */
 .btn-konrad:hover {
   color: #088bd2;
   opacity: 0.8;
 }
 
-/* line 74, ../sass/_general.scss */
+/* line 82, ../sass/_general.scss */
 .konrad-logo:hover {
   cursor: pointer;
 }
 
-/* line 78, ../sass/_general.scss */
+/* line 86, ../sass/_general.scss */
 .kg-thumbnail {
   max-width: 100%;
 }
 
-/* line 82, ../sass/_general.scss */
+/* line 90, ../sass/_general.scss */
 .icon-group {
   display: inline-block;
   margin-right: 1em;
 }
 
-/* line 87, ../sass/_general.scss */
+/* line 95, ../sass/_general.scss */
+.list-group {
+  margin: 0;
+}
+/* line 97, ../sass/_general.scss */
+.list-group .list-group-item {
+  border-radius: 0;
+}
+
+/* line 102, ../sass/_general.scss */
 .hidden {
   visibility: hidden;
 }
 
-/* line 90, ../sass/_general.scss */
+/* line 105, ../sass/_general.scss */
 .visible {
   visibility: visible;
 }
@@ -118,13 +137,17 @@ ul {
   font-weight: bold;
   text-transform: uppercase;
   color: #088bd2;
-  margin-top: 5em;
   border: none;
   border-radius: 0;
   padding: 1em 5em;
 }
 
-/* line 12, ../sass/_buttons.scss */
+/* line 10, ../sass/_buttons.scss */
+.host-button {
+  margin-top: 3em;
+}
+
+/* line 15, ../sass/_buttons.scss */
 .button-group button {
   margin-top: 1em;
   padding: .5em;
@@ -134,16 +157,14 @@ ul {
   border-radius: 0;
   transition: opacity 0.5s ease-in-out;
 }
-/* line 20, ../sass/_buttons.scss */
-.button-group button:hover, .button-group button:focus, .button-group button:active {
-  background: white;
-  border-color: 1px solid white;
-  color: #088bd2;
-  opacity: 0.8;
-}
-/* line 26, ../sass/_buttons.scss */
+/* line 29, ../sass/_buttons.scss */
 .button-group button:first-child {
   border-right: 1px solid #088bd2;
+}
+
+/* line 2, ../sass/_backgrounds.scss */
+.bg-white {
+  background: white;
 }
 
 /* line 1, ../sass/_full_screen_panels.scss */
@@ -166,6 +187,11 @@ ul {
 /* line 16, ../sass/_full_screen_panels.scss */
 .full-screen.fs-modal > div, .full-screen.fs-modal > section {
   z-index: 99;
+}
+
+/* line 22, ../sass/_full_screen_panels.scss */
+.fs-col {
+  height: 100vh;
 }
 
 /* line 1, ../sass/_search_song.scss */
@@ -371,15 +397,6 @@ ul {
 }
 
 /* line 22, ../sass/_host_party.scss */
-.video-wrapper {
-  position: relative;
-  padding-bottom: 56.25%;
-  /* 16:9 */
-  padding-top: 25px;
-  height: 0;
-}
-
-/* line 28, ../sass/_host_party.scss */
 .video-wrapper iframe {
   position: absolute;
   top: 0;
