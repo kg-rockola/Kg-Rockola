@@ -23,8 +23,10 @@ rockola.factory('party', [ // Dependencies
   party.add_song = function(YouTube_Song_Object){
     if(party.find(YouTube_Song_Object) === -1){
       var new_song = {
-        song  : YouTube_Song_Object,
-        votes : [client.device_id]
+        song    : YouTube_Song_Object,
+        creator : client.device_id,
+        state   : 'unstarted', // States: unstarted - playing - ended.
+        votes   : [client.device_id]
       }
 
       party.playlist.push(new_song);
@@ -39,6 +41,19 @@ rockola.factory('party', [ // Dependencies
       party.playlist.slice(song_index,1);
       socket.emit('remove:song', party.playlist);
     }
+  }
+
+  party.process_song = function(YouTube_Song_Object) {
+    var song_index = party.find(YouTube_Song_Object);
+
+    if(song_index === -1){
+      party.add_song(YouTube_Song_Object);
+    } else {
+      if( party.playlist[song_index].creator === client.device_id ){
+        party.remove_song(YouTube_Song_Object);
+      }
+    }
+    
   }
 
   party.find = function(YouTube_Song_Object){

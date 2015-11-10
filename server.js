@@ -63,6 +63,11 @@ function handleIO(socket){
       socket.broadcast.emit('song:added', $playlist);
   });
 
+  socket.on('remove:song', function($playlist){
+      party.playlist = $playlist;
+      socket.broadcast.emit('song:removed', $playlist);
+  });
+
   socket.on('host:party', function(hostId){
     party['host'] = hostId;
     socket.broadcast.emit('hosting:party', hostId)

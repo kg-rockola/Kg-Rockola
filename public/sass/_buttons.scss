@@ -1,0 +1,30 @@
+.app-button {
+	font-weight: bold;
+	text-transform: uppercase;
+	color: $konrad-blue;
+	margin-top: 5em;
+	border: none;
+	border-radius: 0;
+	padding: 1em 5em;
+}
+
+.button-group {
+	button {
+		margin-top: 1em;
+		padding: .5em;
+		color: $konrad-blue;
+		background: white;
+		border: none;
+		border-radius: 0;
+	    transition: opacity 0.5s ease-in-out;
+		&:hover, &:focus, &:active {
+			background: white;
+			border-color: 1px solid white;
+			color: $konrad-blue;
+			opacity: 0.8;
+		}
+		&:first-child {
+			border-right: 1px solid $konrad-blue;
+		}
+	}
+}

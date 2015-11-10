@@ -28,10 +28,9 @@
   <ul class="list-group song-results" >
     <li class="list-group-item clearfix"
         ng-repeat="YouTube_Song_Object in search_ctrl.search.query_result"
-        ng-click="search_ctrl.party.add_song(YouTube_Song_Object)"
+        ng-click="search_ctrl.party.process_song(YouTube_Song_Object)"
         ng-class="{ 
                       'song-disabled' :  ( search_ctrl.party.find(YouTube_Song_Object) !== -1),
-                      'user-voted'    :  ( search_ctrl.vote.user_has_voted(YouTube_Song_Object) )
                   }"
       > 
         <div class="col col-md-10 col-sm-10 col-xs-12">
@@ -40,8 +39,28 @@
             </div>
             <div class="col col-md-10 col-sm-10 col-xs-12" >
               <h4>
-                <span class="kg-tooltip" tooltip="Song added to the playlist!"><i class="disabled-msg fa fa-check-circle"></i></span> 
-                <!-- <span class="kg-tooltip" tooltip="Song added to the playlist!"><i class="disabled-msg fa fa-times-circle"></i></span> -->
+                <div class="icon-group">
+                  <!-- Song is removable -->
+                  <span class="kg-tooltip default"
+                        tooltip="You can remove this song"
+                        ng-class="{ 
+                                    'visible' : ( search_ctrl.vote.user_has_voted(YouTube_Song_Object) ),
+                                    'hidden'  : !( search_ctrl.vote.user_has_voted(YouTube_Song_Object) )
+                                  }" 
+                      >
+                        <i class="disabled-msg fa fa-times-circle"></i>
+                  </span>
+                  <!-- Song added -->
+                  <span class="kg-tooltip check" 
+                        tooltip="Song added to the playlist!" 
+                        ng-class="{ 
+                                    'visible' : ( search_ctrl.party.find(YouTube_Song_Object) !== -1),
+                                    'hidden'  : ( search_ctrl.party.find(YouTube_Song_Object) === -1)
+                                  }" 
+                      >
+                        <i class="disabled-msg fa fa-check-circle"></i>
+                  </span> 
+                </div>
                 {{ YouTube_Song_Object.snippet.title }}
               </h4>
             </div>

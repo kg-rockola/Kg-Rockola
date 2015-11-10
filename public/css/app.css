@@ -97,6 +97,55 @@ ul {
   max-width: 100%;
 }
 
+/* line 82, ../sass/_general.scss */
+.icon-group {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+/* line 87, ../sass/_general.scss */
+.hidden {
+  visibility: hidden;
+}
+
+/* line 90, ../sass/_general.scss */
+.visible {
+  visibility: visible;
+}
+
+/* line 1, ../sass/_buttons.scss */
+.app-button {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #088bd2;
+  margin-top: 5em;
+  border: none;
+  border-radius: 0;
+  padding: 1em 5em;
+}
+
+/* line 12, ../sass/_buttons.scss */
+.button-group button {
+  margin-top: 1em;
+  padding: .5em;
+  color: #088bd2;
+  background: white;
+  border: none;
+  border-radius: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+/* line 20, ../sass/_buttons.scss */
+.button-group button:hover, .button-group button:focus, .button-group button:active {
+  background: white;
+  border-color: 1px solid white;
+  color: #088bd2;
+  opacity: 0.8;
+}
+/* line 26, ../sass/_buttons.scss */
+.button-group button:first-child {
+  border-right: 1px solid #088bd2;
+}
+
 /* line 1, ../sass/_full_screen_panels.scss */
 .full-screen {
   width: 100vw;
@@ -163,65 +212,34 @@ ul {
   color: #48baf8;
 }
 
-/* line 42, ../sass/_search_song.scss */
-.button-group button {
-  margin-top: 1em;
-  padding: .5em;
-  color: #088bd2;
-  background: white;
-  border: none;
-  border-radius: 0;
-  border: 1px solid #088bd2;
-  transition: all 0.5s ease-in-out;
-}
-/* line 51, ../sass/_search_song.scss */
-.button-group button:hover, .button-group button:focus {
-  background: white;
-  border: 1px solid #088bd2;
-  color: #088bd2;
-  opacity: 0.7;
-}
-/* line 57, ../sass/_search_song.scss */
-.button-group button:first-child {
-  border-right: none;
-}
-
-/* line 63, ../sass/_search_song.scss */
+/* line 41, ../sass/_search_song.scss */
 .song-results, .vote-list {
   padding-top: 8em;
 }
 
-/* line 67, ../sass/_search_song.scss */
+/* line 45, ../sass/_search_song.scss */
 .list-group {
   z-index: 1;
 }
-/* line 69, ../sass/_search_song.scss */
-.list-group .disabled-msg {
-  visibility: hidden;
-}
-/* line 72, ../sass/_search_song.scss */
+/* line 48, ../sass/_search_song.scss */
 .list-group .list-group-item.song-disabled {
   background: #ecf0f1;
 }
-/* line 74, ../sass/_search_song.scss */
-.list-group .list-group-item.song-disabled .disabled-msg {
-  visibility: visible;
-}
-/* line 77, ../sass/_search_song.scss */
+/* line 50, ../sass/_search_song.scss */
 .list-group .list-group-item.song-disabled:hover {
-  cursor: default;
+  cursor: pointer;
 }
-/* line 79, ../sass/_search_song.scss */
+/* line 55, ../sass/_search_song.scss */
 .list-group .list-group-item {
   padding-bottom: 1em;
   transition: all 0.2s linear;
 }
-/* line 83, ../sass/_search_song.scss */
+/* line 59, ../sass/_search_song.scss */
 .list-group .list-group-item:not(.song-disabled):hover, .list-group .list-group-item:not(.song-disabled):focus {
   cursor: pointer;
   background: #f8f9fa;
 }
-/* line 93, ../sass/_search_song.scss */
+/* line 66, ../sass/_search_song.scss */
 .list-group .preview-animation {
   position: absolute;
   height: .5em;
@@ -234,31 +252,31 @@ ul {
 }
 
 @media (max-width: 500px) {
-  /* line 107, ../sass/_search_song.scss */
+  /* line 80, ../sass/_search_song.scss */
   .logo-container {
     display: none;
   }
 
-  /* line 110, ../sass/_search_song.scss */
+  /* line 83, ../sass/_search_song.scss */
   .nav-tabs {
     width: 100%;
   }
-  /* line 112, ../sass/_search_song.scss */
+  /* line 85, ../sass/_search_song.scss */
   .nav-tabs li {
     width: 100%;
   }
 
-  /* line 116, ../sass/_search_song.scss */
+  /* line 89, ../sass/_search_song.scss */
   .tab-padding {
     padding-top: 149px !important;
   }
 
-  /* line 120, ../sass/_search_song.scss */
+  /* line 93, ../sass/_search_song.scss */
   .search-song-form .input-group {
     top: 145px;
   }
 
-  /* line 124, ../sass/_search_song.scss */
+  /* line 97, ../sass/_search_song.scss */
   .kg-thumbnail {
     width: 100%;
   }
@@ -353,23 +371,6 @@ ul {
 }
 
 /* line 22, ../sass/_host_party.scss */
-.app-button {
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #088bd2;
-  margin-top: 5em;
-  border: none;
-  border-radius: 0;
-  padding: 1em 5em;
-}
-/* line 30, ../sass/_host_party.scss */
-.app-button:hover {
-  opacity: 0.8;
-  color: #088bd2;
-  background: whitesmoke;
-}
-
-/* line 37, ../sass/_host_party.scss */
 .video-wrapper {
   position: relative;
   padding-bottom: 56.25%;
@@ -378,7 +379,7 @@ ul {
   height: 0;
 }
 
-/* line 43, ../sass/_host_party.scss */
+/* line 28, ../sass/_host_party.scss */
 .video-wrapper iframe {
   position: absolute;
   top: 0;
@@ -436,17 +437,15 @@ ul {
 .fa-check-circle {
   color: #27ae60;
   font-size: 1.2em;
-  margin-right: 1em;
 }
 
-/* line 7, ../sass/_font_awesome_custom.scss */
+/* line 6, ../sass/_font_awesome_custom.scss */
 .fa-times-circle {
-  color: #c0392b;
+  color: #088bd2;
   font-size: 1.2em;
-  margin-right: 1em;
 }
 
-/* line 13, ../sass/_font_awesome_custom.scss */
+/* line 11, ../sass/_font_awesome_custom.scss */
 .kg-tooltip {
   display: inline;
   position: relative;
@@ -454,7 +453,6 @@ ul {
 
 /* line 18, ../sass/_font_awesome_custom.scss */
 .kg-tooltip:hover:after {
-  background: #088bd2;
   border-radius: 10px 10px 10px 0;
   bottom: 26px;
   color: #fff;
@@ -466,4 +464,17 @@ ul {
   min-width: 150px;
   max-width: 250px;
   text-align: center;
+  background: #088bd2;
+}
+/* line 35, ../sass/_font_awesome_custom.scss */
+.kg-tooltip.danger:hover:after {
+  background: #c0392b;
+}
+/* line 42, ../sass/_font_awesome_custom.scss */
+.kg-tooltip.check:hover:after {
+  background: #27ae60;
+}
+/* line 49, ../sass/_font_awesome_custom.scss */
+.kg-tooltip.default:hover:after {
+  background: #088bd2;
 }

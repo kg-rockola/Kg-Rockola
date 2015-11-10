@@ -38,43 +38,19 @@
 		}
 }
 
-.button-group {
-	button {
-		margin-top: 1em;
-		padding: .5em;
-		color: $konrad-blue;
-		background: white;
-		border: none;
-		border-radius: 0;
-		border: 1px solid $konrad-blue;
-	    transition: all 0.5s ease-in-out;
-		&:hover, &:focus {
-			background: white;
-			border: 1px solid $konrad-blue;
-			color: $konrad-blue;
-			opacity: 0.7;
-		}
-		&:first-child {
-			border-right: none;
-		}
-	}
-}
-
 .song-results, .vote-list {
 	padding-top: 8em;
 }
 
 .list-group {
 	z-index: 1;
-		.disabled-msg { 
-			visibility: hidden;
-		}
-		.list-group-item.song-disabled {
-			background: #ecf0f1;
-			.disabled-msg { 
-				visibility: visible;
+		.list-group-item {
+			&.song-disabled {
+				background: #ecf0f1;
+					&:hover{ 
+						cursor: pointer; 
+					}
 			}
-				&:hover{ cursor: default; }
 		}
 		.list-group-item {
 			padding-bottom: 1em;
@@ -85,9 +61,6 @@
 					    background: lighten($light-gray, 4);
 					    // border-top-color: lighten($konrad-blue, 20);
 			    	}
-				}
-				&.user-voted {
-					// 
 				}
 		} 
 		.preview-animation {

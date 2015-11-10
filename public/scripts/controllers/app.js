@@ -59,6 +59,10 @@ rockola.controller('app_controller', ['$scope',
     party.playlist = $playlist;
   });
 
+  socket.on('song:removed', function($playlist){
+    party.playlist = $playlist;
+  });
+
   socket.on('hosting:party', function(id){
     party.host = id;
   });

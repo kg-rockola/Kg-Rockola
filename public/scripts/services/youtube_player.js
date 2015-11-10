@@ -28,7 +28,7 @@ rockola.factory('youtube_player', [ // Dependencies
     }
 
     youtube_player.end = function(){
-      party.current_song = party.playlist[0].song;
+      party.current_song = party.get_next_song();
       socket.emit('update:current_song', party.current_song);
       youtube_player.next();
     }

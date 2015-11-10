@@ -23,6 +23,7 @@ rockola.controller('hosting_controller', ['youtube_player',
   _this.party          = $party;
   _this.client         = $client;
   _this.socket         = $socket;
+  _this.state          = $state;
   _this.partying       = false;
 
   // Methods
@@ -31,6 +32,11 @@ rockola.controller('hosting_controller', ['youtube_player',
     _this.party.host = null;
     _this.youtube_player.destroy();
     _this.partying = false;
+  }
+
+  _this.go_back = function(){
+    _this.stop_hosting();
+    _this.state.go('app.play');
   }
 
   _this.start_party = function(){
@@ -44,6 +50,12 @@ rockola.controller('hosting_controller', ['youtube_player',
     );
   }
 
+  // On loaded.
+  var onLoad = function(){
+    _this.partying = false;
+  };
+
+  onLoad();
 }]);
 
 })();

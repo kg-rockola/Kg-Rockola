@@ -1,6 +1,6 @@
 <section class="full-screen party-page hosted">
 
-	<div class="fs-item col col-md-6 col-sm-12 col-xs-12" >
+	<div class="col col-md-6 col-sm-12 col-xs-12" >
 		<div class="party-panel text-center row">
 			<h1>You are hosting a party!</h1>
 			<div class="video-wrapper" ng-show="hosting_ctrl.partying"  >
@@ -8,12 +8,17 @@
 					<!-- Embeded video player -->
 				</div>	
 			</div>
-			<button class="btn btn-default app-button col-md-12" ng-click="hosting_ctrl.start_party()" ng-hide="hosting_ctrl.partying" >
-	          Start party
-	        </button>
-	        <button class="btn btn-default app-button col-md-12" ng-click="hosting_ctrl.stop_hosting()" ng-show="hosting_ctrl.partying" >
-	          Stop party
-	        </button>
+			<div class="button-group">
+				<button class="btn btn-default app-button col-md-6" ng-click="hosting_ctrl.start_party()" ng-hide="hosting_ctrl.partying" >
+		          Start party
+		        </button>
+		        <button class="btn btn-default app-button col-md-6" ng-click="hosting_ctrl.go_back()" ng-hide="hosting_ctrl.partying" >
+		          Go back
+		        </button>
+		        <button class="btn btn-default app-button col-md-12" ng-click="hosting_ctrl.stop_hosting()" ng-show="hosting_ctrl.partying" >
+		          Stop party
+		        </button>
+			</div>
 		</div>
 	</div>
 	
