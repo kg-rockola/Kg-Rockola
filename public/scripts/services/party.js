@@ -102,8 +102,8 @@ rockola.factory('party', [ // Dependencies
       playlist.splice(most_rated, 1);
     }
 
-    filtered = filtered.concat(ended);
-    // party.playlist = [];
+    // filtered = filtered.concat(ended);
+
     party.playlist = filtered;
 
   };

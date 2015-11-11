@@ -52,6 +52,19 @@ rockola.controller('hosting_controller', ['youtube_player',
     );
   }
 
+  _this.next_song = function(){
+    _this.youtube_player.song_ended();
+  }
+
+  _this.remove_song = function($track){
+    if($track.state === 'playing') {
+      _this.next_song();
+    }
+    
+    _this.party.remove_song($track.song);
+    
+  }
+
   $scope.$on('playlist-updated', function(){
     $scope.$apply();
   });

@@ -44,7 +44,6 @@ rockola.factory('youtube_player', [ // Dependencies
 
     youtube_player.destroy = function(){
       if(youtube_player.player){ 
-          console.log(youtube_player.player)
           if(youtube_player.player.f){ // f = div in wich the player is created.
 
             youtube_player.player.destroy();
@@ -76,7 +75,7 @@ rockola.factory('youtube_player', [ // Dependencies
             console.log('Playing.');
             party.current_song.state = 'playing';
             socket.emit('update:current_song', party.current_song);
-            socket.emit('update:playlist', party.playlist);
+            $rootScope.$broadcast('playlist-updated');
             break; 
           case 2:
             // Paused

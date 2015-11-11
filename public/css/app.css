@@ -130,7 +130,7 @@ ul {
   color: #088bd2;
   border: none;
   border-radius: 0;
-  padding: 1em 5em;
+  padding: 1em 0em;
 }
 
 /* line 10, ../sass/_buttons.scss */
@@ -161,17 +161,43 @@ ul {
 .button-group button:first-child {
   border-right: 1px solid #088bd2;
 }
+/* line 37, ../sass/_buttons.scss */
+.button-group .delete-song-button {
+  width: 20%;
+}
+
+/* line 42, ../sass/_buttons.scss */
+.delete-song-button {
+  padding: 1em;
+  border: none;
+  width: 100%;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: rgba(8, 139, 210, 0.8);
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+}
+/* line 56, ../sass/_buttons.scss */
+.delete-song-button:hover, .delete-song-button:active, .delete-song-button:focus {
+  opacity: 1;
+}
 
 /* line 1, ../sass/_lists.scss */
 .list-group {
   margin: 0;
 }
 /* line 3, ../sass/_lists.scss */
-.list-group .list-group-item {
+.list-group .list-group-item:not(:first-child) {
+  padding: 2em 1em;
   border-radius: 0;
 }
-/* line 5, ../sass/_lists.scss */
-.list-group .list-group-item strong {
+/* line 6, ../sass/_lists.scss */
+.list-group .list-group-item:not(:first-child) strong {
   color: #088bd2;
   margin-right: 1em;
 }

@@ -64,7 +64,6 @@ rockola.controller('app_controller', ['$scope',
   });
 
   socket.on('playlist:updated', function($playlist){
-    console.log('pl');
     party.playlist = $playlist;
   });
 
@@ -77,7 +76,6 @@ rockola.controller('app_controller', ['$scope',
   });
 
   socket.on('current_song:updated', function($current_song){
-    console.log('cs');
     party.current_song = $current_song;
   });
 

@@ -1,6 +1,7 @@
 .list-group {
   margin: 0;
-  .list-group-item {
+  .list-group-item:not(:first-child) {
+  	padding: 2em 1em;
     border-radius: 0;
     	strong {
     		color: $konrad-blue;

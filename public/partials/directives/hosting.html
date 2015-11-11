@@ -14,7 +14,7 @@
 	<div class="fs-col col-md-4 col-sm-6 col-xs-12 scroll bg-white no-padding">
 		<ul class="list-group">
 			<li class="list-group-item clearfix" >
-		        <div class="button-group col-md-12 col-sm-12 col-xs-12" ng-hide="hosting_ctrl.partying" >
+		        <div class="button-group col-md-12 col-sm-12 col-xs-12 clearfix" ng-hide="hosting_ctrl.partying" >
 		        	<button class="btn btn-default app-button col-md-6 col-sm-6 col-xs-6" ng-click="hosting_ctrl.start_party()" ng-hide="hosting_ctrl.partying" >
 			          Start party
 			        </button>
@@ -22,15 +22,23 @@
 			          Go back
 			        </button>
 		        </div>
-			    <button class="btn btn-default app-button col-md-12 col-sm-12 col-xs-12" ng-click="hosting_ctrl.stop_hosting()" ng-show="hosting_ctrl.partying" >
-		          Stop party
-		        </button>
+		        <div class="button-group col-md-12 col-sm-12 col-xs-12 clearfix" ng-show="hosting_ctrl.partying" >
+					<button class="btn btn-default app-button col-md-6 col-sm-6 col-xs-6" ng-click="hosting_ctrl.stop_hosting()" >
+			          Stop party
+			        </button>
+			        <button class="btn btn-default app-button col-md-6 col-sm-6 col-xs-6" ng-click="hosting_ctrl.next_song()" >
+			          Next song
+			        </button>
+		        </div>
 			</li>
 		    <li class="list-group-item clearfix"
 		        ng-repeat="item in hosting_ctrl.party.playlist track by item.song.id.videoId"
 		        ng-class="{ 'song-disabled' : ( item.state === 'ended' ) }"
 		      > 
-		        <h5><strong>{{ $index+1 }}.</strong> {{ item.song.snippet.title }}  {{ item.state }}</h5>
+		        <h5>
+		        	<button class="delete-song-button" ng-click="hosting_ctrl.remove_song(item)" >Delete song</button>
+		        	<strong>{{ $index+1 }}.</strong> {{ item.song.snippet.title }}  {{ item.state }}
+		        </h5>
 		    </li>    
 	    </ul>
 	</div>

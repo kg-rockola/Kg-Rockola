@@ -4,7 +4,7 @@
 	color: $konrad-blue;
 	border: none;
 	border-radius: 0;
-	padding: 1em 5em;
+	padding: 1em 0em;
 }
 
 .host-button {
@@ -34,4 +34,26 @@
 			border-right: 1px solid $konrad-blue;
 		}
 	}
+	.delete-song-button {
+		width: 20%;
+	}
+}
+
+.delete-song-button {
+	padding: 1em;
+    border: none;
+    width: 100%;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: rgba($konrad-blue, 0.8);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+     &:hover, &:active, &:focus {
+     	opacity: 1;
+     }
 }
