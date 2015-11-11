@@ -1,7 +1,8 @@
 'use strict'
 
 rockola.config(
-			  ['$stateProvider',
+			  [
+			   '$stateProvider',
 			   '$urlRouterProvider',
 			   '$locationProvider',
 	function(	$stateProvider, 
@@ -66,4 +67,42 @@ rockola.config(
 	
 	
 		}
+
+]);
+
+rockola.run(
+			  [
+			   '$rootScope',
+			   '$state',
+			   '$urlRouter',
+			   '$location',
+			   'party',
+			   'socket',
+	function(	$rootScope,
+				$state, 
+			 	$urlRouter, 
+			 	$location,
+			 	$party,
+			 	$socket
+
+			){
+
+	// Dependencies.
+	var party  = $party,
+		socket = $socket;
+
+	$rootScope.$on(
+		// Event.
+		'$stateChangeSuccess', 
+		// Calblack.
+		function(event, toState, toParams, fromState, fromParams){
+			console.log(toState)
+			if(fromState.name === 'hosting'){
+				socket.emit('stop:party');
+    			party.host = null;
+			}
+		}
+	);
+
+ }
 ]);

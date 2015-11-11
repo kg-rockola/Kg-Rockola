@@ -1,6 +1,11 @@
 <section>
-
+    
     <ul class="list-group vote-list" ng-show="vote_ctrl.party.playlist.length" >
+      <li lass="list-group-item clearfix" ng-hide="vote_ctrl.party.host" >
+        <button class="btn btn-default app-button host-button" ui-sref="hosting" >
+          Host a party {{ vote_ctrl.party.host }}
+        </button>
+      </li>
       <li class="list-group-item clearfix"
           ng-repeat="item in vote_ctrl.party.playlist track by item.song.id.videoId"
           ng-click="vote_ctrl.vote.add_vote(item.song)"

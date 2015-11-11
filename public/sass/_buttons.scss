@@ -8,7 +8,17 @@
 }
 
 .host-button {
-	margin-top: 3em;
+	width: 100%;
+	border-left: 0em solid transparent;
+	border-right: 0em solid transparent;
+	// margin-bottom: 1em;
+	transition: all .25s linear;
+		&:hover {
+			background: white;
+			border-left: 5em solid $konrad-blue;
+			border-right: 5em solid $konrad-blue;
+			// border-bottom: .25em solid $konrad-blue;
+		}
 }
 
 .button-group {
@@ -20,12 +30,6 @@
 		border: none;
 		border-radius: 0;
 	    transition: opacity 0.5s ease-in-out;
-		// &:hover, &:focus, &:active {
-		// 	background: white;
-		// 	border-color: 1px solid white;
-		// 	color: $konrad-blue;
-		// 	opacity: 0.8;
-		// }
 		&:first-child {
 			border-right: 1px solid $konrad-blue;
 		}

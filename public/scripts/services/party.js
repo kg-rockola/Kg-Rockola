@@ -30,6 +30,7 @@ rockola.factory('party', [ // Dependencies
       }
 
       party.playlist.push(new_song);
+      party.arrange_playlist();
       socket.emit('add:song', party.playlist);
     }
   };
@@ -38,7 +39,7 @@ rockola.factory('party', [ // Dependencies
     var song_index = party.find(YouTube_Song_Object);
 
     if(song_index !== -1){
-      party.playlist.slice(song_index,1);
+      party.playlist.splice(song_index, 1);
       socket.emit('remove:song', party.playlist);
     }
   }
@@ -71,13 +72,7 @@ rockola.factory('party', [ // Dependencies
     return -1;
 
   };
-
-  // party.remove_song = function(YouTube_Song_Object){
-  //   var song_index = party.find(YouTube_Song_Object);
-  //   party.playlist.splice(song_index, 1);
-  //   socket.emit('add:song', party.playlist);
-  // };
-
+  
   party.get_next_song = function(){
       for(var song in party.playlist){
         if(party.playlist[song].state === 'playing' || party.playlist[song].state === 'unstarted' ){
@@ -90,17 +85,27 @@ rockola.factory('party', [ // Dependencies
 
   party.arrange_playlist = function(){
   var i        = 0,
-      l        = playlist.length,
       playlist = angular.copy(party.playlist),
+      l        = playlist.length,
+      ended    = [],
       filtered = [];
 
     for(i; (i<l); i++){
       var most_rated = get_most_rated(playlist);
-      filtered.push(playlist[most_rated]);
+      
+      if( playlist[most_rated].state === 'ended' ){
+        ended.push(playlist[most_rated]);
+      } else {
+        filtered.push(playlist[most_rated]);
+      }
+
       playlist.splice(most_rated, 1);
     }
 
-    return filtered;
+    filtered = filtered.concat(ended);
+    console.log(filtered);
+
+    party.playlist = filtered;
 
   };
 

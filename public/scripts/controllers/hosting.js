@@ -36,7 +36,7 @@ rockola.controller('hosting_controller', ['youtube_player',
 
   _this.go_back = function(){
     _this.stop_hosting();
-    _this.state.go('app.play');
+    _this.state.go('app.vote');
   }
 
   _this.start_party = function(){

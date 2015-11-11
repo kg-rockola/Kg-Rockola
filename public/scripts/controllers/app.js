@@ -49,8 +49,6 @@ rockola.controller('app_controller', ['$scope',
       sessionStorage.setItem('current_song', data.current_song);
     }
 
-    console.log(party.playlist)
-
   });
 
   socket.on('vote:registered', function($playlist){

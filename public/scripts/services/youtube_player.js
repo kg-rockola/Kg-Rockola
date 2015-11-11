@@ -17,12 +17,6 @@ rockola.factory('youtube_player', [ // Dependencies
     youtube_player.player   = null;
     youtube_player.playlist = null;
 
-    youtube_player.destroy = function(){
-      if(youtube_player.player){
-        youtube_player.player.destroy();
-      }
-    }
-
     youtube_player.next = function(){
       youtube_player.player.loadVideoById(party.current_song.song.id.videoId);
     }
@@ -31,7 +25,8 @@ rockola.factory('youtube_player', [ // Dependencies
       var song_index = party.find(party.current_song.song);
 
       party.playlist[song_index].state = 'ended';
-      
+      party.arrange_playlist();
+
       party.current_song = party.get_next_song();
       socket.emit('update:current_song', party.current_song);
       socket.emit('update:playlist', party.playlist);
@@ -43,6 +38,15 @@ rockola.factory('youtube_player', [ // Dependencies
       socket.emit('update:current_song', party.current_song);
     }
 
+    youtube_player.destroy = function(){
+      if(youtube_player.player){ 
+          console.log(youtube_player.player)
+          if(youtube_player.player.f){ // f = div in wich the player is created.
+
+            youtube_player.player.destroy();
+          }
+      }
+    }
 
     // Events
     youtube_player.onPlayerReady = function(event) {

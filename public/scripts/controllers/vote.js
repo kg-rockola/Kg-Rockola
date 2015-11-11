@@ -24,8 +24,6 @@ rockola.controller('vote_controller', [ 'party',
     _this.client = $client;
     _this.socket = $socket;
     _this.search = $search;
-
-    console.log($party.playlist)
     
 
 }]);

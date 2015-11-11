@@ -56,30 +56,17 @@ rockola.factory('vote', [ // Dependencies
     return most_popular;
   }
 
-  vote.arrange_playlist = function(){
-    var i        = 0,
-        playlist = party.playlist.slice(),
-        filtered = [],
-        l        = playlist.length;
-
-    for(i; (i<l); i++){
-      var most_rated = vote.get_most_rated(playlist);
-      filtered.push(playlist[most_rated]);
-      playlist.splice(most_rated, 1);
-    }
-
-    return filtered;
-  }
-
   vote.add_vote = function(YouTube_Song_Object){    
     var song_index = party.find(YouTube_Song_Object),
         user_voted = vote.user_has_voted(YouTube_Song_Object);
 
     if(user_voted === false){
       party.playlist[song_index].votes.push(client.device_id);
-      party.playlist = vote.arrange_playlist();
+      party.arrange_playlist();
+      console.log(party.playlist)
       socket.emit('vote:song', party.playlist);
     }
+
   }
 
     // Return object.

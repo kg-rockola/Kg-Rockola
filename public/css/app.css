@@ -135,10 +135,19 @@ ul {
 
 /* line 10, ../sass/_buttons.scss */
 .host-button {
-  margin-top: 3em;
+  width: 100%;
+  border-left: 0em solid transparent;
+  border-right: 0em solid transparent;
+  transition: all .25s linear;
+}
+/* line 16, ../sass/_buttons.scss */
+.host-button:hover {
+  background: white;
+  border-left: 5em solid #088bd2;
+  border-right: 5em solid #088bd2;
 }
 
-/* line 15, ../sass/_buttons.scss */
+/* line 25, ../sass/_buttons.scss */
 .button-group button {
   margin-top: 1em;
   padding: .5em;
@@ -148,7 +157,7 @@ ul {
   border-radius: 0;
   transition: opacity 0.5s ease-in-out;
 }
-/* line 29, ../sass/_buttons.scss */
+/* line 33, ../sass/_buttons.scss */
 .button-group button:first-child {
   border-right: 1px solid #088bd2;
 }
