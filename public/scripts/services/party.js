@@ -103,8 +103,7 @@ rockola.factory('party', [ // Dependencies
     }
 
     filtered = filtered.concat(ended);
-    console.log(filtered);
-
+    // party.playlist = [];
     party.playlist = filtered;
 
   };

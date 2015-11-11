@@ -7,12 +7,14 @@ rockola.controller('hosting_controller', ['youtube_player',
                                           '$state',
                                           'client',
                                           'socket',
+                                          '$scope',
                                         function(
                                            $youtube_player,
                                            $party,
                                            $state,
                                            $client,
-                                           $socket
+                                           $socket,
+                                           $scope
                                         ){
 
   // Controller alias.
@@ -50,10 +52,15 @@ rockola.controller('hosting_controller', ['youtube_player',
     );
   }
 
+  $scope.$on('playlist-updated', function(){
+    $scope.$apply();
+  });
+
   // On loaded.
   var onLoad = function(){
     _this.partying = false;
   };
+
 
   onLoad();
 }]);

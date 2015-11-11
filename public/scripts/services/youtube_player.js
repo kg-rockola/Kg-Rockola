@@ -1,10 +1,12 @@
 rockola.factory('youtube_player', [ // Dependencies
                                     'party',
                                     'socket',
+                                    '$rootScope',
                                   function (
                                     // Dependencies
                                     $party,
-                                    $socket
+                                    $socket,
+                                    $rootScope
                                   ){
 
     // Dependency injection
@@ -26,6 +28,8 @@ rockola.factory('youtube_player', [ // Dependencies
 
       party.playlist[song_index].state = 'ended';
       party.arrange_playlist();
+
+      $rootScope.$broadcast('playlist-updated');
 
       party.current_song = party.get_next_song();
       socket.emit('update:current_song', party.current_song);
