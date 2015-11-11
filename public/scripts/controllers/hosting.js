@@ -65,9 +65,14 @@ rockola.controller('hosting_controller', ['youtube_player',
     
   }
 
-  $scope.$on('playlist-updated', function(){
+  $scope.$on('playlist:updated', function(){
     $scope.$apply();
   });
+
+  $scope.$on('stop:hosting', function(){
+    _this.stop_hosting();
+  });
+
 
   // On loaded.
   var onLoad = function(){

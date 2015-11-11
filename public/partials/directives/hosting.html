@@ -15,7 +15,11 @@
 		<ul class="list-group">
 			<li class="list-group-item clearfix" >
 		        <div class="button-group col-md-12 col-sm-12 col-xs-12 clearfix" ng-hide="hosting_ctrl.partying" >
-		        	<button class="btn btn-default app-button col-md-6 col-sm-6 col-xs-6" ng-click="hosting_ctrl.start_party()" ng-hide="hosting_ctrl.partying" >
+		        	<button class="btn btn-default app-button col-md-6 col-sm-6 col-xs-6" 
+		        			ng-click="hosting_ctrl.start_party()" 
+		        			ng-hide="hosting_ctrl.partying" 
+		        			ng-disabled="hosting_ctrl.party.playlist.length < 1" 
+		        		>
 			          Start party
 			        </button>
 			        <button class="btn btn-default app-button col-md-6 col-sm-6 col-xs-6" ng-click="hosting_ctrl.go_back()" ng-hide="hosting_ctrl.partying" >
@@ -26,7 +30,10 @@
 					<button class="btn btn-default app-button col-md-6 col-sm-6 col-xs-6" ng-click="hosting_ctrl.stop_hosting()" >
 			          Stop party
 			        </button>
-			        <button class="btn btn-default app-button col-md-6 col-sm-6 col-xs-6" ng-click="hosting_ctrl.next_song()" >
+			        <button class="btn btn-default app-button col-md-6 col-sm-6 col-xs-6" 
+			        		ng-click="hosting_ctrl.next_song()" 
+			        		ng-disabled="hosting_ctrl.party.playlist.length < 2"
+			        	>
 			          Next song
 			        </button>
 		        </div>
@@ -37,7 +44,7 @@
 		      > 
 		        <h5>
 		        	<button class="delete-song-button" ng-click="hosting_ctrl.remove_song(item)" >Delete song</button>
-		        	<strong>{{ $index+1 }}.</strong> {{ item.song.snippet.title }}  {{ item.state }}
+		        	<strong>{{ $index+1 }}.</strong> {{ item.song.snippet.title }}
 		        </h5>
 		    </li>    
 	    </ul>

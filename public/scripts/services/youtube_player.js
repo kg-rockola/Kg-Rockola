@@ -20,7 +20,11 @@ rockola.factory('youtube_player', [ // Dependencies
     youtube_player.playlist = null;
 
     youtube_player.next = function(){
-      youtube_player.player.loadVideoById(party.current_song.song.id.videoId);
+      if(party.current_song){
+        youtube_player.player.loadVideoById(party.current_song.song.id.videoId);
+      } else {
+        $rootScope.$broadcast('stop:hosting');
+      }
     }
 
     youtube_player.song_ended = function(){
@@ -29,7 +33,7 @@ rockola.factory('youtube_player', [ // Dependencies
       party.playlist[song_index].state = 'ended';
       party.arrange_playlist();
 
-      $rootScope.$broadcast('playlist-updated');
+      $rootScope.$broadcast('playlist:updated');
 
       party.current_song = party.get_next_song();
       socket.emit('update:current_song', party.current_song);
@@ -75,7 +79,7 @@ rockola.factory('youtube_player', [ // Dependencies
             console.log('Playing.');
             party.current_song.state = 'playing';
             socket.emit('update:current_song', party.current_song);
-            $rootScope.$broadcast('playlist-updated');
+            $rootScope.$broadcast('playlist:updated');
             break; 
           case 2:
             // Paused
