@@ -66,6 +66,11 @@ rockola.controller('hosting_controller', ['youtube_player',
   }
 
   $scope.$on('playlist:updated', function(){
+
+    if(_this.party.playlist.length < 1){
+      _this.partying = false;
+    }
+
     $scope.$apply();
   });
 

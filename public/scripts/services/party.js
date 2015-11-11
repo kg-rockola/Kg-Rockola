@@ -87,14 +87,18 @@ rockola.factory('party', [ // Dependencies
   var i        = 0,
       playlist = angular.copy(party.playlist),
       l        = playlist.length,
+      playing  = null,
       ended    = [],
       filtered = [];
 
     for(i; (i<l); i++){
       var most_rated = get_most_rated(playlist);
-      
-      if( playlist[most_rated].state === 'ended' ){
+      var song       = playlist[most_rated];
+      var state      = song.state;
+      if( state === 'ended' ){
         ended.push(playlist[most_rated]);
+      } else if(state === 'playing') {
+        playing = song;
       } else {
         filtered.push(playlist[most_rated]);
       }
@@ -102,7 +106,9 @@ rockola.factory('party', [ // Dependencies
       playlist.splice(most_rated, 1);
     }
 
-    // filtered = filtered.concat(ended);
+    if(playing) {
+      filtered.unshift(playing);
+    }
 
     party.playlist = filtered;
 
