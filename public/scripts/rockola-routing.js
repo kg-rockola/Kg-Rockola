@@ -78,29 +78,48 @@ rockola.run(
 			   '$location',
 			   'party',
 			   'socket',
+			   'client',
 	function(	$rootScope,
 				$state, 
 			 	$urlRouter, 
 			 	$location,
 			 	$party,
-			 	$socket
+			 	$socket,
+			 	$client
 
 			){
 
 	// Dependencies.
 	var party  = $party,
-		socket = $socket;
+		socket = $socket,
+		client = $client;
 
 	$rootScope.$on(
 		// Event.
 		'$stateChangeSuccess', 
-		// Calblack.
+		// Callback.
 		function(event, toState, toParams, fromState, fromParams){
-			console.log(toState)
 			if(fromState.name === 'hosting'){
 				socket.emit('stop:party');
     			party.host = null;
 			}
+		}
+	);
+
+	$rootScope.$on(
+		// Event.
+		'$stateChangeStart', 
+		//  Callback.
+		function(event, toState, toParams, fromState, fromParams){
+			$rootScope.$on('services:initialized', function(){
+				if(toState.name === 'hosting'){
+					if(party.host){
+						if(party.host !== client.device_id){
+							$state.go(fromState.name);
+						}
+					}
+				}
+			})
 		}
 	);
 

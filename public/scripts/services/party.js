@@ -8,8 +8,8 @@ rockola.factory('party', [ // Dependencies
                           ){
 
   // Models.
-  var client = $client,
-      socket = $socket;
+  var client         = $client,
+      socket         = $socket;
 
   // Main object.
   var party     = {};
@@ -74,27 +74,44 @@ rockola.factory('party', [ // Dependencies
   };
   
   party.get_next_song = function(){
-      for(var song in party.playlist){
-        if(party.playlist[song].state === 'playing' || party.playlist[song].state === 'unstarted' ){
-          return party.playlist[song];
+
+      var new_next_song = function(){
+        for(var song in party.playlist){
+          if(party.playlist[song].state === 'playing' || party.playlist[song].state === 'unstarted' ){
+            party.playlist[song].state = 'playing';
+            return party.playlist[song];
+          }
         }
+
+        return false;
+      }
+      
+      if(party.current_song){
+        if(party.current_song.state === 'unstarted' || party.current_song.state === 'playing') {
+          party.current_song.state = 'playing';
+          return party.current_song;
+        } else {
+          return new_next_song();
+        }
+      } else {
+        return new_next_song();
       }
 
-      return false;
-    }
+  }
 
   party.arrange_playlist = function(){
-  var i        = 0,
-      playlist = angular.copy(party.playlist),
-      l        = playlist.length,
-      playing  = null,
-      ended    = [],
-      filtered = [];
+    var i        = 0,
+        playlist = angular.copy(party.playlist),
+        l        = playlist.length,
+        playing  = null,
+        ended    = [],
+        filtered = [];
 
-    for(i; (i<l); i++){
+    for(i=0; (i<l); i++){
       var most_rated = get_most_rated(playlist);
       var song       = playlist[most_rated];
       var state      = song.state;
+      
       if( state === 'ended' ){
         ended.push(playlist[most_rated]);
       } else if(state === 'playing') {
@@ -113,6 +130,17 @@ rockola.factory('party', [ // Dependencies
     party.playlist = filtered;
 
   };
+
+  party.stop_hosting = function(){
+    party.host = null;
+    socket.emit('stop:party');
+  }
+
+  party.check_host = function(){
+    if(client.device_id === party.host) {
+      party.stop_hosting();  
+    }
+  }
 
   // Helpers.
   function get_most_rated(playlist){

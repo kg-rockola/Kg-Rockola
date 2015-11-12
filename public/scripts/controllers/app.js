@@ -26,14 +26,19 @@ rockola.controller('app_controller', ['$scope',
     	}
     }
 
-    // Socket events
-    socket.on('init', function(data){
-    	party.host        = data.party.host;
-    	party.playlist    = data.party.playlist;
-      party.current_song = data.party.current_song;
+  //  Angular events
+  $scope.$on('playlist:updated', function(){
+    $scope.$apply();
+  });
 
-    	var unique_id    = sessionStorage.getItem('deviceId'),
-          current_song = sessionStorage.getItem('currentSong');
+  // Socket events
+  socket.on('init', function(data){
+    party.host        = data.party.host;
+    party.playlist    = data.party.playlist;
+     party.current_song = data.party.current_song;
+
+    var unique_id    = sessionStorage.getItem('deviceId'),
+        current_song = sessionStorage.getItem('currentSong');
 
     if(unique_id){
     	client.device_id = unique_id;
@@ -48,6 +53,8 @@ rockola.controller('app_controller', ['$scope',
       party.current_song = data.current_song;
       sessionStorage.setItem('current_song', data.current_song);
     }
+
+    $scope.$broadcast('services:initialized');
 
   });
 
@@ -78,6 +85,8 @@ rockola.controller('app_controller', ['$scope',
   socket.on('current_song:updated', function($current_song){
     party.current_song = $current_song;
   });
+
+  window.onbeforeunload = function (evt) {  party.check_host(); }
 
 
 }]);

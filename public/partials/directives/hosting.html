@@ -1,4 +1,4 @@
-<section class="full-screen party-page hosted">
+<section class="full-screen party-page hosted" ng-init="hosting_ctrl.init()">
 	
 	<div class="fs-col col-md-8 col-sm-6 bg-default hidden-xs">
 		<div class="video-wrapper" ng-show="hosting_ctrl.partying"  >
@@ -40,7 +40,9 @@
 			</li>
 		    <li class="list-group-item clearfix"
 		        ng-repeat="item in hosting_ctrl.party.playlist track by item.song.id.videoId"
-		        ng-class="{ 'song-disabled' : ( item.state === 'ended' ) }"
+		        ng-class="{ 
+		        			'playing' : ($index === 0)
+		        		  }"
 		      > 
 		        <h5>
 		        	<button class="delete-song-button" ng-click="hosting_ctrl.remove_song(item)" >Delete song</button>

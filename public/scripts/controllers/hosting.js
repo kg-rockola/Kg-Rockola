@@ -21,17 +21,16 @@ rockola.controller('hosting_controller', ['youtube_player',
   var _this = this;
 
   // Controller members.
-  _this.youtube_player = $youtube_player;
-  _this.party          = $party;
-  _this.client         = $client;
-  _this.socket         = $socket;
-  _this.state          = $state;
-  _this.partying       = false;
+  _this.youtube_player       = $youtube_player;
+  _this.party                = $party;
+  _this.client               = $client;
+  _this.socket               = $socket;
+  _this.state                = $state;
+  _this.partying             = false;
 
   // Methods
   _this.stop_hosting = function(){
-    _this.socket.emit('stop:party');
-    _this.party.host = null;
+    _this.party.stop_hosting();
     _this.youtube_player.destroy();
     _this.partying = false;
   }
@@ -46,8 +45,6 @@ rockola.controller('hosting_controller', ['youtube_player',
       function() {
         _this.youtube_player.init();
         _this.partying = true;
-        _this.socket.emit('host:party', _this.client.device_id);
-        _this.party.host = _this.client.device_id;
       }
     );
   }
@@ -65,27 +62,32 @@ rockola.controller('hosting_controller', ['youtube_player',
     
   }
 
-  $scope.$on('playlist:updated', function(){
+  _this.init_client = function(){
+    _this.socket.emit('host:party', _this.client.device_id);
+    _this.party.host = _this.client.device_id;
+  }
 
+  // Init.
+  _this.init = function(){
+    _this.partying = false;
+    _this.init_client();
+  };
+
+  // Angular events.
+  $scope.$on('playlist:updated', function(){
     if(_this.party.playlist.length < 1){
       _this.partying = false;
     }
-
-    $scope.$apply();
   });
 
   $scope.$on('stop:hosting', function(){
     _this.stop_hosting();
   });
 
+  $scope.$on('services:initialized', function(){
+    _this.init_client();
+  });
 
-  // On loaded.
-  var onLoad = function(){
-    _this.partying = false;
-  };
-
-
-  onLoad();
 }]);
 
 })();

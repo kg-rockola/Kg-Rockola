@@ -192,14 +192,23 @@ ul {
   margin: 0;
 }
 /* line 3, ../sass/_lists.scss */
+.list-group strong {
+  color: #088bd2;
+  margin-right: 1em;
+}
+/* line 7, ../sass/_lists.scss */
 .list-group .list-group-item:not(:first-child) {
   padding: 2em 1em;
   border-radius: 0;
 }
-/* line 6, ../sass/_lists.scss */
-.list-group .list-group-item:not(:first-child) strong {
-  color: #088bd2;
-  margin-right: 1em;
+/* line 11, ../sass/_lists.scss */
+.list-group .playing {
+  color: #1e8449;
+  background: #9ee9be !important;
+}
+/* line 13, ../sass/_lists.scss */
+.list-group .playing strong {
+  color: #1e8449;
 }
 
 /* line 2, ../sass/_backgrounds.scss */

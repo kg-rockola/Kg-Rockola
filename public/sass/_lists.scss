@@ -1,11 +1,18 @@
 .list-group {
-  margin: 0;
-  .list-group-item:not(:first-child) {
-  	padding: 2em 1em;
-    border-radius: 0;
-    	strong {
-    		color: $konrad-blue;
-    		margin-right: 1em;
-    	}
-  }
+	margin: 0;
+  	strong {
+		color: $konrad-blue;
+		margin-right: 1em;
+  	}
+  	.list-group-item:not(:first-child) {
+  		padding: 2em 1em;
+    	border-radius: 0;
+  	}
+  	.playing {
+  		color: darken($check, 10);
+  		strong {
+  			color: darken($check, 10);
+  		}
+  		background: lighten($check, 35) !important;
+  	}
 }

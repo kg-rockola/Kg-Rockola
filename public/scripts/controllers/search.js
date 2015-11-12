@@ -40,7 +40,6 @@ rockola.controller('search_controller', ['socket',
 
     // On load.
     var onLoad = function(){
-      console.log(_this.party.playlist);
       if(_this.search.query_result.length < 1){
         _this.get_songs();
       }

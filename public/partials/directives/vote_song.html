@@ -1,15 +1,18 @@
 <section>
     
     <ul class="list-group vote-list" ng-show="vote_ctrl.party.playlist.length" >
-      <li lass="list-group-item clearfix" ng-hide="vote_ctrl.party.host" >
+      <li lass="list-group-item clearfix" ng-if="!vote_ctrl.party.host" >
         <button class="btn btn-default app-button host-button" ui-sref="hosting" >
-          Host a party {{ vote_ctrl.party.host }}
+          Host a party
         </button>
       </li>
       <li class="list-group-item clearfix"
           ng-repeat="item in vote_ctrl.party.playlist track by item.song.id.videoId"
           ng-click="vote_ctrl.vote.add_vote(item.song)"
-          ng-class="{ 'song-disabled' :  vote_ctrl.vote.user_has_voted(item.song)  }"
+          ng-class="{ 
+                      'song-disabled' :  vote_ctrl.vote.user_has_voted(item.song),
+                      'playing'       : ($index === 0)
+                    }"
         > 
           <h5><strong>{{ $index+1 }}.</strong> {{ item.song.snippet.title }}</h5>
       </li>    

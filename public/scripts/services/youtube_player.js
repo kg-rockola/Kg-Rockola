@@ -19,8 +19,8 @@ rockola.factory('youtube_player', [ // Dependencies
     youtube_player.player   = null;
     youtube_player.playlist = null;
 
-    youtube_player.next = function(){
-      if(party.current_song){
+    youtube_player.play_next = function(){
+      if(party.current_song) {
         youtube_player.player.loadVideoById(party.current_song.song.id.videoId);
       } else {
         $rootScope.$broadcast('stop:hosting');
@@ -38,12 +38,20 @@ rockola.factory('youtube_player', [ // Dependencies
       party.current_song = party.get_next_song();
       socket.emit('update:current_song', party.current_song);
       socket.emit('update:playlist', party.playlist);
-      youtube_player.next();
+
+      youtube_player.play_next();
     }
 
     youtube_player.unstarted = function(){
       party.current_song = party.get_next_song();  
       socket.emit('update:current_song', party.current_song);
+    }
+
+    youtube_player.playing = function(){
+      party.current_song.state = 'playing';
+      party.playlist[ party.find(party.current_song.song) ].state = 'playing';
+      socket.emit('update:current_song', party.current_song);
+      $rootScope.$broadcast('playlist:updated');
     }
 
     youtube_player.destroy = function(){
@@ -77,9 +85,7 @@ rockola.factory('youtube_player', [ // Dependencies
           case 1:
             // Playing
             console.log('Playing.');
-            party.current_song.state = 'playing';
-            socket.emit('update:current_song', party.current_song);
-            $rootScope.$broadcast('playlist:updated');
+            youtube_player.playing();
             break; 
           case 2:
             // Paused
@@ -99,23 +105,24 @@ rockola.factory('youtube_player', [ // Dependencies
             break;
         }
 
-      }
+    }
 
-    youtube_player.get_first_song = function(){
+    youtube_player.get_first_song = function() {
       party.current_song = party.get_next_song();
+
       socket.emit('update:current_song', party.current_song);
       socket.emit('update:playlist', party.playlist);
+
       return party.current_song;
     }
 
     // Init function
-
     youtube_player.init = function(){
       if( party.playlist.length || party.current_song ){
         var first_song    = youtube_player.get_first_song();
         var first_song_id = first_song.song.id.videoId;
 
-        youtube_player.player = new YT.Player('player', {
+          youtube_player.player = new YT.Player('player', {
             videoId: first_song_id,
             events: {
               'onReady'       : youtube_player.onPlayerReady,
