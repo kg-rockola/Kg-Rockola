@@ -83,8 +83,12 @@ rockola.factory('vote', [ // Dependencies
         vote_index = 0;
 
     if(vote.user_has_voted(YouTube_Song_Object)){
-      vote_index = vote.get_vote_index(YouTube_Song_Object);
-      vote.remove_song(YouTube_Song_Object, song_index, vote_index);
+      if( party.playlist[song_index].creator === client.device_id ){
+        party.remove_song(YouTube_Song_Object);
+      } else {
+        vote_index = vote.get_vote_index(YouTube_Song_Object);
+        vote.remove_song(YouTube_Song_Object, song_index, vote_index);
+      }
     } else {
       vote.add_vote(YouTube_Song_Object, song_index);
     }
