@@ -1,11 +1,17 @@
+.fa {
+    font-size: 1.2em;
+}
+
 .fa-check-circle {
     color: $check;
-    font-size: 1.2em;
 }
 
 .fa-times-circle {
 	color: $konrad-blue;
-	font-size: 1.2em;
+}
+
+.fa-star {
+    color: $yellow;
 }
 
 .kg-tooltip {

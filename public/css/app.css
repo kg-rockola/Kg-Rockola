@@ -505,24 +505,32 @@ ul {
 }
 
 /* line 1, ../sass/_font_awesome_custom.scss */
+.fa {
+  font-size: 1.2em;
+}
+
+/* line 5, ../sass/_font_awesome_custom.scss */
 .fa-check-circle {
   color: #27ae60;
-  font-size: 1.2em;
 }
 
-/* line 6, ../sass/_font_awesome_custom.scss */
+/* line 9, ../sass/_font_awesome_custom.scss */
 .fa-times-circle {
   color: #088bd2;
-  font-size: 1.2em;
 }
 
-/* line 11, ../sass/_font_awesome_custom.scss */
+/* line 13, ../sass/_font_awesome_custom.scss */
+.fa-star {
+  color: #f1c40f;
+}
+
+/* line 17, ../sass/_font_awesome_custom.scss */
 .kg-tooltip {
   display: inline;
   position: relative;
 }
 
-/* line 18, ../sass/_font_awesome_custom.scss */
+/* line 24, ../sass/_font_awesome_custom.scss */
 .kg-tooltip:hover:after {
   border-radius: 10px 10px 10px 0;
   bottom: 26px;
@@ -537,15 +545,15 @@ ul {
   text-align: center;
   background: #088bd2;
 }
-/* line 35, ../sass/_font_awesome_custom.scss */
+/* line 41, ../sass/_font_awesome_custom.scss */
 .kg-tooltip.danger:hover:after {
   background: #c0392b;
 }
-/* line 42, ../sass/_font_awesome_custom.scss */
+/* line 48, ../sass/_font_awesome_custom.scss */
 .kg-tooltip.check:hover:after {
   background: #27ae60;
 }
-/* line 49, ../sass/_font_awesome_custom.scss */
+/* line 55, ../sass/_font_awesome_custom.scss */
 .kg-tooltip.default:hover:after {
   background: #088bd2;
 }

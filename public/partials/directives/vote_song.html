@@ -8,13 +8,19 @@
       </li>
       <li class="list-group-item clearfix"
           ng-repeat="item in vote_ctrl.party.playlist track by item.song.id.videoId"
-          ng-click="vote_ctrl.vote.add_vote(item.song)"
+          ng-click="vote_ctrl.vote.process_vote(item.song)"
           ng-class="{ 
                       'song-disabled' :  vote_ctrl.vote.user_has_voted(item.song),
                       'playing'       : ($index === 0)
                     }"
         > 
-          <h5><strong>{{ $index+1 }}.</strong> {{ item.song.snippet.title }}</h5>
+          <h5>
+            <strong>{{ $index+1 }}.</strong> 
+            <div class="icon-group" ng-if="vote_ctrl.vote.user_has_voted(item.song)" >
+              <i class="fa fa-star"></i>
+            </div>
+            {{ item.song.snippet.title }}
+          </h5>
       </li>    
     </ul>
 

@@ -39,6 +39,27 @@ rockola.factory('vote', [ // Dependencies
     return false;
 	};
 
+  vote.get_vote_index = function(YouTube_Song_Object){
+    var song_index = party.find(YouTube_Song_Object);
+
+    if( song_index !== -1 ){
+      var votes      = party.playlist[song_index].votes,
+          device_id  = client.device_id,
+          i          = 0,
+          l          = votes.length;
+
+      for(i=0; (i<l); i++){
+          var  vote = votes[i];
+          if(vote === device_id){
+            return i;
+          }
+      }
+
+    } 
+
+    return -1;
+  }
+
   vote.get_most_rated = function($playlist){
     var i            = 0,
         l            = $playlist.length,
@@ -56,17 +77,30 @@ rockola.factory('vote', [ // Dependencies
     return most_popular;
   }
 
-  vote.add_vote = function(YouTube_Song_Object){    
+  vote.process_vote = function(YouTube_Song_Object){
     var song_index = party.find(YouTube_Song_Object),
-        user_voted = vote.user_has_voted(YouTube_Song_Object);
+        user_voted = vote.user_has_voted(YouTube_Song_Object),
+        vote_index = 0;
 
-    if(user_voted === false){
-      party.playlist[song_index].votes.push(client.device_id);
-      party.arrange_playlist();
-      console.log(party.playlist)
-      socket.emit('vote:song', party.playlist);
+    if(vote.user_has_voted(YouTube_Song_Object)){
+      vote_index = vote.get_vote_index(YouTube_Song_Object);
+      vote.remove_song(YouTube_Song_Object, song_index, vote_index);
+    } else {
+      vote.add_vote(YouTube_Song_Object, song_index);
     }
 
+    party.arrange_playlist();
+    socket.emit('vote:song', party.playlist);
+
+  }
+
+  vote.remove_song = function(YouTube_Song_Object, song_index, vote_index){
+    party.playlist[song_index].votes.splice(vote_index, 1);
+    
+  }
+
+  vote.add_vote = function(YouTube_Song_Object, song_index){    
+    party.playlist[song_index].votes.push(client.device_id);
   }
 
     // Return object.
