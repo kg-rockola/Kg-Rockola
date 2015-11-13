@@ -16,11 +16,15 @@ rockola.controller('search_controller', ['socket',
     // Controller alias
     var _this = this;
 
-    // Controller members.
+    // Controller dependencies.
     _this.socket = $socket;
     _this.party  = $party;
     _this.search = $search;
     _this.vote   = $vote;
+
+    // Controller members.
+    _this.page_size    = 10;
+    _this.current_page = 1;
 
     // Methods.
     _this.get_songs = function(){

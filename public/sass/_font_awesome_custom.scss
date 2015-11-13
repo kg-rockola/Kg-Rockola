@@ -14,47 +14,47 @@
     color: $yellow;
 }
 
-.kg-tooltip {
-    display: inline;
-    position: relative;
-}
+// .kg-tooltip {
+//     display: inline;
+//     position: relative;
+// }
 
-.kg-tooltip {
-    &:hover {
-        &:after {
-            border-radius: 10px 10px 10px 0;
-            bottom: 26px;
-            color: #fff;
-            content: attr(tooltip);
-            left: 20%;
-            padding: .5em;
-            position: absolute;
-            z-index: 98;
-            min-width: 150px;
-            max-width: 250px;
-            text-align: center;
-            background: $konrad-blue;
-        }
-    }
-    &.danger {
-        &:hover {
-            &:after {
-                background: $red;
-            }
-        }
-    }
-    &.check {
-        &:hover {
-            &:after {
-                background: $check;
-            }
-        }
-    }
-    &.default {
-        &:hover {
-            &:after {
-                background: $konrad-blue;
-            }
-        }
-    }
-}
+// .kg-tooltip {
+//     &:hover {
+//         &:after {
+//             border-radius: 10px 10px 10px 0;
+//             bottom: 26px;
+//             color: #fff;
+//             content: attr(tooltip);
+//             left: 20%;
+//             padding: .5em;
+//             position: absolute;
+//             z-index: 98;
+//             min-width: 150px;
+//             max-width: 250px;
+//             text-align: center;
+//             background: $konrad-blue;
+//         }
+//     }
+//     &.danger {
+//         &:hover {
+//             &:after {
+//                 background: $red;
+//             }
+//         }
+//     }
+//     &.check {
+//         &:hover {
+//             &:after {
+//                 background: $check;
+//             }
+//         }
+//     }
+//     &.default {
+//         &:hover {
+//             &:after {
+//                 background: $konrad-blue;
+//             }
+//         }
+//     }
+// }

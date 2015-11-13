@@ -523,37 +523,3 @@ ul {
 .fa-star {
   color: #f1c40f;
 }
-
-/* line 17, ../sass/_font_awesome_custom.scss */
-.kg-tooltip {
-  display: inline;
-  position: relative;
-}
-
-/* line 24, ../sass/_font_awesome_custom.scss */
-.kg-tooltip:hover:after {
-  border-radius: 10px 10px 10px 0;
-  bottom: 26px;
-  color: #fff;
-  content: attr(tooltip);
-  left: 20%;
-  padding: .5em;
-  position: absolute;
-  z-index: 98;
-  min-width: 150px;
-  max-width: 250px;
-  text-align: center;
-  background: #088bd2;
-}
-/* line 41, ../sass/_font_awesome_custom.scss */
-.kg-tooltip.danger:hover:after {
-  background: #c0392b;
-}
-/* line 48, ../sass/_font_awesome_custom.scss */
-.kg-tooltip.check:hover:after {
-  background: #27ae60;
-}
-/* line 55, ../sass/_font_awesome_custom.scss */
-.kg-tooltip.default:hover:after {
-  background: #088bd2;
-}

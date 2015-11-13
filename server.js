@@ -84,7 +84,7 @@ function handleIO(socket){
   });
 
   socket.on('searching:youtube', function(query){
-    youtube.search(query, 24, function(error, result){
+    youtube.search(query, 50, function(error, result){
       if(error){
         socket.emit('youtube:result:failed', error);
       } else {

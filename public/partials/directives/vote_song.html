@@ -7,7 +7,7 @@
         </button>
       </li>
       <li class="list-group-item clearfix"
-          ng-repeat="item in vote_ctrl.party.playlist track by item.song.id.videoId"
+          ng-repeat="item in vote_ctrl.party.playlist | startFrom:( (vote_ctrl.current_page - 1) * vote_ctrl.page_size ) | limitTo: vote_ctrl.page_size track by item.song.id.videoId"
           ng-click="vote_ctrl.vote.process_vote(item.song)"
           ng-class="{ 
                       'song-disabled' :  vote_ctrl.vote.user_has_voted(item.song),
@@ -21,7 +21,17 @@
             </div>
             {{ item.song.snippet.title }}
           </h5>
-      </li>    
+      </li> 
+      <uib-pagination total-items="vote_ctrl.party.playlist.length" 
+                      ng-model="vote_ctrl.current_page"
+                      items-per-page="vote_ctrl.page_size"
+                      previous-text="&lsaquo;"
+                      next-text="&rsaquo;"
+                      first-text="&laquo;"
+                      last-text="&raquo;"
+                    >
+        <!-- Injects ui.bootstrap pagination -->
+      </uib-pagination>
     </ul>
 
 
