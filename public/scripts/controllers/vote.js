@@ -26,7 +26,7 @@ rockola.controller('vote_controller', [ 'party',
     _this.search = $search;
 
     // Controller members.
-    _this.page_size    = 5;
+    _this.page_size    = 10;
     _this.current_page = 1;
 
 }]);

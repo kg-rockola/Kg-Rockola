@@ -294,7 +294,7 @@ ul {
 
 /* line 41, ../sass/_search_song.scss */
 .song-results, .vote-list {
-  padding-top: 8em;
+  padding-top: 10em;
 }
 
 /* line 45, ../sass/_search_song.scss */
@@ -353,14 +353,51 @@ ul {
 
   /* line 93, ../sass/_search_song.scss */
   .search-song-form .input-group {
-    top: 145px;
+    top: 109px;
   }
 
   /* line 97, ../sass/_search_song.scss */
   .kg-thumbnail {
     width: 100%;
   }
+
+  /* line 100, ../sass/_search_song.scss */
+  .song-results, .vote-list {
+    padding-top: 12em;
+  }
 }
+/* line 4, ../sass/_pagination.scss */
+.search-pagination-wrapper .pagination li a {
+  width: 20%;
+}
+
+/* line 14, ../sass/_pagination.scss */
+.vote-pagination-wrapper .pagination li a {
+  width: 10%;
+}
+
+/* line 21, ../sass/_pagination.scss */
+.pagination {
+  text-align: center;
+  width: 100%;
+}
+/* line 25, ../sass/_pagination.scss */
+.pagination li a {
+  border-radius: 0px !important;
+}
+
+/* line 31, ../sass/_pagination.scss */
+.pagination > li > a, .pagination > li > span {
+  color: #088bd2;
+  border: none;
+}
+
+/* line 36, ../sass/_pagination.scss */
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background: #088bd2;
+  color: white;
+}
+
 /* line 1, ../sass/_image_grid.scss */
 .search-row {
   color: whitesmoke;

@@ -5,6 +5,15 @@
         <button class="btn btn-default app-button host-button" ui-sref="hosting" >
           Host a party
         </button>
+        <div class="vote-pagination-wrapper">
+          <uib-pagination total-items="vote_ctrl.party.playlist.length" 
+                      ng-model="vote_ctrl.current_page"
+                      items-per-page="vote_ctrl.page_size"
+                      direction-links="false"
+                    >
+            <!-- Injects ui.bootstrap pagination -->
+          </uib-pagination>
+        </div>
       </li>
       <li class="list-group-item clearfix"
           ng-repeat="item in vote_ctrl.party.playlist | startFrom:( (vote_ctrl.current_page - 1) * vote_ctrl.page_size ) | limitTo: vote_ctrl.page_size track by item.song.id.videoId"
@@ -22,16 +31,6 @@
             {{ item.song.snippet.title }}
           </h5>
       </li> 
-      <uib-pagination total-items="vote_ctrl.party.playlist.length" 
-                      ng-model="vote_ctrl.current_page"
-                      items-per-page="vote_ctrl.page_size"
-                      previous-text="&lsaquo;"
-                      next-text="&rsaquo;"
-                      first-text="&laquo;"
-                      last-text="&raquo;"
-                    >
-        <!-- Injects ui.bootstrap pagination -->
-      </uib-pagination>
     </ul>
 
 

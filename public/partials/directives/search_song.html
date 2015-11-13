@@ -3,24 +3,33 @@
   <form novalidate class="search-song-form tab-padding">
     <div class="col col-md-12 col-sm-12 col-xs-12 input-group">
       <div class="col col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-          <div class="col col-md-10 col-sm-10 col-xs-10">
-            <input ng-model="search_ctrl.search.query" 
-                   type="text" 
-                   class="form-control search-input pull-left" 
-                   autocomplete="true"
-                   focus-me
-                   focus-me-if="true"
-                   placeholder="Search song or artist"
-                   ng-keyup="search_ctrl.get_songs()"
-                />
-          </div>
-          <div class="col col-md-2 col-sm-2 col-xs-2">
-            <span class="input-group-addon pull-left"
-                  ng-click="search_ctrl.clear_search()" >
-                  X
-            </span>
-          </div>
+        <div class="col col-md-10 col-sm-10 col-xs-10">
+          <input ng-model="search_ctrl.search.query" 
+                 type="text" 
+                 class="form-control search-input pull-left" 
+                 autocomplete="true"
+                 focus-me
+                 focus-me-if="true"
+                 placeholder="Search song or artist"
+                 ng-keyup="search_ctrl.get_songs()"
+              />
         </div>
+        <div class="col col-md-2 col-sm-2 col-xs-2">
+          <span class="input-group-addon pull-left"
+                ng-click="search_ctrl.clear_search()" >
+                X
+          </span>
+        </div>
+        <div class="search-pagination-wrapper col col-md-10 col-sm-10 col-xs-10">
+          <uib-pagination total-items="search_ctrl.search.query_result.length" 
+                  ng-model="search_ctrl.current_page"
+                  items-per-page="search_ctrl.page_size"
+                  direction-links="false"
+                >
+            <!-- Injects ui.bootstrap pagination -->
+          </uib-pagination>
+        </div>
+      </div>
     </div>
   </form>
 
@@ -67,16 +76,5 @@
         <div class="preview-animation"></div>
     </li>    
   </ul>
-
-  <uib-pagination total-items="search_ctrl.search.query_result.length" 
-                  ng-model="search_ctrl.current_page"
-                  items-per-page="search_ctrl.page_size"
-                  previous-text="&lsaquo;"
-                  next-text="&rsaquo;"
-                  first-text="&laquo;"
-                  last-text="&raquo;"
-                >
-  <!-- Injects ui.bootstrap pagination -->
-</uib-pagination>
 
 </section>

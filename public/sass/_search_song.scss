@@ -39,7 +39,7 @@
 }
 
 .song-results, .vote-list {
-	padding-top: 8em;
+	padding-top: 10em;
 }
 
 .list-group {
@@ -91,10 +91,13 @@
 	}
 	.search-song-form {
 		.input-group {
-			top: 145px;
+			top: 109px;
 		}
 	}
 	.kg-thumbnail {
 		width: 100%;
+	}
+	.song-results, .vote-list {
+		padding-top: 12em;
 	}
 }
