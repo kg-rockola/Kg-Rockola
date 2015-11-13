@@ -30,7 +30,7 @@ rockola.controller('hosting_controller', ['youtube_player',
 
   // Methods
   _this.stop_hosting = function(){
-    _this.party.stop_hosting();
+    // _this.party.stop_hosting();
     _this.youtube_player.destroy();
     _this.partying = false;
   }

@@ -1,8 +1,8 @@
 <section>
     
     <ul class="list-group vote-list" ng-show="vote_ctrl.party.playlist.length" >
-      <li lass="list-group-item clearfix" ng-if="!vote_ctrl.party.host" >
-        <button class="btn btn-default app-button host-button" ui-sref="hosting" >
+      <li lass="list-group-item clearfix" >
+        <button class="btn btn-default app-button host-button" ui-sref="hosting"  ng-if="!vote_ctrl.party.host" >
           Host a party
         </button>
         <div class="vote-pagination-wrapper">
@@ -20,11 +20,11 @@
           ng-click="vote_ctrl.vote.process_vote(item.song)"
           ng-class="{ 
                       'song-disabled' :  vote_ctrl.vote.user_has_voted(item.song),
-                      'playing'       : ($index === 0)
+                      'playing'       : item.state === 'playing'
                     }"
         > 
           <h5>
-            <strong>{{ $index+1 }}.</strong> 
+            <!-- <strong>{{ $index+1 }}.</strong>  -->
             <div class="icon-group" ng-if="vote_ctrl.vote.user_has_voted(item.song)" >
               <i class="fa fa-star"></i>
             </div>
