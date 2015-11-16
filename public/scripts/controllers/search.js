@@ -35,6 +35,7 @@ rockola.controller('search_controller', ['socket',
     _this.clear_search = function(){
       _this.search.query_result = [];
       _this.search.query        = '';
+      _this.get_songs();
     }
 
     // Socket events

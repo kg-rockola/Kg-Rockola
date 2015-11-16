@@ -353,7 +353,7 @@ ul {
 
   /* line 93, ../sass/_search_song.scss */
   .search-song-form .input-group {
-    top: 109px;
+    top: 108px;
   }
 
   /* line 97, ../sass/_search_song.scss */
@@ -363,7 +363,7 @@ ul {
 
   /* line 100, ../sass/_search_song.scss */
   .song-results, .vote-list {
-    padding-top: 12em;
+    padding-top: 8em;
   }
 }
 /* line 4, ../sass/_pagination.scss */

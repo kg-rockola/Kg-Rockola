@@ -5,7 +5,7 @@
         <button class="btn btn-default app-button host-button" ui-sref="hosting"  ng-if="!vote_ctrl.party.host" >
           Host a party
         </button>
-        <div class="vote-pagination-wrapper">
+        <div class="vote-pagination-wrapper" ng-if="vote_ctrl.party.playlist.length > 10" >
           <uib-pagination total-items="vote_ctrl.party.playlist.length" 
                       ng-model="vote_ctrl.current_page"
                       items-per-page="vote_ctrl.page_size"

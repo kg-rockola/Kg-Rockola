@@ -2,7 +2,7 @@
 
   <form novalidate class="search-song-form tab-padding">
     <div class="col col-md-12 col-sm-12 col-xs-12 input-group">
-      <div class="col col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+      <div class="col col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-12">
         <div class="col col-md-10 col-sm-10 col-xs-10">
           <input ng-model="search_ctrl.search.query" 
                  type="text" 
@@ -20,7 +20,7 @@
                 X
           </span>
         </div>
-        <div class="search-pagination-wrapper col col-md-10 col-sm-10 col-xs-10">
+        <div class="search-pagination-wrapper col col-md-10 col-sm-10 col-xs-10" ng-if="search_ctrl.search.query_result.length > 0">
           <uib-pagination total-items="search_ctrl.search.query_result.length" 
                   ng-model="search_ctrl.current_page"
                   items-per-page="search_ctrl.page_size"
@@ -33,7 +33,7 @@
     </div>
   </form>
 
-  <ul class="list-group song-results" >
+  <ul class="list-group song-results" ng-if="search_ctrl.search.query_result.length > 0" >
     <li class="list-group-item clearfix"
         ng-repeat="YouTube_Song_Object in search_ctrl.search.query_result | startFrom:( (search_ctrl.current_page - 1) * search_ctrl.page_size ) | limitTo: search_ctrl.page_size track by YouTube_Song_Object.id.videoId"
         ng-click="search_ctrl.party.process_song(YouTube_Song_Object)"
@@ -73,8 +73,11 @@
               </h4>
             </div>
         </div>
-        <div class="preview-animation"></div>
     </li>    
   </ul>
+
+  <div ng-if="search_ctrl.search.query_result.length === 0" class="col col-md-12 col-sm-12 col-xs-12" >
+    <img src="images/icons/loading.gif" alt="Loading image" class="img-responsive col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-offset-0" >
+  </div>
 
 </section>
