@@ -1,16 +1,19 @@
 rockola.factory('youtube_player', [ // Dependencies
                                     'party',
                                     'socket',
+                                    'toastr',
                                     '$rootScope',
                                   function (
                                     // Dependencies
                                     $party,
                                     $socket,
+                                    $toastr,
                                     $rootScope
                                   ){
 
     // Dependency injection
     var party  = $party,
+        toastr = $toastr,
         socket = $socket;
 
     // Elements
@@ -20,37 +23,32 @@ rockola.factory('youtube_player', [ // Dependencies
     youtube_player.playlist = null;
 
     youtube_player.play_next = function(){
-      if(party.current_song) {
-        youtube_player.player.loadVideoById(party.current_song.song.id.videoId);
+      var next_song = party.get_next_song();
+
+      if(next_song) {
+        youtube_player.player.loadVideoById(next_song.song.id.videoId);
       } else {
         $rootScope.$broadcast('stop:hosting');
       }
     }
 
     youtube_player.song_ended = function(){
-      var song_index = party.find(party.current_song.song);
-
-      party.playlist[song_index].state = 'ended';
+      party.playlist[0].state = 'ended';
       party.arrange_playlist();
 
       $rootScope.$broadcast('playlist:updated');
-
-      party.current_song = party.get_next_song();
-      socket.emit('update:current_song', party.current_song);
       socket.emit('update:playlist', party.playlist);
 
       youtube_player.play_next();
     }
 
     youtube_player.unstarted = function(){
-      party.current_song = party.get_next_song();  
-      socket.emit('update:current_song', party.current_song);
+      // 
     }
 
     youtube_player.playing = function(){
-      party.current_song.state = 'playing';
-      party.playlist[ party.find(party.current_song.song) ].state = 'playing';
-      socket.emit('update:current_song', party.current_song);
+      party.playlist[0].state = 'playing';
+      socket.emit('update:playlist', party.playlist);
       $rootScope.$broadcast('playlist:updated');
     }
 
@@ -107,19 +105,15 @@ rockola.factory('youtube_player', [ // Dependencies
 
     }
 
-    youtube_player.get_first_song = function() {
-      party.current_song = party.get_next_song();
-
-      socket.emit('update:current_song', party.current_song);
-      socket.emit('update:playlist', party.playlist);
-
-      return party.current_song;
-    }
-
     // Init function
     youtube_player.init = function(){
-      if( party.playlist.length || party.current_song ){
-        var first_song    = youtube_player.get_first_song();
+      toastr.toast( "info", // Type
+                    "toast-top-full-width", // CSS Class
+                    "Oh yep !! This is happening !!" // MSG
+                  );
+
+      if( party.playlist.length ){
+        var first_song    = party.get_next_song();
         var first_song_id = first_song.song.id.videoId;
 
           youtube_player.player = new YT.Player('player', {

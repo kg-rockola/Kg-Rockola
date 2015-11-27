@@ -2,7 +2,7 @@
     
     <ul class="list-group vote-list" ng-show="vote_ctrl.party.playlist.length" >
       <li lass="list-group-item clearfix" >
-        <button class="btn btn-default app-button host-button" ui-sref="hosting"  ng-if="!vote_ctrl.party.host" >
+        <button class="btn btn-default app-button host-button" ui-sref="hosting" ng-class="{'visible': !vote_ctrl.party.host}" >
           Host a party
         </button>
         <div class="vote-pagination-wrapper" ng-if="vote_ctrl.party.playlist.length > 10" >

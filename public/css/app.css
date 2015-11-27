@@ -138,16 +138,21 @@ ul {
   width: 100%;
   border-left: 0em solid transparent;
   border-right: 0em solid transparent;
+  display: none;
   transition: all .25s linear;
 }
-/* line 16, ../sass/_buttons.scss */
+/* line 17, ../sass/_buttons.scss */
 .host-button:hover {
   background: white;
   border-left: 5em solid #088bd2;
   border-right: 5em solid #088bd2;
 }
+/* line 24, ../sass/_buttons.scss */
+.host-button.visible {
+  display: block;
+}
 
-/* line 25, ../sass/_buttons.scss */
+/* line 30, ../sass/_buttons.scss */
 .button-group button {
   margin-top: 1em;
   padding: .5em;
@@ -157,16 +162,16 @@ ul {
   border-radius: 0;
   transition: opacity 0.5s ease-in-out;
 }
-/* line 33, ../sass/_buttons.scss */
+/* line 38, ../sass/_buttons.scss */
 .button-group button:first-child {
   border-right: 1px solid #088bd2;
 }
-/* line 37, ../sass/_buttons.scss */
+/* line 42, ../sass/_buttons.scss */
 .button-group .delete-song-button {
   width: 20%;
 }
 
-/* line 42, ../sass/_buttons.scss */
+/* line 47, ../sass/_buttons.scss */
 .delete-song-button {
   padding: 1em;
   border: none;
@@ -182,7 +187,7 @@ ul {
   bottom: 0;
   opacity: 0;
 }
-/* line 56, ../sass/_buttons.scss */
+/* line 61, ../sass/_buttons.scss */
 .delete-song-button:hover, .delete-song-button:active, .delete-song-button:focus {
   opacity: 1;
 }

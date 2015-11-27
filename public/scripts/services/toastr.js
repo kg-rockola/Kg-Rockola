@@ -9,11 +9,9 @@ rockola.factory('toastr', [ // Dependencies
     // Options.
     toastr.options = {
       positionClass   : 'toast-top-full-width',
-      extendedTimeOut : 0, //1000;
+      extendedTimeOut : 5000, //1000;
       progressBar     : true,
-      timeOut         : 1000,
-      fadeOut         : 250,
-      fadeIn          : 250
+      timeOut         : 1000
     };
 
     // Methods.
@@ -27,7 +25,7 @@ rockola.factory('toastr', [ // Dependencies
       var new_toast = new Toast(type, css, msg);
 
       toastr.options.positionClass = new_toast.css;
-      toastr[new_toast](new_toast.msg);
+      toastr[new_toast.type](new_toast.msg);
 
     };
 

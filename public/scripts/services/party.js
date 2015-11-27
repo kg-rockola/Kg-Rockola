@@ -16,7 +16,6 @@ rockola.factory('party', [ // Dependencies
 
   // Main object members.
   party.host         = null;
-  party.current_song = null;
   party.playlist     = [];
 
   // Methods.
@@ -74,29 +73,11 @@ rockola.factory('party', [ // Dependencies
   };
   
   party.get_next_song = function(){
-
-      var new_next_song = function(){
-        for(var song in party.playlist){
-          if(party.playlist[song].state === 'playing' || party.playlist[song].state === 'unstarted' ){
-            party.playlist[song].state = 'playing';
-            return party.playlist[song];
-          }
-        }
-
-        return false;
-      }
-      
-      if(party.current_song){
-        if(party.current_song.state === 'unstarted' || party.current_song.state === 'playing') {
-          party.current_song.state = 'playing';
-          return party.current_song;
-        } else {
-          return new_next_song();
-        }
-      } else {
-        return new_next_song();
-      }
-
+    if( party.playlist.length ) {
+      return party.playlist[0];
+    } else {
+      return false;
+    }
   }
 
   party.arrange_playlist = function(){
